@@ -7,8 +7,10 @@ export function ProductsProvider({ children }) {
     const [query, setQuery] = useState("");
     const [sortOption, setSortOption] = useState("");
     const [filters, setFilters] = useState({
-        eco: false,
-        gluten: false,
+        characteristics: {
+            eco: false,
+            gluten: false,
+        },
         categories: {
             fruits: false,
             dairy: false,
@@ -26,7 +28,16 @@ export function ProductsProvider({ children }) {
     }
 
     function resetFilters() {
-        setFilters({ eco: false, gluten: false });
+        setFilters({
+            characteristics: { eco: false, gluten: false },
+            categories: {
+                fruits: false,
+                dairy: false,
+                sweeteners: false,
+                nuts: false,
+                bakery: false,
+            }
+        });
     }
 
     return (

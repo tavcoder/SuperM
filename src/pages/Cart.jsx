@@ -2,6 +2,7 @@ import { useId, useContext } from "react";
 import { Link } from "react-router";
 import { CartContext } from "../context/CartContext.jsx";
 import QuantitySelector from "../components/QuantitySelector.jsx";
+import "../styles/CartPage.css"; // nuevo archivo para estilos
 
 export default function Cart({ user }) {
     const emailId = useId();
@@ -21,65 +22,71 @@ export default function Cart({ user }) {
     }
 
     return (
-        <div className="cart-wrapper">
-            <h1>Your cart</h1>
-            <title>Cart | SuperM</title>
-            {cart.map((product) => (
-                console.log(product),
-                <div key={product.id} className="cart-product">
-                    <img
-                        src={product.thumbnail}
-                        alt={product.name}
-                        className="cart-product-img"
-                        width="126"
-                        height="84"
-                    />
+        <div className="cart-container">
+            <div className="cart-left">
+                <h2 className="section-title">Shopping Card</h2>
 
-                    <div className="cart-product-details">
-                        <div className="product-header">
+                {cart.map((product) => (
+                    <div key={product.id} className="cart-item">
+                        <img
+                            src={product.thumbnail}
+                            alt={product.name}
+                            className="cart-product-img"
+                        />
+
+                        <div className="cart-product-info">
                             <p className="product-name">{product.name}</p>
+                            <p className="unit-price">Unit price: ${(product.final_price / 100).toFixed(2)}</p>
                         </div>
 
-                        <p className="unit-price">Unit price: ${(product.final_price / 100).toFixed(2)}</p>
                         <QuantitySelector product={product} />
-                    </div>
 
-                    <div className="cart-product-subtotal">
-                        <p className="total-label">Subtotal</p>
-                        <p className="total-price">${((product.final_price * product.quantity) / 100).toFixed(2)}</p>
+                        <div className="product-subtotal">
+                            <p>${((product.final_price * product.quantity) / 100).toFixed(2)}</p>
+                        </div>
                     </div>
+                ))}
+
+                <div className="subtotal">
+                    <span>Subtotal:</span>
+                    <span>${(cartSum / 100).toFixed(2)}</span>
                 </div>
-
-            ))}
-
-            <div className="cart-total">
-                <h2>Your total price</h2>
-                <p className="cart-total-value">
-                    ${(cartSum / 100).toFixed(2)}
-                </p>
             </div>
-            <form onSubmit={(event) => event.preventDefault()}>
-                <label className="label" htmlFor={emailId}>
-                    Email<span className="required">*</span>:
-                </label>
-                <input
-                    id={emailId}
-                    type="email"
-                    className="input"
-                    placeholder="Enter your email"
-                    defaultValue={user ? user.email : ""}
-                />
-                <p className="text-dimmed cart-notice">
-                    Enter your email and then click on pay and your products
-                    will be delivered to you the same day!
-                </p>
-                <p className="cart-notice cart-warning">
-                    This is a demo, so the form does not submit any data.
-                </p>
-                <div className="cart-button-wrapper">
-                    <input type="submit" value="Pay" className="btn" />
+
+            <div className="cart-right">
+                <div className="card-preview">
+                    <p className="card-title">Lorem Ipsum</p>
+                    <p>**** **** **** 1234</p>
+                    <p>12/30</p>
+                    <p className="card-holder">Diana Smith</p>
+                    <p className="card-brand">VISA</p>
                 </div>
-            </form>
+
+                <form className="payment-form" onSubmit={(e) => e.preventDefault()}>
+                    <label htmlFor={emailId}>Email:</label>
+                    <input
+                        id={emailId}
+                        type="email"
+                        className="input"
+                        placeholder="Enter your email"
+                        defaultValue={user ? user.email : ""}
+                    />
+
+                    <label>Card Number:</label>
+                    <input type="text" value="**** **** **** 5432" readOnly />
+
+                    <label>Expiration Date:</label>
+                    <div className="expiry">
+                        <input type="text" placeholder="MM" />
+                        <input type="text" placeholder="YYYY" />
+                    </div>
+
+                    <label>CVV:</label>
+                    <input type="text" placeholder="***" />
+
+                    <button type="submit" className="checkout-btn">Check Out</button>
+                </form>
+            </div>
         </div>
     );
 }

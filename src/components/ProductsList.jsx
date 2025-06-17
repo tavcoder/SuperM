@@ -3,6 +3,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProductsContext } from "../context/ProductsContext.jsx";
 import Product from "./Product.jsx";
 import { get } from "../services/fetcher.jsx";
+import {
+    getVisibleProducts
+} from "../utils/filters.js";
 
 export default function ProductsList() {
     const { data: products } = useSuspenseQuery({
@@ -19,52 +22,7 @@ export default function ProductsList() {
         handleSearchChange,
     } = useContext(ProductsContext);
 
-    function applySort(products) {
-        switch (sortOption) {
-            case "price-desc": return [...products].sort((a, b) => b.final_price - a.final_price);
-            case "price-asc": return [...products].sort((a, b) => a.final_price - b.final_price);
-            case "name-asc": return [...products].sort((a, b) => a.name.localeCompare(b.name));
-            case "name-desc": return [...products].sort((a, b) => b.name.localeCompare(a.name));
-            default: return products;
-        }
-    }
-
-    const categoryMap = {
-        fruits: 'Fruits and Vegetables',
-        dairy: 'Dairy and Derivatives',
-        sweeteners: 'Sweeteners',
-        nuts: 'Nuts',
-        bakery: 'Bakery',
-    };
-
-    function applyCategories(products) {
-        const selectedCategories = Object.entries(filters.categories)
-            .filter(([_, isChecked]) => isChecked)
-            .map(([key]) => categoryMap[key]);
-
-        return products.filter(product => {
-            // Si hay categorías seleccionadas, filtramos solo esos productos
-            const isInSelectedCategory =
-                selectedCategories.length === 0 || selectedCategories.includes(product.category);
-
-            if (!isInSelectedCategory) {
-                return false;
-            }
-            return true;
-        });
-    }
-
-    function applyFilters(products = []) {
-        return products.filter(product => {
-            if (filters.eco && product.nutrition.eco !== true) return false;
-            if (filters.gluten && product.nutrition.gluten !== false) return false;
-            return true;
-        });
-    }
-
-
-
-    const filteredProducts = applySort(applyFilters(applyCategories(products)));
+    const filteredProducts = getVisibleProducts(products, filters, sortOption);
 
     return (
         <main className="products-main">
@@ -85,8 +43,7 @@ export default function ProductsList() {
                     <div>
                         <h2>No products found!</h2>
                         <p>
-                            Your search &quot;<strong>{query}</strong>&quot; was
-                            not found in our store.
+                            Your search &quot;<strong>{query}</strong>&quot; was not found in our store.
                         </p>
                         <button
                             className="btn btn-dimmed"
@@ -99,12 +56,11 @@ export default function ProductsList() {
                 </div>
             ) : (
                 <div className="products-grid">
-                    {filteredProducts.map((product) => (
+                    {filteredProducts.map(product => (
                         <Product key={product.id} details={product} />
                     ))}
                 </div>
             )}
-
         </main>
     );
 }

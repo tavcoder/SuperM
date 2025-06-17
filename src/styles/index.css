@@ -12,9 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary: #f15025;
+  --primary: #E86373;
   --black: #191919;
-  --gray: #e6e8e6;
+  --gray: #F4F4F4;
   --border: #ced0ce;
 }
 
@@ -143,11 +143,11 @@ body.dark {
 
 
 .nav-item a:hover {
-  background-color: rgba(25 25 25 / 5%);
+  background-color: #A7F3D0;
 }
 
 .nav-item a.active {
-  background-color: rgba(25 25 25 / 20%);
+  background-color: #A7F3D0;
 }
 
 .theme-switcher {
@@ -232,23 +232,45 @@ h1 {
   margin: 0.5rem 0;
 }
 
-.filter-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  /* ajusta según tu diseño */
 }
 
-.filters label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.btn-clear {
-  background: none;
+.custom-select {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  /* espacio derecho para la flecha */
+  font-size: 14px;
+  color: #1f2937;
+  /* gris oscuro */
+  background-color: #f3f4f6;
+  /* gris claro */
   border: none;
-  font-size: 1.2rem;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px #e5e7eb;
+  /* borde interior sutil */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   cursor: pointer;
 }
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%) rotate(45deg);
+  border: solid #4b5563;
+  /* gris oscuro */
+  border-width: 0 2px 2px 0;
+  padding: 4px;
+  pointer-events: none;
+}
+
 
 .products-main {
   flex: 1;
