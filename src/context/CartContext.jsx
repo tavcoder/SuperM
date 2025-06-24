@@ -1,4 +1,4 @@
-import { useState, useEffect,useContext, createContext } from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 import { ToastContext } from './ToastContext';
 
 export const CartContext = createContext(null);
@@ -24,6 +24,10 @@ export function CartProvider({ children }) {
         0
     );
 
+    const clearCart = () => {
+        setCart([]);
+    };
+
     function handleAddProduct(newProduct) {
         const found = cart.find(product => String(product.id) === String(newProduct.id));
 
@@ -37,7 +41,7 @@ export function CartProvider({ children }) {
             addToast(`"${newProduct.name}" added to cart`, "success");
         } else {
             setCart([...cart, { ...newProduct, quantity: 1 }]);
-            addToast(`"${newProduct.name}" added to cart`, "success"); 
+            addToast(`"${newProduct.name}" added to cart`, "success");
         }
     }
 
@@ -65,12 +69,15 @@ export function CartProvider({ children }) {
 
 
 
+
+
     return (
         <CartContext
             value={{
                 cart,
                 cartCount,
                 cartSum,
+                clearCart,
                 handleAddProduct,
                 handleRemoveProduct,
             }}

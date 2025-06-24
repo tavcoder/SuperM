@@ -8,6 +8,8 @@ import Profile from "./pages/Profile.jsx";
 import Products from "./pages/Products.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
+import PaymentFailure from "./pages/PaymentFailure.jsx";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 
 
 function App() {
@@ -22,54 +24,56 @@ function App() {
     }
 
     return (<>
-            <BrowserRouter>
-                <div className="wrapper-gray">
-                    <div className="container">
-                        <Navbar user={user} />
-                    </div>
+        <BrowserRouter>
+            <div className="wrapper-gray">
+                <div className="container">
+                    <Navbar user={user} />
                 </div>
-                <div className="container page-wrapper">
-                    <Routes>
-                        <Route path="/" element={<Landing />} />
-                        <Route
-                            path="/login"
-                            element={<Login onUserLogin={handleUserLogin} />}
-                        />
-                        <Route
-                            path="/profile"
-                            element={
-                                <Profile
-                                    user={user}
-                                    onUserLogout={handleUserLogout}
-                                />
-                            }
-                        />
-                        <Route
-                            path="/products"
-                            element={
-                                <Suspense
-                                    fallback={<p className="loading">Loading...</p>}
-                                >
-                                    <Products />
-                                </Suspense>
-                            }
-                        />
-                        <Route
-                            path="/products/:id"
-                            element={
-                                <Suspense
-                                    fallback={<p className="loading">Loading...</p>}
-                                >
-                                    <ProductDetails />
-                                </Suspense>
-                            }
-                        />
-                        <Route path="/cart" element={<Cart user={user} />} />
-                        <Route path="/admin" element={<AdminDashboard />} />
-                        <Route path="*" element={<h1>Page not found</h1>} />
-                    </Routes>
-                </div>
-            </BrowserRouter>
+            </div>
+            <div className="container page-wrapper">
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route
+                        path="/login"
+                        element={<Login onUserLogin={handleUserLogin} />}
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <Profile
+                                user={user}
+                                onUserLogout={handleUserLogout}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/products"
+                        element={
+                            <Suspense
+                                fallback={<p className="loading">Loading...</p>}
+                            >
+                                <Products />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/products/:id"
+                        element={
+                            <Suspense
+                                fallback={<p className="loading">Loading...</p>}
+                            >
+                                <ProductDetails />
+                            </Suspense>
+                        }
+                    />
+                    <Route path="/cart" element={<Cart user={user} />} />
+                    <Route path="/payment-failure" element={<PaymentFailure />} />
+                    <Route path="/payment-success" element={<PaymentSuccess />} />
+                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="*" element={<h1>Page not found</h1>} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     </>);
 }
 
