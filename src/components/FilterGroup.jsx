@@ -47,7 +47,7 @@ export default function FilterGroup() {
                     </ul>
                 </div>
             ))}
-            <button onClick={resetFilters} className=" btn filter-btn">Remove filters</button>
+            <button onClick={resetFilters} className="filter-btn">Remove filters</button>
         </div>
     );
 }

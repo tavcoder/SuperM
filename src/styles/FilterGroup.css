@@ -47,11 +47,14 @@
     /* text-gray-800 */
 }
 
-.filter-btn{
-    background-color: #F3F4F6;
-    padding: 5px;
-    border-radius: 5px;
-    all: unset;
+.filter-btn {
+    margin-top: 1rem;
+    background: #333;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    
+    font-weight: bold;
+
 }

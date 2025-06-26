@@ -236,22 +236,18 @@ h1 {
   position: relative;
   width: 100%;
   max-width: 250px;
-  /* ajusta según tu diseño */
 }
 
 .custom-select {
   width: 100%;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
-  /* espacio derecho para la flecha */
+
   font-size: 14px;
   color: #1f2937;
-  /* gris oscuro */
   background-color: #f3f4f6;
-  /* gris claro */
   border: none;
   border-radius: 4px;
   box-shadow: inset 0 0 0 1px #e5e7eb;
-  /* borde interior sutil */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -265,7 +261,6 @@ h1 {
   right: 1rem;
   transform: translateY(-50%) rotate(45deg);
   border: solid #4b5563;
-  /* gris oscuro */
   border-width: 0 2px 2px 0;
   padding: 4px;
   pointer-events: none;
@@ -403,7 +398,8 @@ td {
   margin-inline: auto;
 }
 
-.login-error {
+.login-error,
+.error {
   color: var(--primary);
   margin-top: 0;
 }
@@ -609,5 +605,36 @@ a {
   100% {
     opacity: 0;
     transform: translateY(-10px);
+  }
+}
+
+.trash-icon {
+  color: var(--border);
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.trash-icon:hover {
+  color: #cc0000;
+  transform: scale(1.2);
+}
+
+.trash-icon.animate {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

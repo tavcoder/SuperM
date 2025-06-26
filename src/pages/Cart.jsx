@@ -1,14 +1,38 @@
 import { useId, useContext, useState } from "react";
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 import { CartContext } from "../context/CartContext.jsx";
 import QuantitySelector from "../components/QuantitySelector.jsx";
 import ProcessingModal from "../components/ProcessingModal.jsx";
 import "../styles/CartPage.css";
 
+import {
+    validateEmail,
+    validateCardNumber,
+    validateExpiryMonth,
+    validateExpiryYear,
+    validateCvv,
+} from "../utils/validation.js";
+
 export default function Cart({ user }) {
     const emailId = useId();
     const { cart, cartSum, clearCart } = useContext(CartContext);
     const [isProcessing, setIsProcessing] = useState(false);
+
+    const [email, setEmail] = useState(user ? user.email : "");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expiryMonth, setExpiryMonth] = useState("");
+    const [expiryYear, setExpiryYear] = useState("");
+    const [cvv, setCvv] = useState("");
+
+    const isEmailValid = validateEmail(email);
+    const isCardValid = validateCardNumber(cardNumber);
+    const isMonthValid = validateExpiryMonth(expiryMonth);
+    const isYearValid = validateExpiryYear(expiryYear);
+    const isCvvValid = validateCvv(cvv);
+
+    const isFormValid =
+        isEmailValid && isCardValid && isMonthValid && isYearValid && isCvvValid;
+
     if (cart.length === 0) {
         return (
             <div className="cart-wrapper">
@@ -39,13 +63,17 @@ export default function Cart({ user }) {
 
                             <div className="cart-product-info">
                                 <p className="product-name">{product.name}</p>
-                                <p className="unit-price">Unit price: ${(product.final_price / 100).toFixed(2)}</p>
+                                <p className="unit-price">
+                                    Unit price: ${(product.final_price / 100).toFixed(2)}
+                                </p>
                             </div>
 
                             <QuantitySelector product={product} />
 
                             <div className="product-subtotal">
-                                <p>${((product.final_price * product.quantity) / 100).toFixed(2)}</p>
+                                <p>
+                                    ${((product.final_price * product.quantity) / 100).toFixed(2)}
+                                </p>
                             </div>
                         </div>
                     ))}
@@ -69,6 +97,8 @@ export default function Cart({ user }) {
                         className="payment-form"
                         onSubmit={(e) => {
                             e.preventDefault();
+                            if (!isFormValid) return;
+
                             setIsProcessing(true);
 
                             const isSuccess = Math.random() > 0.2;
@@ -78,7 +108,6 @@ export default function Cart({ user }) {
                                 if (isSuccess) {
                                     clearCart();
                                     window.location.href = "/payment-success";
-
                                 } else {
                                     window.location.href = "/payment-failure";
                                 }
@@ -91,22 +120,68 @@ export default function Cart({ user }) {
                             type="email"
                             className="input"
                             placeholder="Enter your email"
-                            defaultValue={user ? user.email : ""}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
+                        {!isEmailValid && email.length > 0 && (
+                            <p className="error">Please enter a valid email.</p>
+                        )}
 
                         <label>Card Number:</label>
-                        <input type="text" value="**** **** **** 5432" readOnly />
+                        <input
+                            type="text"
+                            placeholder="1234 5678 9012 3456"
+                            value={cardNumber}
+                            onChange={(e) => setCardNumber(e.target.value)}
+                            maxLength={19}
+                        />
+                        {!isCardValid && cardNumber.length > 0 && (
+                            <p className="error">Please enter a valid 16-digit card number.</p>
+                        )}
 
                         <label>Expiration Date:</label>
                         <div className="expiry">
-                            <input type="text" placeholder="MM" />
-                            <input type="text" placeholder="YYYY" />
+                            <input
+                                type="text"
+                                placeholder="MM"
+                                value={expiryMonth}
+                                onChange={(e) => setExpiryMonth(e.target.value)}
+                                maxLength={2}
+                            />
+                            <input
+                                type="text"
+                                placeholder="YYYY"
+                                value={expiryYear}
+                                onChange={(e) => setExpiryYear(e.target.value)}
+                                maxLength={4}
+                            />
                         </div>
+                        {(!isMonthValid || !isYearValid) &&
+                            (expiryMonth.length > 0 || expiryYear.length > 0) && (
+                                <p className="error">Please enter a valid expiration date.</p>
+                            )}
 
                         <label>CVV:</label>
-                        <input type="text" placeholder="***" />
+                        <input
+                            type="text"
+                            placeholder="***"
+                            value={cvv}
+                            onChange={(e) => setCvv(e.target.value)}
+                            maxLength={4}
+                        />
+                        {!isCvvValid && cvv.length > 0 && (
+                            <p className="error">Please enter a valid CVV.</p>
+                        )}
 
-                        <button type="submit" className="checkout-btn">Check Out</button>
+                        <button
+                            type="submit"
+                            className={`checkout-btn ${!isFormValid ? "disabled" : ""}`}
+                            disabled={!isFormValid}
+                            title={!isFormValid ? "Complete all fields correctly" : ""}
+                        >
+                            Check Out
+                        </button>
+
                     </form>
                 </div>
             </div>

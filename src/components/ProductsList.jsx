@@ -23,6 +23,10 @@ export default function ProductsList() {
     } = useContext(ProductsContext);
 
     const filteredProducts = getVisibleProducts(products, filters, sortOption);
+    const totalProducts = products.length;
+    const visibleProducts = filteredProducts.length;
+
+    const showCounter = visibleProducts !== totalProducts || query.trim() !== "";
 
     return (
         <main className="products-main">
@@ -37,6 +41,12 @@ export default function ProductsList() {
                     onChange={handleSearchChange}
                 />
             </div>
+
+            {showCounter && (
+                <div className="products-counter">
+                    Showing <strong>{visibleProducts}</strong> out of <strong>{totalProducts}</strong> products
+                </div>
+            )}
 
             {filteredProducts.length === 0 && query.trim() !== "" ? (
                 <div className="products-not-found">
