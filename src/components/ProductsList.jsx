@@ -1,11 +1,10 @@
 import { useContext } from "react";
+import { FaSearch } from "react-icons/fa";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProductsContext } from "../context/ProductsContext.jsx";
 import Product from "./Product.jsx";
 import { get } from "../services/fetcher.jsx";
-import {
-    getVisibleProducts
-} from "../utils/filters.js";
+import { getVisibleProducts } from "../utils/filters.js";
 
 export default function ProductsList() {
     const { data: products } = useSuspenseQuery({
@@ -22,7 +21,7 @@ export default function ProductsList() {
         handleSearchChange,
     } = useContext(ProductsContext);
 
-    const filteredProducts = getVisibleProducts(products, filters, sortOption);
+    const filteredProducts = getVisibleProducts(products, filters, sortOption, query);
     const totalProducts = products.length;
     const visibleProducts = filteredProducts.length;
 
@@ -33,13 +32,16 @@ export default function ProductsList() {
             <div className="products-title">
                 <h1>Products</h1>
                 <title>Products | SuperM</title>
-                <input
-                    type="search"
-                    className="search"
-                    value={query}
-                    placeholder="Search products"
-                    onChange={handleSearchChange}
-                />
+                <div className="search-wrapper">
+                    <FaSearch className="search-icon" />
+                    <input
+                        type="search"
+                        className="search"
+                        value={query}
+                        placeholder="Search products"
+                        onChange={handleSearchChange}
+                    />
+                </div>
             </div>
 
             {showCounter && (
@@ -47,8 +49,9 @@ export default function ProductsList() {
                     Showing <strong>{visibleProducts}</strong> out of <strong>{totalProducts}</strong> products
                 </div>
             )}
-
+            {console.log("query:", query)}
             {filteredProducts.length === 0 && query.trim() !== "" ? (
+
                 <div className="products-not-found">
                     <div>
                         <h2>No products found!</h2>

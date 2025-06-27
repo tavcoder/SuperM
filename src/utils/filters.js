@@ -42,12 +42,19 @@ export function applySort(products, sortOption) {
   }
 }
 
-export function getVisibleProducts(products, filters, sortOption) {
-  return applySort(
-    applyCharacteristics(
-      applyCategories(products, filters),
-      filters
-    ),
-    sortOption
-  );
+export function getVisibleProducts(products, filters, sortOption, query = "") {
+ 
+  let visible = [...products];
+
+  if (query.trim()) {
+    visible = visible.filter((product) =>
+      product.name.toLowerCase().includes(query)
+    );
+  }
+
+  visible = applyCategories(visible, filters);
+  visible = applyCharacteristics(visible, filters);
+
+  return applySort(visible, sortOption);
 }
+

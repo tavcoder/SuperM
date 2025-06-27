@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useTransition } from "react";
+import { createContext, useState, useTransition } from "react";
 
 export const ProductsContext = createContext(null);
 
