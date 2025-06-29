@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import "../styles/LandingPage.css";
 
 export default function Landing() {
     return (
@@ -9,7 +10,7 @@ export default function Landing() {
                 Order your groceries from SuperM with our easy to use app, and
                 get your products delivered straight to your doorstep.
             </p>
-            <Link className="btn" to="/products">
+            <Link className="btn btn--level1" to="/products">
                 Start shopping
             </Link>
             <img

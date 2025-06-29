@@ -20,7 +20,7 @@ export default function ProductDetails() {
 
     return (
         <>
-            <Link to="/products" className="back">
+            <Link to="/products" className="btn btn--level3">
                 &lsaquo; Back to products
             </Link>
             <title>{`${details.name} | SuperM`}</title>
@@ -74,7 +74,7 @@ export default function ProductDetails() {
                     ></p>
                     <div className="details-a2c">
                         <button
-                            className="btn btn-block"
+                            className="btn btn--level1"
                             onClick={() => handleAddProduct(details)}
                         >
                             Add to cart

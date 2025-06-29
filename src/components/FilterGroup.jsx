@@ -27,7 +27,7 @@ export default function FilterGroup() {
                                         id={id}
                                         name={optionName}
                                         checked={isChecked}
-                                        className="filter-checkbox"
+                                        className="checkbox"
                                         onChange={(e) =>
                                             setFilters({
                                                 ...filters,
@@ -38,7 +38,7 @@ export default function FilterGroup() {
                                             })
                                         }
                                     />
-                                    <label htmlFor={id} className="filter-label">
+                                    <label htmlFor={id} className="label">
                                         {optionName}
                                     </label>
                                 </li>
@@ -47,7 +47,7 @@ export default function FilterGroup() {
                     </ul>
                 </div>
             ))}
-            <button onClick={resetFilters} className="filter-btn">Remove filters</button>
+            <button onClick={resetFilters} className="btn--level2">Remove filters</button>
         </div>
     );
 }

@@ -10,7 +10,7 @@ export default function PaymentFailure() {
                 <p className="failure-message">
                     There was a problem processing your payment. Please try again.
                 </p>
-                <Link to="/checkout" className="btn-retry">Return to Cart</Link>
+                <Link to="/checkout" className="btn btn--level1">Return to Cart</Link>
             </div>
         </div>
     );

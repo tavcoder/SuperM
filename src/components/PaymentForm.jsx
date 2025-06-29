@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext.jsx";
-import "../styles/PaymentForm.css";
+import "../styles/CheckoutPage.css";
 
 export default function PaymentForm({ user, onBack }) {
     const { clearCart } = useContext(CartContext);
@@ -111,7 +111,7 @@ export default function PaymentForm({ user, onBack }) {
 
                     <button
                         type="submit"
-                        className={`purchase-btn ${!isFormValid ? "disabled" : ""}`}
+                        className={`btn btn--level2 ${!isFormValid ? "disabled" : ""}`}
                         disabled={!isFormValid}
                     >
                         COMPLETE PURCHASE
@@ -119,7 +119,7 @@ export default function PaymentForm({ user, onBack }) {
                 </form>
             )}
 
-            <button className="back-link" onClick={onBack}>
+            <button className="btn btn--level3 " onClick={onBack}>
                 ← BACK TO SHIPPING
             </button>
         </div>

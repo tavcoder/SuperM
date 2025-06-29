@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import CartIcon from "./CartIcon.jsx";
+import "../styles/Navbar.css";
 
 export default function Navbar({ user }) {
     const [light, setLight] = useState(true);
@@ -37,7 +38,7 @@ export default function Navbar({ user }) {
                         <NavLink to="/products">Products</NavLink>
                     </li>
                 </ul>
-                <Link to="/checkout" className="btn btn-nav">
+                <Link to="/checkout" className="btn btn--level1 ">
                     <CartIcon />
                 </Link>
             </nav>

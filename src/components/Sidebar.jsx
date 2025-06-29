@@ -15,7 +15,7 @@ export default function Sidebar() {
                 <select
                     value={sortOption}
                     onChange={(e) => setSortOption(e.target.value)}
-                    className="custom-select"
+                    className="select"
                 >
                     <option value="">Select an option</option>
                     <option value="price-desc">Price (high to low)</option>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/ShippingForm.css";
+import "../styles/CheckoutPage.css";
 
 export default function ShippingForm({ onNext }) {
     const [form, setForm] = useState({
@@ -53,7 +53,7 @@ export default function ShippingForm({ onNext }) {
                 <input type="checkbox" required />
                 <span>Your privacy is important to us. We will only contact you if there is an issue with your order.</span>
             </div>
-            <button type="submit" className="next-btn">Save & Continue</button>
+            <button type="submit" className="btn btn--level1 ">Save & Continue</button>
         </form>
     );
 }

@@ -45,21 +45,21 @@ export default function ProductsList() {
             </div>
 
             {showCounter && (
-                <div className="products-counter">
+                <div className="info">
                     Showing <strong>{visibleProducts}</strong> out of <strong>{totalProducts}</strong> products
                 </div>
             )}
             {console.log("query:", query)}
             {filteredProducts.length === 0 && query.trim() !== "" ? (
 
-                <div className="products-not-found">
+                <div className="info">
                     <div>
                         <h2>No products found!</h2>
                         <p>
                             Your search &quot;<strong>{query}</strong>&quot; was not found in our store.
                         </p>
                         <button
-                            className="btn btn-dimmed"
+                            className="btn btn--level3 "
                             type="button"
                             onClick={() => setQuery("")}
                         >

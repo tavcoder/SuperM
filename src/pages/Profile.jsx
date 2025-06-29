@@ -18,7 +18,7 @@ export default function Profile({ user, onUserLogout }) {
                     <input
                         type="button"
                         value="Logout"
-                        className="btn"
+                        className="btn btn--level1"
                         onClick={onUserLogout}
                     />
                 </div>

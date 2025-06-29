@@ -2,7 +2,7 @@ import { useState } from "react";
 import ShippingForm from "../components/ShippingForm";
 import PaymentForm from "../components/PaymentForm";
 import CartSummary from "../components/CartSummary";
-import "../styles/CartPage.css";
+import "../styles/CheckoutPage.css";
 
 export default function Checkout({ user }) {
     const [step, setStep] = useState(1); // 1 = Shipping, 2 = Payment

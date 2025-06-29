@@ -94,7 +94,7 @@ export default function Login({ onUserLogin }) {
                         type="submit"
                         value={loading ? "Logging in..." : "Login"}
                         disabled={loading}
-                        className="btn"
+                        className="btn btn--level1"
                     />
                 </div>
             </form>

@@ -30,7 +30,7 @@ export default function Product(props) {
             {productInCart ? <QuantitySelector product={props.details} />
                 : (<button
                     onClick={() => handleAddProduct(props.details)}
-                    className="btn">
+                    className="btn btn--level1">
                     ADD TO THE CART
                 </button>)
             }

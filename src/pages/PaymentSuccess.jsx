@@ -10,7 +10,7 @@ export default function PaymentSuccess() {
                 <p className="success-message">
                     Thank you for your purchase. You will receive an email with the confirmation and shipping details.
                 </p>
-                <Link to="/products" className="btn-return">Back to store</Link>
+                <Link to="/products" className="btn btn--level1">Back to store</Link>
             </div>
         </div>
     );
