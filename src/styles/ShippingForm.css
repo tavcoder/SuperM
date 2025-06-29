@@ -1,0 +1,79 @@
+.shipping-form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    font-family: 'Arial', sans-serif;
+}
+
+.shipping-form h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #111;
+}
+
+.shipping-form .row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.shipping-form input,
+.shipping-form select {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    transition: border-color 0.2s;
+    max-width: 50%;
+}
+
+.shipping-form input:focus,
+.shipping-form select:focus {
+    border-color: #111;
+    outline: none;
+    background-color: #fff;
+}
+
+.shipping-form input::placeholder {
+    color: #aaa;
+}
+
+.shipping-form select {
+    cursor: pointer;
+}
+
+.shipping-form .privacy {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.shipping-form .privacy input[type="checkbox"] {
+    margin-top: 0.2rem;
+    margin-right: 0.6rem;
+}
+
+.shipping-form .next-btn {
+    background-color: #111;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.shipping-form .next-btn:hover {
+    background-color: #333;
+}

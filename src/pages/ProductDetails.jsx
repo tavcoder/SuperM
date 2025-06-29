@@ -4,6 +4,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import Price from "../components/Price.jsx";
 import { CartContext } from "../context/CartContext.jsx";
 import { get } from "../services/fetcher.jsx";
+import "../styles/ProductDetailsPage.css";
 
 export default function ProductDetails() {
     const { id } = useParams();

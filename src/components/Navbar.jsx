@@ -37,7 +37,7 @@ export default function Navbar({ user }) {
                         <NavLink to="/products">Products</NavLink>
                     </li>
                 </ul>
-                <Link to="/cart" className="btn btn-nav">
+                <Link to="/checkout" className="btn btn-nav">
                     <CartIcon />
                 </Link>
             </nav>

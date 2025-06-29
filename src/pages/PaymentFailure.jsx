@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "../styles/PaymentFailure.css";
+import "../styles/PaymentFailurePage.css";
 
 export default function PaymentFailure() {
     return (

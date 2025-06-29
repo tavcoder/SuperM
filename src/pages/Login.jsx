@@ -88,7 +88,7 @@ export default function Login({ onUserLogin }) {
                     autoComplete="current-password"
                     disabled={loading}
                 />
-                <p className="login-error">{errorMessage}</p>
+                <p className="error">{errorMessage}</p>
                 <div className="form-buttons">
                     <input
                         type="submit"

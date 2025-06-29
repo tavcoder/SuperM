@@ -3,11 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Navbar from "./components/Navbar.jsx";
 import Landing from "./pages/Landing.jsx";
 import Login from "./pages/Login.jsx";
-import AdminDashboard from "./pages/Admin.jsx";
 import Profile from "./pages/Profile.jsx";
 import Products from "./pages/Products.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
-import Cart from "./pages/Cart.jsx";
+import Checkout from "./pages/Checkout.jsx";
 import PaymentFailure from "./pages/PaymentFailure.jsx";
 import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 
@@ -66,10 +65,9 @@ function App() {
                             </Suspense>
                         }
                     />
-                    <Route path="/cart" element={<Cart user={user} />} />
+                    <Route path="/checkout" element={<Checkout user={user} />} />
                     <Route path="/payment-failure" element={<PaymentFailure />} />
                     <Route path="/payment-success" element={<PaymentSuccess />} />
-                    <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="*" element={<h1>Page not found</h1>} />
                 </Routes>
             </div>

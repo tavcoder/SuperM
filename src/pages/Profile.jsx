@@ -1,4 +1,5 @@
 import { Navigate } from "react-router";
+import "../styles/ProfilePage.css";
 
 export default function Profile({ user, onUserLogout }) {
     if (!user) {
