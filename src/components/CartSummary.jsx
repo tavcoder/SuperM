@@ -5,7 +5,7 @@ import "../styles/CheckoutPage.css";
 import { FaTimes } from "react-icons/fa"; // Icono ❌
 
 export default function CartSummary() {
-    const { cart, cartSum, removeFromCart } = useContext(CartContext);
+    const { cart, cartSum, removeFromCart} = useContext(CartContext);
 
     if (cart.length === 0) {
         return (
@@ -29,8 +29,8 @@ export default function CartSummary() {
                     <QuantitySelector product={product} />
                     <p>${((product.final_price * product.quantity) / 100).toFixed(2)}</p>
                     <button
-                        className="btn"
-                        onClick={() => removeFromCart(product.id)}
+                        className="btn--level3"
+                        onClick={() => removeFromCart(product)}
                         aria-label={`Remove ${product.name}`}
                     >
                         <FaTimes />

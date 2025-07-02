@@ -23,6 +23,11 @@ export function CartProvider({ children }) {
         (total, product) => total + product.final_price * product.quantity,
         0
     );
+    function removeFromCart(product) {
+        const updatedCart = cart.filter(p => String(p.id) !== String(product.id));
+        setCart(updatedCart);
+        addToast(`"${product.name}" removed from cart`, "warn");
+    }
 
     const clearCart = () => {
         setCart([]);
@@ -61,9 +66,7 @@ export function CartProvider({ children }) {
             setCart(updatedCart);
             addToast(`"${product.name}" removed from cart`, "warn");
         } else {
-            const updatedCart = cart.filter(p => String(p.id) !== String(product.id));
-            setCart(updatedCart);
-            addToast(`"${product.name}" removed from cart`, "warn");
+           removeFromCart(product);
         }
     }
 
@@ -78,6 +81,7 @@ export function CartProvider({ children }) {
                 cartCount,
                 cartSum,
                 clearCart,
+                removeFromCart,
                 handleAddProduct,
                 handleRemoveProduct,
             }}

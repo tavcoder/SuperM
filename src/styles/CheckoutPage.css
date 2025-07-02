@@ -1,3 +1,4 @@
+/*pages/Checkout.jsx*/
 .checkout-container {
   display: flex;
   flex-direction: row;
@@ -22,30 +23,31 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
-.cart-wrapper {
-  max-width: 500px;
-  margin-inline: auto;
+/*components/CartSumary*/
+.cart-summary {
+  width: 100%;
 }
 
 .cart-item {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-bottom: 1px solid #eee;
+  border-radius: 5px;
   padding: 1rem 0;
   gap: 1rem;
 }
 
-.cart-item:hover{
+.cart-item:hover {
   background-color: var(--primary-hover);
-  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   color: var(--text-secondary);
 }
 
 .cart-product {
   background-color: var(--gray);
-  color: var(--black);
+  color: var(--text-primary);
   display: grid;
   grid-template-columns: minmax(50px, auto) 1fr auto;
   gap: 16px;
@@ -66,6 +68,7 @@
   gap: 8px;
 }
 
+/*components/QuatitySelector.jsx*/
 .quantity-buttons {
   list-style: none;
   padding-left: 0;
@@ -98,51 +101,11 @@
   color: var(--primary);
 }
 
-.quantity-buttons button:active {
+.quantity-buttons button.active {
   background-color: var(--border);
 }
 
-.cart-product-img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 6px;
-  flex-shrink: 0;
-}
-
-.cart-product-info {
-  flex: 2;
-  font-size: 0.95rem;
-}
-
-
-.subtotal {
-  text-align: right;
-  font-size: 1rem;
-  margin-top: 2rem;
-  font-weight: bold;
-}
-
-
-.card-preview {
-  background: #1e1e2f;
-  color: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  margin-right: -4rem;
-  max-height: 14rem;
-}
-
-.card-holder {
-  margin-top: 1rem;
-}
-
-.card-brand {
-  text-align: right;
-  font-weight: bold;
-}
-
+/*components/PaymentForm.jsx*/
 .payment-form,
 .shipping-form {
   display: flex;
@@ -161,7 +124,8 @@
   font-size: 0.9rem;
 }
 
-.payment-form input, .shipping-form input {
+.payment-form input,
+.shipping-form input {
   padding: 0.5rem;
   border: none;
   border-radius: 4px;
@@ -231,36 +195,7 @@
   border-color: #222;
 }
 
-.purchase-btn {
-  background: transparent;
-  border: 1px solid #333;
-  padding: 0.75rem;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 4px;
-  margin-top: 2rem;
-  transition: background-color 0.2s;
-}
-
-.purchase-btn:hover {
-  background-color: #eee;
-}
-
-.purchase-btn.disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.back-link {
-  margin-top: 1rem;
-  background: none;
-  border: none;
-  color: #222;
-  text-decoration: underline;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
+/*components/ShippingForm.jsx*/
 
 .shipping-form .row {
   display: flex;
@@ -306,20 +241,4 @@
 .shipping-form .privacy input[type="checkbox"] {
   margin-top: 0.2rem;
   margin-right: 0.6rem;
-}
-
-.shipping-form .next-btn {
-  background-color: #111;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 999px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  width: 100%;
-}
-
-.shipping-form .next-btn:hover {
-  background-color: #333;
 }

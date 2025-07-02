@@ -4,8 +4,8 @@
 
 :root {
   --primary: #E86373;
-  --primary-hover: #faa0ac;
-  --primary-pressed: #cc4d5b;
+  --primary-hover: #fef2f2;;
+  --primary-pressed: #f87171;;
   --primary-disabled: #d7a9ae;
 
   /* Texto */
@@ -241,7 +241,8 @@ body {
 
 .custom-select__option:hover,
 .custom-select__option.highlighted {
-  background-color: var(--gray-light);
+  background-color:var(--primary-hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .custom-select__option.selected {
@@ -268,7 +269,7 @@ body {
 /* Label */
 .label {
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin-bottom: 0.25rem;
   display: block;
 }
