@@ -1,0 +1,148 @@
+/*pages/products.jsx */
+.products-container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.products-main {
+    flex: 1;
+}
+
+.products-title {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.products-not-found {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    min-height: 400px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/*components/ProductsList.jsx */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search {
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    padding: 0.5rem 0.7rem 0.5rem 0.3rem;
+    box-sizing: border-box;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+/*components/Product.jsx */
+.product {
+    padding: 16px;
+    transition: background-color 150ms;
+}
+
+.product:hover {
+    border-radius: 4px;
+    background-color: rgba(25 25 25 / 5%);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.product a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-image {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.product-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.price-old {
+    text-decoration: line-through;
+    opacity: 0.5;
+    margin-left: 8px;
+}
+
+/*components/sidebar.jsx */
+
+.sidebar {
+    width: 250px;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+/*components/FilterGroup.jsx */
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-subgroup {
+    border-top: 1px solid var(--text-primary);
+}
+
+.filter-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    /* text-gray-700 */
+    font-size: 0.875rem;
+    /* text-sm */
+}
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-left: -22px;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

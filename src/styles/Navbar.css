@@ -1,0 +1,90 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 32px;
+}
+
+.logo {
+    font-size: 2.6rem;
+    font-weight: normal;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    background-color: white;
+    border-top-left-radius: 132px;
+    border-bottom-left-radius: 132px;
+    border-top-right-radius: 132px;
+    border-bottom-right-radius: 132px;
+}
+
+.nav-cart {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-count-badge {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    background-color: var(--primary);
+    color: var(--gray-light);
+    border-radius: 50%;
+    font-size: 0.65rem;
+    line-height: 1;
+    font-weight: 600;
+    width: 25px;
+    height: 25px;
+}
+
+
+.nav-item a,
+.nav-cart {
+    border-radius: 132px;
+    padding: 8px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+.nav-item a:hover,
+.nav-cart:hover {
+    color: #f07f8f;
+
+}
+
+.nav-item a.active,
+.nav-cart.active {
+    color: #cc4d5b;
+}
+
+.theme-switcher {
+    all: unset;
+    box-sizing: border-box;
+    outline: revert;
+    display: flex;
+    border-radius: 50%;
+    background-color: white;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.theme-switcher:hover {
+    background-color: rgba(255 255 255 / 50%);
+}
