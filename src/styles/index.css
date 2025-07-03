@@ -30,6 +30,7 @@
   /* Bordes y sombras */
   --border: #cccccc;
   --focus-ring: rgba(232, 99, 115, 0.2);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 body {
@@ -158,6 +159,7 @@ body {
 /* Icon */
 .icon {
   color: var(--text-secondary);
+  all: unset;
 }
 
 .icon:hover {

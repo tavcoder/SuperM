@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { FaCartPlus} from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 import { useContext } from "react";
 import Price from "./Price.jsx";
 import { CartContext } from "../context/CartContext.jsx";
@@ -21,22 +21,20 @@ export default function Product(props) {
                     alt={props.details.name}
                 />
                 <p className="product-name">{props.details.name}</p>
-                <div className="product-price">
-                    <Price
-                        finalPrice={props.details.final_price}
-                        originalPrice={props.details.original_price}
-                    />
-                    {productInCart ? <QuantitySelector product={props.details} />
-                        : (<button
-                            onClick={() => handleAddProduct(props.details)}
-                            className="btn--level2 product-btn">
-                           <FaCartPlus />
-                        </button>)
-                    }
-                </div>
             </Link>
-
-
+            <div className="product-price">
+                <Price
+                    finalPrice={props.details.final_price}
+                    originalPrice={props.details.original_price}
+                />
+                {productInCart ? <QuantitySelector product={props.details} />
+                    : (<button
+                        onClick={() => handleAddProduct(props.details)}
+                        className="btn--level2 product-btn">
+                        <FaCartPlus />
+                    </button>)
+                }
+            </div>
         </div>
     );
 }
