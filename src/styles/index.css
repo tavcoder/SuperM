@@ -76,6 +76,7 @@ body {
 
 .btn--level1:hover {
   background-color: var(--primary-hover);
+  color: var(--text-secondary);
 }
 
 .btn--level1:active {

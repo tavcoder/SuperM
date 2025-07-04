@@ -1,17 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-const OPTIONS = [
-    { label: "Select an option", value: "" },
-    { label: "Price (high to low)", value: "price-desc" },
-    { label: "Price (low to high)", value: "price-asc" },
-    { label: "Name (A to Z)", value: "name-asc" },
-    { label: "Name (Z to A)", value: "name-desc" },
-];
-
-export default function CustomSelect({ value, onChange }) {
+export default function CustomSelect({ value, onChange, options }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isVisible, setIsVisible] = useState(false); // for DOM rendering
+    const [isVisible, setIsVisible] = useState(false);
     const [highlightIndex, setHighlightIndex] = useState(0);
     const wrapperRef = useRef(null);
     const listRef = useRef(null);
@@ -20,7 +12,7 @@ export default function CustomSelect({ value, onChange }) {
         if (isOpen) {
             setIsVisible(true);
         } else {
-            const timer = setTimeout(() => setIsVisible(false), 200); // wait for fade-out
+            const timer = setTimeout(() => setIsVisible(false), 200);
             return () => clearTimeout(timer);
         }
     }, [isOpen]);
@@ -45,13 +37,13 @@ export default function CustomSelect({ value, onChange }) {
         if (isOpen) {
             if (e.key === "ArrowDown") {
                 e.preventDefault();
-                setHighlightIndex((prev) => (prev + 1) % OPTIONS.length);
+                setHighlightIndex((prev) => (prev + 1) % options.length);
             } else if (e.key === "ArrowUp") {
                 e.preventDefault();
-                setHighlightIndex((prev) => (prev - 1 + OPTIONS.length) % OPTIONS.length);
+                setHighlightIndex((prev) => (prev - 1 + options.length) % options.length);
             } else if (e.key === "Enter") {
                 e.preventDefault();
-                const selectedOption = OPTIONS[highlightIndex];
+                const selectedOption = options[highlightIndex];
                 onChange(selectedOption.value);
                 setIsOpen(false);
             } else if (e.key === "Escape") {
@@ -61,7 +53,7 @@ export default function CustomSelect({ value, onChange }) {
         }
     };
 
-    const selected = OPTIONS.find((opt) => opt.value === value)?.label || OPTIONS[0].label;
+    const selected = options.find((opt) => opt.value === value)?.label || options[0]?.label;
 
     return (
         <div
@@ -72,7 +64,7 @@ export default function CustomSelect({ value, onChange }) {
             role="combobox"
             aria-haspopup="listbox"
             aria-expanded={isOpen}
-            aria-activedescendant={OPTIONS[highlightIndex]?.value}
+            aria-activedescendant={options[highlightIndex]?.value}
         >
             <button
                 className="custom-select__button"
@@ -89,12 +81,11 @@ export default function CustomSelect({ value, onChange }) {
                     role="listbox"
                     ref={listRef}
                 >
-                    {OPTIONS.map((opt, index) => (
+                    {options.map((opt, index) => (
                         <li
                             key={opt.value}
                             id={opt.value}
-                            className={`custom-select__option ${opt.value === value ? "selected" : ""
-                                } ${index === highlightIndex ? "highlighted" : ""}`}
+                            className={`custom-select__option ${opt.value === value ? "selected" : ""} ${index === highlightIndex ? "highlighted" : ""}`}
                             onClick={() => {
                                 onChange(opt.value);
                                 setIsOpen(false);

@@ -2,7 +2,6 @@
 .checkout-container {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
   font-family: 'Arial', sans-serif;
   flex-wrap: wrap;
   width: 100%;
@@ -60,10 +59,6 @@
   justify-content: center;
   align-items: start;
   flex: 1;
-}
-
-.cart-item-details p{
-  margin-top: -20px;
 }
 
 /*components/QuatitySelector.jsx*/
