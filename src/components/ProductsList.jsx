@@ -9,7 +9,7 @@ import { getVisibleProducts } from "../utils/filters.js";
 export default function ProductsList() {
     const { data: products } = useSuspenseQuery({
         queryKey: ["products-list"],
-        queryFn: () => get("products"),
+        queryFn: () => get("products", "products"),
         staleTime: 1000 * 60 * 5,
     });
 

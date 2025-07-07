@@ -1,24 +1,35 @@
 import { createClient } from "@supabase/supabase-js";
 
-const apikey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJwcWRzc2J6a2FmZ2xvYmFlZmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2MjU2OTEsImV4cCI6MjA2NTIwMTY5MX0.Vod5vHET04ENRQUDFZHZVd7lAEO2k_NZP0VB0u0vXrE";
+const SUPABASE_CONFIGS = {
+    products: {
+        apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJwcWRzc2J6a2FmZ2xvYmFlZmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2MjU2OTEsImV4cCI6MjA2NTIwMTY5MX0.Vod5vHET04ENRQUDFZHZVd7lAEO2k_NZP0VB0u0vXrE",
+        url: "https://rpqdssbzkafglobaeflg.supabase.co"
+    },
+    users: {
+        apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud2R4ZHVqZ3pyemd0Zmt5c215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjYyMjUxMDIsImV4cCI6MjA0MTgwMTEwMn0.D0nuB2PYrkIVuIsz3R2JqJLJYHmr8gXChAiZrTGMiHk",
+        url: "https://bnwdxdujgzrzgtfkysmy.supabase.co"
+    }
+};
 
-const supabaseURL = "https://rpqdssbzkafglobaeflg.supabase.co";
-const BASE_URL = supabaseURL + "/rest/v1/";
+export function getClient(type = "products") {
+    const { url, apikey } = SUPABASE_CONFIGS[type];
+    return createClient(url, apikey);
+}
 
-
-export const supabase = createClient(supabaseURL, apikey);
-
-export function get(endpoint) {
-    return fetch(BASE_URL + endpoint, {
+export function get(type, endpoint) {
+    const { apikey, url } = SUPABASE_CONFIGS[type];
+    const baseUrl = `${url}/rest/v1/`;
+    return fetch(baseUrl + endpoint, {
         headers: {
             apikey,
         },
     }).then((response) => response.json());
 }
 
-export function callApi(method, endpoint, data) {
-    return fetch(BASE_URL + endpoint, {
+export function callApi(type, method, endpoint, data) {
+    const { apikey, url } = SUPABASE_CONFIGS[type];
+    const baseUrl = `${url}/rest/v1/`;
+    return fetch(baseUrl + endpoint, {
         method,
         headers: {
             apikey,
@@ -27,5 +38,3 @@ export function callApi(method, endpoint, data) {
         body: JSON.stringify(data),
     }).then((response) => response.json());
 }
-
-

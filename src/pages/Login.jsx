@@ -1,103 +1,97 @@
 import { useEffect, useId, useRef, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { supabase } from "../services/fetcher.jsx";
+import { callApi } from "../services/fetcher.jsx";
 
 export default function Login({ onUserLogin }) {
     const emailId = useId();
     const passwordId = useId();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
-    const [loading, setLoading] = useState(false);
     const emailRef = useRef(null);
+
+    const mutation = useMutation({
+        mutationFn: (data) => {
+            return callApi("users","post", "rpc/login", {
+                u_email: data.email,
+                u_password: data.password,
+            });
+        },
+        onError: (error) => {
+            console.log(error);
+            setErrorMessage(error.message);
+        },
+        onSuccess: (data) => {
+            if (data?.message) {
+                setErrorMessage(data.message);
+                return;
+            }
+            if (data?.[0]) {
+                onUserLogin(data[0]);
+                navigate("/profile");
+            }
+        },
+    });
 
     useEffect(() => {
         emailRef.current.focus();
     }, []);
 
-    async function handleLogin(event) {
+    function handleLogin(event) {
         event.preventDefault();
         setErrorMessage("");
-
         const formData = new FormData(event.target);
-        const email = formData.get("email");
-        const password = formData.get("password");
-
-        if (!email || !password) {
-            setErrorMessage("Email and password are required.");
-            return;
-        }
-
-        setLoading(true);
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email,
-            password,
+        mutation.mutate({
+            email: formData.get("email"),
+            password: formData.get("password"),
         });
-        setLoading(false);
-
-        if (error) {
-            setErrorMessage(error.message ?? "Login failed");
-            return;
-        }
-
-        // Cargamos datos del usuario desde la tabla users
-        const { data: userData, error: userError } = await supabase
-            .from("users")
-            .select("id, email, is_admin")
-            .eq("id", data.user.id)
-            .single();
-
-        if (userError) {
-            setErrorMessage(userError.message ?? "Failed to fetch user data");
-            return;
-        }
-
-        onUserLogin(userData);
-
-        if (userData.is_admin) {
-            navigate("/admin");
-        } else {
-            navigate("/profile");
-        }
     }
 
     return (
-        <div className="profile-wrapper">
-            <title>Login | SuperM</title>
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <label className="label" htmlFor={emailId}>
-                    Email<span className="required">*</span>:
-                </label>
-                <input
-                    id={emailId}
-                    name="email"
-                    type="email"
-                    className="input"
-                    ref={emailRef}
-                    autoComplete="email"
-                    disabled={loading}
-                />
-                <label className="label" htmlFor={passwordId}>
-                    Password<span className="required">*</span>:
-                </label>
-                <input
-                    id={passwordId}
-                    name="password"
-                    type="password"
-                    className="input"
-                    autoComplete="current-password"
-                    disabled={loading}
-                />
-                <p className="error">{errorMessage}</p>
-                <div className="form-buttons">
+        <>
+            <div className="profile-wrapper">
+                <title>Login | SuperM</title>
+                <h1>Login</h1>
+                <p className="text-dimmed">
+                    Login using test@example.com and any password.
+                </p>
+                <form onSubmit={handleLogin}>
+                    <label className="label" htmlFor={emailId}>
+                        Email<span className="required">*</span>:
+                    </label>
                     <input
-                        type="submit"
-                        value={loading ? "Logging in..." : "Login"}
-                        disabled={loading}
-                        className="btn btn--level1"
+                        id={emailId}
+                        name="email"
+                        type="email"
+                        className="input"
+                        placeholder="Email"
+                        autoComplete="email"
+                        disabled={mutation.isPending}
+                        ref={emailRef}
                     />
-                </div>
-            </form>
-        </div>
+                    <label className="label" htmlFor={passwordId}>
+                        Password<span className="required">*</span>:
+                    </label>
+                    <input
+                        id={passwordId}
+                        name="password"
+                        type="password"
+                        className="input"
+                        placeholder="Password"
+                        autoComplete="current-password"
+                        disabled={mutation.isPending}
+                    />
+                    <p className="login-error">{errorMessage}</p>
+                    <div className="form-buttons">
+                        <input
+                            type="submit"
+                            value="Login"
+                            className="btn"
+                            disabled={mutation.isPending}
+                        />
+                    </div>
+                </form>
+            </div>
+        </>
     );
 }

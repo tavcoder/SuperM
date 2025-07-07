@@ -4,8 +4,10 @@
 
 :root {
   --primary: #E86373;
-  --primary-hover: #fef2f2;;
-  --primary-pressed: #f87171;;
+  --primary-hover: #fef2f2;
+  ;
+  --primary-pressed: #f87171;
+  ;
   --primary-disabled: #d7a9ae;
 
   /* Texto */
@@ -28,7 +30,7 @@
   --gray-dark: #cccccc;
 
   /* Bordes y sombras */
-  --border: #cccccc;
+  --border: 1px solid #cccccc;
   --focus-ring: rgba(232, 99, 115, 0.2);
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -159,12 +161,17 @@ body {
 
 /* Icon */
 .icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
   color: var(--text-secondary);
   all: unset;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .icon:hover {
   color: var(--primary);
+  transform: scale(1.2);
 }
 
 .icon--selected {
@@ -244,7 +251,7 @@ body {
 
 .custom-select__option:hover,
 .custom-select__option.highlighted {
-  background-color:var(--primary-hover);
+  background-color: var(--primary-hover);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -285,6 +292,12 @@ h1 {
 
 .text-dimmed {
   opacity: 0.75;
+}
+
+.text-strikethroug {
+  text-decoration: line-through;
+  opacity: 0.5;
+  margin-left: 8px;
 }
 
 .loading {

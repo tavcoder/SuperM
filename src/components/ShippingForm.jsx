@@ -20,6 +20,7 @@ export default function ShippingForm({ onNext }) {
         { label: "Country", value: "" },
         { label: "USA", value: "USA" },
         { label: "Mexico", value: "Mexico" },
+        { label: "Spain", value: "Spain" },
     ];
 
     const handleChange = (e) => {

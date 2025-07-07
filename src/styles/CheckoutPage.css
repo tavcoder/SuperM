@@ -30,11 +30,11 @@
 
 .cart-item {
   min-width: 100%;
-  min-height: 100px; 
+  max-height: 200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #eee;
+  border-bottom: var(--border);
   border-radius: 5px;
   padding: 1rem;
   gap: 1rem;
@@ -61,6 +61,18 @@
   flex: 1;
 }
 
+.cart-item-details>* {
+  margin-bottom: -8px;
+}
+
+.cart-item-quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 50px;
+}
+
 /*components/QuatitySelector.jsx*/
 .quantity-buttons {
   list-style: none;
@@ -68,7 +80,7 @@
   display: inline-flex;
   place-items: center;
   text-align: center;
-  border: 1px solid var(--border);
+  border: var(--border);
   border-radius: 4px;
   background-color: white;
 }
@@ -95,21 +107,54 @@
 }
 
 .quantity-buttons button.active {
-  background-color: var(--border);
+  background-color: var(--gray);
+}
+
+/*components/CartTotals.jsx*/
+.cart-totals{
+  text-align: center;
+  gap: 10px;
+  max-width: 90%;
+}
+
+.cart-totals-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 80%;
+}
+
+.cart-totals-line span:last-child {
+  font-weight: 500;
+}
+
+.cart-totals-total {
+  max-width: 80%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  margin: 16px 0;
+  border-top: var(--border);
+  padding-top: 12px;
 }
 
 /*components/PaymentForm.jsx*/
+.cart-totals,
 .payment-form,
 .shipping-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
-  font-family: 'Arial', sans-serif;
+  box-shadow:var(--shadow);
 }
 
 .payment-form label {
