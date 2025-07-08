@@ -17,11 +17,15 @@ export default function Checkout({ user }) {
     const discount = subtotal - cartSum;
     const total = cartSum + shippingCost;
 
+    const goToStep2 = () => {
+        if (step === 1) setStep(2);
+    };
+
     return (
         <div className="checkout-container">
             <div className="checkout-left">
                 {step === 1 ? (
-                    <CartSummary onNext={() => setStep(2)} />
+                    <CartSummary />
                 ) : step === 2 ? (
                     <ShippingForm onNext={() => setStep(3)} />
                 ) : (
@@ -34,6 +38,8 @@ export default function Checkout({ user }) {
                     discount={discount}
                     shippingCost={shippingCost}
                     total={total}
+                    onNextStep={goToStep2}
+                    step={step}
                 />
             </div>
         </div>

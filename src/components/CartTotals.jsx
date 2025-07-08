@@ -1,4 +1,4 @@
-export default function CartTotals({ subtotal, discount, shippingCost, total }) {
+export default function CartTotals({ subtotal, discount, shippingCost, total, onNextStep, step }) {
     return (
         <div className="cart-totals">
             <div className="cart-totals-line">
@@ -17,7 +17,11 @@ export default function CartTotals({ subtotal, discount, shippingCost, total }) 
                 <strong>Total:</strong>
                 <strong>${(total / 100).toFixed(2)}</strong>
             </div>
-            <button className="btn btn--level1 ">Pay</button>
+            {step === 1 && (
+                <button className="btn btn--level1" onClick={onNextStep}>
+                    Continuar con el envío
+                </button>
+            )}
         </div>
     );
 }

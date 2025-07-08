@@ -1,0 +1,42 @@
+.failure-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff5f5;
+}
+
+.failure-card {
+    background: #ffe5e5;
+    border: 1px solid #ffcccc;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+}
+
+.failure-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ff0000;
+}
+
+.failure-message {
+    color: #800000;
+    margin: 1rem 0 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-retry {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-retry:hover {
+    background-color: #cc0000;
+}

@@ -136,7 +136,7 @@
   justify-content: space-between;
   font-size: 16px;
   font-weight: 600;
-  color: #111;
+  color: var(--black);
   margin: 16px 0;
   border-top: var(--border);
   padding-top: 12px;
