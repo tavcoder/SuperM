@@ -2,22 +2,25 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { callApi } from "../services/fetcher.jsx";
-import { validateField } from "../utils/validation"; 
+import { useFormValidation } from "../hooks/useFormValidation";
 
 export default function Login({ onUserLogin }) {
     const emailId = useId();
     const passwordId = useId();
     const navigate = useNavigate();
-
-    const [form, setForm] = useState({
+    const emailRef = useRef(null);
+    const [errorMessage, setErrorMessage] = useState("");
+    const {
+        form,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        isFormValid,
+    } = useFormValidation({
         email: "",
         password: ""
     });
-
-    const [touched, setTouched] = useState({});
-    const [errors, setErrors] = useState({});
-    const [errorMessage, setErrorMessage] = useState("");
-    const emailRef = useRef(null);
 
     const mutation = useMutation({
         mutationFn: (data) => {
@@ -45,35 +48,6 @@ export default function Login({ onUserLogin }) {
     useEffect(() => {
         emailRef.current.focus();
     }, []);
-
-    
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm(prev => ({ ...prev, [name]: value }));
-
-        if (touched[name]) {
-            const errMsg = validateField(name, value);
-            setErrors(prev => ({ ...prev, [name]: errMsg }));
-        }
-    };
-
-    const handleBlur = (e) => {
-        const { name, value } = e.target;
-        setTouched(prev => ({ ...prev, [name]: true }));
-        const errMsg = validateField(name, value);
-        setErrors(prev => ({ ...prev, [name]: errMsg }));
-    };
-
-    const isFormValid = () => {
-        const newErrors = {};
-        for (const key in form) {
-            const error = validateField(key, form[key]);
-            if (error) newErrors[key] = error;
-        }
-        setErrors(newErrors);
-        setTouched(Object.keys(form).reduce((acc, k) => ({ ...acc, [k]: true }), {}));
-        return Object.keys(newErrors).length === 0;
-    };
 
     const handleLogin = (event) => {
         event.preventDefault();

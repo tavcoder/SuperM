@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { Link } from "react-router";
+import Price from "./Price.jsx";
 import { CartContext } from "../context/CartContext";
 import QuantitySelector from "./QuantitySelector";
 import "../styles/CheckoutPage.css";
@@ -11,7 +13,10 @@ export default function CartSummary() {
         return (
             <div className="cart-wrapper">
                 <h1>Your cart</h1>
-                <p>Your cart is empty. Add a product from the products page.</p>
+                <p>
+                    Your cart is empty. Add a product from the{" "}
+                    <Link to="/products" className="link">products page</Link>.
+                </p>
             </div>
         );
     }
@@ -26,11 +31,11 @@ export default function CartSummary() {
                     </div>
                     <div className="cart-item-details">
                         <h3>{product.name}</h3>
-                        <p>
-                            Unit price: ${(product.final_price / 100).toFixed(2)}
-                            <span className="text-strikethrough">
-                                ${(product.original_price / 100).toFixed(2)}
-                            </span>
+                        <p> Unit price:
+                            <Price
+                                finalPrice={product.final_price}
+                                originalPrice={product.original_price}
+                            />
                         </p>
                         <div className="cart-item-quantity">
                             <p>
@@ -49,7 +54,6 @@ export default function CartSummary() {
                     </button>
                 </div>
             ))}
-
         </div>
     );
 }

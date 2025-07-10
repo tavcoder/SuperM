@@ -8,7 +8,7 @@ import "../styles/CheckoutPage.css";
 
 export default function Checkout({ user }) {
     const [step, setStep] = useState(1); // 1 = Cart, 2 = Shipping, 3 = Payment
-    const { cart, cartSum, shippingCost = 0 } = useContext(CartContext);
+    const { cart, cartSum, shippingCost = 300 } = useContext(CartContext);
 
     const subtotal = cart.reduce(
         (acc, product) => acc + product.original_price * product.quantity,
@@ -29,7 +29,7 @@ export default function Checkout({ user }) {
                 ) : step === 2 ? (
                     <ShippingForm onNext={() => setStep(3)} />
                 ) : (
-                    <PaymentForm user={user} />
+                    <PaymentForm user={user} onBack={() => setStep(2)} />
                 )}
             </div>
             <div className="checkout-right">

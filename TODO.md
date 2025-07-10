@@ -11,9 +11,9 @@
 - [x] Display shipping form in step 2  
 - [x] Display payment form in step 3  
 - [x] Keep final order summary visible on the right throughout all steps  
-- [ ] Implement navigation logic between steps  
+- [x] Implement navigation logic between steps  
 - [x] Validate forms before advancing  
-- [ ] Finalize styling of the order summary component  
+- [x] Finalize styling of the order summary component  
 - [x] Simulate a functional checkout with success and error pages  
 
 
@@ -31,9 +31,10 @@
 - [x] Show how many products are being displayed out of the total when filtering or searching  
 
 ## 🎨 UI and Styling
-- [ ] Unify button styles (primary, secondary, disabled)  
+- [x] Unify UI elements styles
 - [ ] Improve responsive layout for mobile screens  
-- [ ] Style the toast component  
+- [ ] Ensure consistent appearance in dark mode
+- [x] Style the toast component  
 - [x] Fix spacing issues in CustomSelect (should not push other elements)  
 - [x] Add animated hover effect to product cards  
 - [x] Add search icon to product search input  
@@ -45,3 +46,4 @@
 
 ## ✨ Extra Improvements (Nice-to-haves)
 - [x] Save cart state in `localStorage`  
+- [ ] Calculate and apply shipping fees based on location

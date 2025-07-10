@@ -26,7 +26,7 @@ export function CartProvider({ children }) {
     function removeFromCart(product) {
         const updatedCart = cart.filter(p => String(p.id) !== String(product.id));
         setCart(updatedCart);
-        addToast(`"${product.name}" removed from cart`, "warn");
+        addToast(`"${product.name}" removed from cart`, "warning");
     }
 
     const clearCart = () => {
@@ -64,7 +64,7 @@ export function CartProvider({ children }) {
                 return p;
             });
             setCart(updatedCart);
-            addToast(`"${product.name}" removed from cart`, "warn");
+            addToast(`"${product.name}" removed from cart`, "warning");
         } else {
            removeFromCart(product);
         }

@@ -41,6 +41,7 @@ export function useFormValidation(initialValues = {}) {
         return Object.keys(newErrors).length === 0;
     };
 
+   
     return {
         form,
         setForm,
@@ -48,6 +49,6 @@ export function useFormValidation(initialValues = {}) {
         touched,
         handleChange,
         handleBlur,
-        isFormValid
-    };
+        isFormValid,
+    }
 }

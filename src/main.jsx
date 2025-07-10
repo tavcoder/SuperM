@@ -7,6 +7,7 @@ import { CartProvider } from "./context/CartContext.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
 import App from "./App.jsx";
 import "./styles/index.css";
+import "./styles/dark-theme.css";
 
 function Fallback({ error }) {
     return (

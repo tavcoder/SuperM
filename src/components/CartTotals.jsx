@@ -7,7 +7,7 @@ export default function CartTotals({ subtotal, discount, shippingCost, total, on
             </div>
             <div className="cart-totals-line">
                 <span>Saved:</span>
-                <span>-${(discount / 100).toFixed(2)}</span>
+                <span className="cart-totals-saved">-${(discount / 100).toFixed(2)}</span>
             </div>
             <div className="cart-totals-line">
                 <span>Shipping:</span>
@@ -19,7 +19,7 @@ export default function CartTotals({ subtotal, discount, shippingCost, total, on
             </div>
             {step === 1 && (
                 <button className="btn btn--level1" onClick={onNextStep}>
-                    Continuar con el envío
+                    Pay
                 </button>
             )}
         </div>
