@@ -12,7 +12,7 @@ export default function ProductDetails() {
 
     const { data } = useSuspenseQuery({
         queryKey: ["products/details", id],
-        queryFn: () => get(`products?id=eq.${id}`),
+        queryFn: () => get("products",`products?id=eq.${id}`),
         staleTime: 1000 * 60 * 5, // 5 minutes
     });
 

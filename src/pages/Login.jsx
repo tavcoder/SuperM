@@ -65,40 +65,42 @@ export default function Login({ onUserLogin }) {
             <p className="text-dimmed">Login using test@example.com and any password.</p>
 
             <form onSubmit={handleLogin}>
-                <label className="label" htmlFor={emailId}>
-                    Email<span className="required">*</span>:
-                </label>
-                <input
-                    id={emailId}
-                    name="email"
-                    type="text"
-                    className="input"
-                    placeholder="Email"
-                    autoComplete="email"
-                    disabled={mutation.isPending}
-                    value={form.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    ref={emailRef}
-                />
-                {touched.email && errors.email && <span className="error">{errors.email}</span>}
+                <div className="input-group">
+                    <label className="label" htmlFor={emailId}>
+                        Email<span className="required">*</span>:
+                    </label>
+                    <input
+                        id={emailId}
+                        name="email"
+                        type="text"
+                        className="input"
+                        autoComplete="email"
+                        disabled={mutation.isPending}
+                        value={form.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        ref={emailRef}
+                    />
+                    {touched.email && errors.email && <span className="error">{errors.email}</span>}
+                </div>
 
-                <label className="label" htmlFor={passwordId}>
-                    Password<span className="required">*</span>:
-                </label>
-                <input
-                    id={passwordId}
-                    name="password"
-                    type="password"
-                    className="input"
-                    placeholder="Password"
-                    autoComplete="current-password"
-                    disabled={mutation.isPending}
-                    value={form.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {touched.password && errors.password && <span className="error">{errors.password}</span>}
+                <div className="input-group">
+                    <label className="label" htmlFor={passwordId}>
+                        Password<span className="required">*</span>:
+                    </label>
+                    <input
+                        id={passwordId}
+                        name="password"
+                        type="password"
+                        className="input"
+                        autoComplete="current-password"
+                        disabled={mutation.isPending}
+                        value={form.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    {touched.password && errors.password && <span className="error">{errors.password}</span>}
+                </div>
 
                 <p className="error">{errorMessage}</p>
 

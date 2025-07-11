@@ -33,12 +33,13 @@
 ## 🎨 UI and Styling
 - [x] Unify UI elements styles
 - [ ] Improve responsive layout for mobile screens  
-- [ ] Ensure consistent appearance in dark mode
+- [x] Ensure consistent appearance in dark mode
 - [x] Style the toast component  
 - [x] Fix spacing issues in CustomSelect (should not push other elements)  
 - [x] Add animated hover effect to product cards  
 - [x] Add search icon to product search input  
 - [x] Add cart icon to nav cart button  
+
 
 ## 🛠️ Code Quality and Structure
 - [ ] Fix components import/export error  
@@ -47,3 +48,4 @@
 ## ✨ Extra Improvements (Nice-to-haves)
 - [x] Save cart state in `localStorage`  
 - [ ] Calculate and apply shipping fees based on location
+- [x] improve quantity control with ARIA roles and live updates

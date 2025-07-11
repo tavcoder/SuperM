@@ -26,11 +26,10 @@
   --black: #191919;
   --gray: #f4f4f4;
   --gray-light: #eaeaea;
-  --gray-dark: #cccccc;
+  --gray-dark: #a6a0a0;
 
   /* Borders and shadows */
   --border: 1px solid #cccccc;
-  --focus-ring: rgba(232, 99, 115, 0.2);
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -73,7 +72,7 @@ body {
 /* Button level 1 (primary filled) */
 .btn--level1 {
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
 }
 
 .btn--level1:hover {
@@ -131,8 +130,8 @@ body {
 
 /* Radio input base style */
 .radio {
-  border: 1px solid #ccc;
-  background-color: white;
+  border: var(--border);
+  background-color: var(--white);
 }
 
 .radio:hover {
@@ -146,8 +145,8 @@ body {
 
 /* Checkbox input base style */
 .checkbox {
-  border: 1px solid #ccc;
-  background-color: white;
+  border: var(--border);
+  background-color: var(--white)
 }
 
 .checkbox:hover {
@@ -161,17 +160,17 @@ body {
 
 /* Icon styles */
 .icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  color: var(--text-secondary);
+  opacity: 7;
+  width: 10px;
+  height: 10px;
+  color: var(--black);
   all: unset;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .icon:hover {
   color: var(--primary);
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .icon--selected {
@@ -186,7 +185,7 @@ body {
 }
 
 .custom-select__button {
-  border: 1px solid #d1d5db;
+  border: var(--border);
   width: 100%;
   text-align: left;
   padding: 0.5rem 2rem 0.5rem 1rem;
@@ -260,7 +259,7 @@ body {
 
 .custom-select__option.selected {
   background-color: var(--primary-pressed);
-  color: white;
+  color:var(--white);
 }
 
 /* Input styles */
@@ -272,26 +271,26 @@ body {
 
 input {
   border: none;
-  border-bottom: 1px solid #aaa;
+  border-bottom: var(--border);
   padding: 0.5rem 0;
   font-size: 1rem;
   background: transparent;
-  color: #333;
+  color:var(--gray-dark);
 }
 
 input::placeholder {
-  color: #aaa;
+  color:var(--gray-dark);
 }
 
 input:focus {
   outline: none;
-  border-color: #222;
+  border-color: var(--gray-dark);
 }
 
 /* Label for inputs */
 label {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 0.3rem;
 }
 
@@ -348,7 +347,7 @@ h1 {
   padding: 12px 16px;
   border-radius: 6px;
   font-size: 14px;
-  color: #fff;
+  color: var(--white);
   animation: fadeInOut 2s ease forwards;
 }
 

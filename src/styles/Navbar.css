@@ -22,7 +22,7 @@
     list-style: none;
     padding-left: 0;
     display: flex;
-    background-color: white;
+    background-color: var(--white);
     border-top-left-radius: 132px;
     border-bottom-left-radius: 132px;
     border-top-right-radius: 132px;
@@ -65,13 +65,13 @@
 
 .nav-item a:hover,
 .nav-cart:hover {
-    color: #f07f8f;
+    color:var(--primary-hover)
 
 }
 
 .nav-item a.active,
 .nav-cart.active {
-    color: #cc4d5b;
+    color: var(--primary-pressed);
 }
 
 .theme-switcher {
@@ -80,11 +80,11 @@
     outline: revert;
     display: flex;
     border-radius: 50%;
-    background-color: white;
+    background-color: #cccccc;
     padding: 8px;
     cursor: pointer;
 }
 
 .theme-switcher:hover {
-    background-color: rgba(255 255 255 / 50%);
+    background-color: var(--primary-hover);
 }

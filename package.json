@@ -11,7 +11,7 @@
     "build+deploy": "vite build && firebase deploy"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.50.3",
+    "@supabase/supabase-js": "^2.50.5",
     "@tanstack/react-query": "^5.56.2",
     "react": "^19.0.0",
     "react-compiler-runtime": "^19.0.0-beta-df7b47d-20241124",

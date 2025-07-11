@@ -21,20 +21,41 @@ export default function QuantitySelector({ product }) {
     };
 
     return (
-        <ul className="quantity-buttons">
+        <ul
+            className="quantity-buttons"
+            role="group"
+            aria-label={`Quantity controls for ${product.name}`}
+        >
             <li id={`${id}-remove-btn`}>
-                <button onClick={handleRemove} aria-label="Remove">
+                <button className="icon"
+                    onClick={handleRemove}
+                    aria-label={
+                        quantity === 1
+                            ? `Remove ${product.name}`
+                            : `Decrease quantity of ${product.name}`
+                    }
+                >
                     {quantity === 1 ? (
-                        <FaTrashAlt className={`icon`} />
+                        <FaTrashAlt />
                     ) : (
                         "-"
                     )}
                 </button>
             </li>
-            <li id={`${id}-quantity-display`}>{quantity}</li>
+            <li id={`${id}-quantity-display`} aria-live="polite" aria-atomic="true">
+                {quantity}
+            </li>
             <li id={`${id}-add-btn`}>
-                <button onClick={() => handleAddProduct(product)} aria-label="Add">+</button>
+                <button
+                className="quantity-buttons-add"
+                    onClick={() => handleAddProduct(product)}
+                    aria-label={`Increase quantity of ${product.name}`}
+                >
+                 +
+                </button>
             </li>
         </ul>
+
+
     );
 }

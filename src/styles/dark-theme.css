@@ -1,77 +1,30 @@
 body.dark {
-    --primary: #f78da7;
-    --primary-hover: #fbb7c4;
-    --primary-pressed: #fb7185;
-    --primary-disabled: #c48b94;
 
-    --text-primary: #f0f0f0;
-    --text-secondary: #aaaaaa;
+    --primary: #DB5E6C;
+    --primary-hover: #be6a74cf;
+    --primary-pressed: #c24d59;
+    --primary-disabled: #81595f;
 
-    --white: #191919;
-    --black: #f0f0f0;
-    --gray: #2a2a2a;
-    --gray-light: #333333;
-    --gray-dark: #444444;
+    --white: #171717;
+    --black: #ADADAD;
 
-    --border: 1px solid #444444;
-    --focus-ring: rgba(247, 141, 167, 0.3);
-    --shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
-}
+    --gray: #242424;
+    --gray-light: #222222;
+    --gray-dark: #4d4d4d;
 
-body.dark {
-    background-color: #121212;
+
+    --text-primary: #dbdbdb;
+    --text-secondary: #ADADAD;
+    --text-muted: #ADADAD;
+
+    --border: 1px solid var(--gray-dark);
+    --focus-ring: rgba(229, 115, 132, 0.4);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+
     color: var(--text-primary);
+    background: #171717;
 }
 
-body.dark input {
-    color: var(--text-primary);
-    border-color: var(--gray-dark);
-}
-
-body.dark input::placeholder {
-    color: var(--text-secondary);
-}
-
-body.dark .wrapper-gray,
-body.dark .custom-select__button,
-body.dark .custom-select__list {
-    background-color: var(--gray);
-    color: var(--text-primary);
-}
-
-body.dark .btn--level1 {
-    color: var(--black);
-}
-
-body.dark .btn--level1:hover {
-    color: var(--black);
-}
-
-body.dark .btn--level2,
-body.dark .btn--level3 {
-    color: var(--primary);
-}
-
-body.dark .custom-select__option.selected {
-    background-color: var(--primary-pressed);
-    color: var(--black);
-}
-
-body.dark .link {
-    color: var(--primary);
-}
-
-body.dark .checkbox:checked,
-body.dark .radio:checked {
-    background-color: var(--primary);
-    border-color: var(--primary);
-}
-
-body.dark .icon {
-    color: var(--text-secondary);
-}
-
-body.dark .icon:hover,
-body.dark .icon--selected {
-    color: var(--primary);
+body.dark img {
+    filter: brightness(0.9);
 }
