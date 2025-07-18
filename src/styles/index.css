@@ -12,6 +12,7 @@
   font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 1rem;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,6 +32,10 @@
   /* Borders and shadows */
   --border: 1px solid #cccccc;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+html{
+  font-size: 10px;
 }
 
 body {
@@ -304,7 +309,7 @@ label {
 /* Headings */
 h1 {
   font-weight: normal;
-  font-size: 1.9rem;
+  font-size: 1.6rem;
 }
 
 /* Utility classes */

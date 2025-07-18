@@ -32,25 +32,25 @@ export default function ProductsList({ openSidebar }) {
     return (
         <main className="products-main">
             <div className="products-title">
-                <h1>Products</h1>
-                <title>Products | SuperM</title>
                 <div className="products-filter-container">
+                    <h1>Products</h1>
+                    <title>Products | SuperM</title>
                     <button
                         className="products-filter-btn btn btn--level3"
-                        onClick={openSidebar }
+                        onClick={openSidebar}
                     >
                         FILTER AND SORT
                     </button>
-                    <div className="search-wrapper">
-                        <FaSearch className="search-icon" />
-                        <input
-                            type="search"
-                            className="search"
-                            value={query}
-                            placeholder="Search products"
-                            onChange={handleSearchChange}
-                        />
-                    </div>
+                </div>
+                <div className="search-wrapper">
+                    <FaSearch className="search-icon" />
+                    <input
+                        type="search"
+                        className="search"
+                        value={query}
+                        placeholder="Search products"
+                        onChange={handleSearchChange}
+                    />
                 </div>
             </div>
 

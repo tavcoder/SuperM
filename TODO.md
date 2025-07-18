@@ -27,11 +27,11 @@
 
 ## 🧩 Filters & Sorting
 - [x] Add filters on the product list page  
-  - [x] Make filters a reusable component  
+  - [x] Make filters a reusable component 
+  - [x] Add 'Apply filters' button when sidebar is open (responsive)
+  - [x] Clear filters when sidebar is closed via 'X' button  
 - [x] Allow product sorting  
 - [x] Show how many products are being displayed out of the total when filtering or searching  
-
-
 
 ## 🎨 UI and Styling
 - [x] Unify UI elements styles
@@ -40,9 +40,11 @@
   - [x] Fix spacing issues in CustomSelect (should not push other elements)  
 - [ ] Improve responsive layout for mobile screens
   - [x] Hide sidebar by default in responsive layout
-  - [x] Add 'Apply filters' button when sidebar is open (responsive)
-  - [x] Clear filters when sidebar is closed via 'X' button   
+    - [x] Add sidebar transition to slide in/out from the right
+  - [x] Adjust page title size and padding 
+  - [x] Move filters button next to page title on screens ≥ 768px 
 - [x] Add animated hover effect to product cards  
+  - [x] Add margin to prevent hover effect from overlapping the search bar (responsive)
 - [x] Add search icon to product search input  
 - [x] Add cart icon to nav cart button  
 
@@ -51,6 +53,7 @@
 - [ ] Refactor folder structure for better maintainability  
 - [x] Move sidebar functions to ProductsContext 
 - [x] Fix landing page not loading when accessed directly
+- [ ] Cookies
 
 ## ✨ Extra Improvements (Nice-to-haves)
 - [x] Save cart state in `localStorage`  
