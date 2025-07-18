@@ -8,11 +8,12 @@ export default function FilterGroup() {
         filters,
         setFilters,
         resetFilters,
+        closeSidebar,
     } = useContext(ProductsContext);
 
     return (
         <div className="filter-group">
-            <h2>Filter Options</h2>
+            <h3>Filter Options</h3>
             {Object.entries(filters).map(([sectionName, sectionOptions]) => (
                 <div key={sectionName} className="filter-subgroup">
                     <h3 className="filter-title">By {sectionName}</h3>
@@ -46,6 +47,7 @@ export default function FilterGroup() {
                     </ul>
                 </div>
             ))}
+            <button onClick={closeSidebar} className="filter-apply-btn btn btn--level1">Apply filters</button>
             <button onClick={resetFilters} className="btn btn--level2">Remove filters</button>
         </div>
     );

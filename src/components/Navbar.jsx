@@ -15,13 +15,15 @@ export default function Navbar({ user }) {
 
     return (
         <div className="navbar">
+
             <Link className="logo" to="/">
                 SuperM
             </Link>
+
             <nav className="nav-wrapper">
                 <button className="theme-switcher" onClick={handleToggleTheme}>
                     <img
-                        src={light ? "/light.svg" : "/dark.svg"}
+                        src={`${import.meta.env.BASE_URL}${light ? "light.svg" : "dark.svg"}`}
                         width="24"
                         height="24"
                         alt={light ? "Light theme" : "Dark theme"}

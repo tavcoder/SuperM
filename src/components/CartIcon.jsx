@@ -12,7 +12,7 @@ export default function CartIcon() {
         )}
 
         {cartCount > 0 && (
-            <span>${(cartSum / 100).toFixed(2)}</span>
+            <span className="cart-count-total">${(cartSum / 100).toFixed(2)}</span>
         )}
         <span role="img" aria-label="cart"><FaShoppingCart /></span>
     </div>

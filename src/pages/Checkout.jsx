@@ -33,14 +33,16 @@ export default function Checkout({ user }) {
                 )}
             </div>
             <div className="checkout-right">
-                <CartTotals
-                    subtotal={subtotal}
-                    discount={discount}
-                    shippingCost={shippingCost}
-                    total={total}
-                    onNextStep={goToStep2}
-                    step={step}
-                />
+                {cart.length > 0 && (
+                    <CartTotals
+                        subtotal={subtotal}
+                        discount={discount}
+                        shippingCost={shippingCost}
+                        total={total}
+                        onNextStep={goToStep2}
+                        step={step}
+                    />
+                )}
             </div>
         </div>
     );

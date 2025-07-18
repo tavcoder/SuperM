@@ -17,8 +17,9 @@ export default function Landing() {
                 className="landing-cover"
                 width="816"
                 height="380"
-                src="landing.jpg"
+                src={`${import.meta.env.BASE_URL}landing.jpg`}
                 alt="Display of fruits and vegetables"
+
             />
         </>
     );

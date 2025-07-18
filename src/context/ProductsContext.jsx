@@ -19,13 +19,10 @@ export function ProductsProvider({ children }) {
             bakery: false,
         },
     });
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-
-    function handleSearchChange(event) {
-        startTransition(() => {
-            setQuery(event.target.value.trim().toLowerCase());
-        });
-    }
+    const openSidebar = () => setIsSidebarOpen(true);
+    const closeSidebar = () => setIsSidebarOpen(false);
 
     function resetFilters() {
         setFilters({
@@ -40,6 +37,13 @@ export function ProductsProvider({ children }) {
         });
     }
 
+
+    function handleSearchChange(event) {
+        startTransition(() => {
+            setQuery(event.target.value.trim().toLowerCase());
+        });
+    }
+
     return (
         <ProductsContext value={{
             query,
@@ -48,8 +52,11 @@ export function ProductsProvider({ children }) {
             setSortOption,
             filters,
             setFilters,
-            handleSearchChange,
             resetFilters,
+            isSidebarOpen,
+            openSidebar,
+            closeSidebar,
+            handleSearchChange,
         }}>
             {children}
         </ProductsContext>

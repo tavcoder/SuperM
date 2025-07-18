@@ -8,6 +8,7 @@ import { ToastProvider } from "./context/ToastContext.jsx";
 import App from "./App.jsx";
 import "./styles/index.css";
 import "./styles/dark-theme.css";
+import "./styles/Responsive.css";
 
 function Fallback({ error }) {
     return (
@@ -27,7 +28,7 @@ function AppSetup() {
                 <QueryClientProvider client={queryClient}>
                     <ToastProvider >
                         <CartProvider>
-                            <App />
+                                <App />
                         </CartProvider>
                     </ToastProvider>
                 </QueryClientProvider>

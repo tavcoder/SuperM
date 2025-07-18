@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Landing from "./pages/Landing.jsx";
 import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
+import { ProductsProvider } from "./context/ProductsContext.jsx";
 import Products from "./pages/Products.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Checkout from "./pages/Checkout.jsx";
@@ -23,7 +24,7 @@ function App() {
     }
 
     return (<>
-        <BrowserRouter>
+        <BrowserRouter basename="/SuperM">
             <div className="wrapper-gray">
                 <div className="container">
                     <Navbar user={user} />
@@ -51,7 +52,10 @@ function App() {
                             <Suspense
                                 fallback={<p className="loading">Loading...</p>}
                             >
-                                <Products />
+                                <ProductsProvider>
+                                    <Products />
+                                </ProductsProvider>
+
                             </Suspense>
                         }
                     />

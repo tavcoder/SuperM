@@ -6,7 +6,9 @@ import Product from "./Product.jsx";
 import { get } from "../services/fetcher.jsx";
 import { getVisibleProducts } from "../utils/filters.js";
 
-export default function ProductsList() {
+export default function ProductsList({ openSidebar }) {
+    console.log("openSidebar is", openSidebar);
+
     const { data: products } = useSuspenseQuery({
         queryKey: ["products-list"],
         queryFn: () => get("products", "products"),
@@ -32,15 +34,23 @@ export default function ProductsList() {
             <div className="products-title">
                 <h1>Products</h1>
                 <title>Products | SuperM</title>
-                <div className="search-wrapper">
-                    <FaSearch className="search-icon" />
-                    <input
-                        type="search"
-                        className="search"
-                        value={query}
-                        placeholder="Search products"
-                        onChange={handleSearchChange}
-                    />
+                <div className="products-filter-container">
+                    <button
+                        className="products-filter-btn btn btn--level3"
+                        onClick={openSidebar }
+                    >
+                        FILTER AND SORT
+                    </button>
+                    <div className="search-wrapper">
+                        <FaSearch className="search-icon" />
+                        <input
+                            type="search"
+                            className="search"
+                            value={query}
+                            placeholder="Search products"
+                            onChange={handleSearchChange}
+                        />
+                    </div>
                 </div>
             </div>
 
