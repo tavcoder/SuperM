@@ -24,7 +24,7 @@ export default function Sidebar() {
             </div>
             <h3>Order</h3>
             <div className="select-wrapper">
-                <CustomSelect value={sortOption} onChange={setSortOption} options={OPTIONS} />
+                <CustomSelect aria-label="Select order" value={sortOption} onChange={setSortOption} options={OPTIONS} />
             </div>
             <FilterGroup />
         </aside>

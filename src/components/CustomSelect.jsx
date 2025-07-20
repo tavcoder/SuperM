@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-export default function CustomSelect({ value, onChange, options }) {
+export default function CustomSelect({ value, onChange, options, ...restProps }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [highlightIndex, setHighlightIndex] = useState(0);
@@ -65,11 +65,11 @@ export default function CustomSelect({ value, onChange, options }) {
             aria-haspopup="listbox"
             aria-expanded={isOpen}
             aria-activedescendant={options[highlightIndex]?.value}
+            {...restProps}
         >
             <button
                 className="custom-select__button"
                 onClick={() => setIsOpen((prev) => !prev)}
-                aria-label="Select order option"
             >
                 {selected}
                 <FaChevronDown className="custom-select__icon" />

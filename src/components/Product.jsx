@@ -29,6 +29,7 @@ export default function Product(props) {
                 />
                 {productInCart ? <QuantitySelector product={props.details} />
                     : (<button
+                        aria-label="Add product"
                         onClick={() => handleAddProduct(props.details)}
                         className="btn--level2 product-btn">
                         <FaCartPlus />

@@ -100,6 +100,7 @@ export default function ShippingForm({ onNext }) {
                 </div>
                 <div className="input-group">
                     <CustomSelect
+                        aria-label="Select city"
                         value={form.country}
                         onChange={(newValue) => {
                             handleChange({ target: { name: "country", value: newValue } });
