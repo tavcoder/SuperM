@@ -3,10 +3,11 @@
 }
 
 :root {
-  --primary: #E86373;
-  --primary-hover: #f4a3ab;
-  --primary-pressed: #f87171;
-  --primary-disabled: #d7a9ae;
+  --primary: #A2213A;
+  --primary-hover: #BE2A45;
+  --primary-pressed:	#881C32;
+  --primary-disabled: #D6A3AB;
+  --primary-light: #F9E6E9;
 
   /* Typography */
   font-family: system-ui, Helvetica, Arial, sans-serif;
@@ -20,7 +21,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --text-primary: #191919;
-  --text-secondary: #666666;
+  --text-secondary: #7D8AA5;
 
   /* Neutrals */
   --white: #ffffff;
@@ -73,6 +74,12 @@ body {
   transition: opacity 180ms, translate 180ms;
 }
 
+.btn:focus-visible {
+  outline: 2px solid #0060DF;
+  outline-offset: 2px;
+}
+
+
 /* Button level 1 (primary filled) */
 .btn--level1 {
   background-color: var(--primary);
@@ -81,7 +88,6 @@ body {
 
 .btn--level1:hover {
   background-color: var(--primary-hover);
-  color: var(--text-secondary);
 }
 
 .btn--level1:active {
@@ -162,6 +168,13 @@ body {
   border-color: var(--primary);
 }
 
+.checkbox:focus-visible {
+  outline: 2px solid #0060DF;
+  outline-offset: 2px;
+}
+
+
+
 /* Icon styles */
 .icon {
   opacity: 7;
@@ -181,6 +194,12 @@ body {
 .icon--selected {
   color: var(--primary);
 }
+
+.icon:focus-visible {
+  outline: 2px solid #0060DF;
+  outline-offset: 2px;
+}
+
 
 /* Custom select component */
 .custom-select {

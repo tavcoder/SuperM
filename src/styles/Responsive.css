@@ -11,8 +11,11 @@
         margin-top: 0;
     }
 
-    .checkout-left {
-        box-sizing: unset;
+    .checkout-right {
+        min-width: 80%;
+    }
+    .cart-totals{
+        min-width: 100%;
     }
 }
 
@@ -91,6 +94,11 @@
 
     .logo {
         font-size: larger;
+    }
+
+    
+    .checkout-left {
+        flex-direction: column;
     }
 }
 

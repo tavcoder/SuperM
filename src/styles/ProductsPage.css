@@ -40,6 +40,12 @@
     margin-left: auto;
 }
 
+.search-wrapper:focus-visible {
+  outline: 2px solid #0060DF;
+  outline-offset: 2px;
+}
+
+
 .search {
     width: 100%;
     font-size: 1rem;

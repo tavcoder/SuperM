@@ -9,6 +9,7 @@
 
 .checkout-left {
   min-width: 120px;
+  max-width: 50%;
   background: var(--white);
   padding: 2rem;
   border-radius: 8px;
@@ -39,7 +40,7 @@
 }
 
 .cart-item:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--primary-light);
   box-shadow: var(--shadow);
   color: var(--text-secondary);
 }
@@ -91,7 +92,7 @@
   height: 24px;
 }
 
-.quantity-buttons-add{
+.quantity-buttons-add {
   all: unset;
   outline: revert;
   cursor: pointer;
@@ -114,7 +115,7 @@
 .cart-totals {
   text-align: center;
   gap: 10px;
-  max-width: 90%;
+  max-width: 1000%;
   background-color: var(--white);
   border-radius: 8px;
   box-shadow: var(--shadow);

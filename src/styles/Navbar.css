@@ -19,6 +19,12 @@
     color: inherit;
 }
 
+.logo:focus-visible {
+  outline: 2px solid #0060DF;
+  outline-offset: 2px;
+}
+
+
 .theme-switcher {
     all: unset;
     display: flex;
@@ -30,6 +36,12 @@
 .theme-switcher:hover {
     background-color: var(--primary-hover);
 }
+
+.theme-switcher:focus-visible {
+  outline: 2px solid #0060DF;
+  outline-offset: 2px;
+}
+
 
 .nav-wrapper {
     display: flex;
