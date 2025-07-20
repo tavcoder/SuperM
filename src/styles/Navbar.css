@@ -23,7 +23,6 @@
     all: unset;
     display: flex;
     border-radius: 50%;
-    background-color: #cccccc;
     padding: 8px;
     cursor: pointer;
 }

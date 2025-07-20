@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import CartIcon from "./CartIcon.jsx";
 import "../styles/Navbar.css";
@@ -22,12 +23,11 @@ export default function Navbar({ user }) {
 
             <nav className="nav-wrapper">
                 <button className="theme-switcher" onClick={handleToggleTheme}>
-                    <img
-                        src={`${import.meta.env.BASE_URL}${light ? "light.svg" : "dark.svg"}`}
-                        width="24"
-                        height="24"
-                        alt={light ? "Light theme" : "Dark theme"}
-                    />
+                    {light ? (
+                        <FaSun className="icon" title="Light theme" />
+                    ) : (
+                        <FaMoon className="icon" title="Dark theme" />
+                    )}
                 </button>
                 <ul className="nav">
                     <li className="nav-item">
