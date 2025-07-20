@@ -8,15 +8,13 @@
 }
 
 .checkout-left {
-  flex: 3;
-  min-width: 200px;
+  min-width: 120px;
   background: var(--white);
   padding: 2rem;
   border-radius: 8px;
 }
 
 .checkout-right {
-  flex: 1;
   min-width: 40%;
   display: flex;
   flex-direction: column;
@@ -32,7 +30,7 @@
   min-width: 100%;
   max-height: 200px;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   border-bottom: var(--border);
   border-radius: 5px;
@@ -59,6 +57,7 @@
   justify-content: center;
   align-items: start;
   flex: 1;
+  margin-top: -25px;
 }
 
 .cart-item-details>* {
