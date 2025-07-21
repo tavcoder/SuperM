@@ -5,7 +5,7 @@
 :root {
   --primary: #A2213A;
   --primary-hover: #BE2A45;
-  --primary-pressed:	#881C32;
+  --primary-pressed: #881C32;
   --primary-disabled: #D6A3AB;
   --primary-light: #F9E6E9;
 
@@ -35,7 +35,7 @@
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-html{
+html {
   font-size: 10px;
 }
 
@@ -43,6 +43,37 @@ body {
   margin: 0;
   color: var(--black);
   padding-bottom: 40px;
+}
+
+.CookieConsent {
+  background: #2B373B;
+  font-size: 14px;
+  padding: 1rem;
+}
+
+.CookieConsent__buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.CookieConsent__accept {
+  color: #fff;
+  background-color: #4CAF50;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.CookieConsent__decline {
+  background-color: #f44336;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
 }
 
 .container {
@@ -283,7 +314,7 @@ body {
 
 .custom-select__option.selected {
   background-color: var(--primary-pressed);
-  color:var(--white);
+  color: var(--white);
 }
 
 /* Input styles */
@@ -299,11 +330,11 @@ input {
   padding: 0.5rem 0;
   font-size: 1rem;
   background: transparent;
-  color:var(--gray-dark);
+  color: var(--gray-dark);
 }
 
 input::placeholder {
-  color:var(--gray-dark);
+  color: var(--gray-dark);
 }
 
 input:focus {

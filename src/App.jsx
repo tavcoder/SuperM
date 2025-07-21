@@ -1,5 +1,7 @@
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import CookiesPolicy from "./pages/CookiesPolicy.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Landing from "./pages/Landing.jsx";
 import Login from "./pages/Login.jsx";
@@ -22,6 +24,22 @@ function App() {
     function handleUserLogout() {
         setUser(null);
     }
+
+    useEffect(() => {
+        const consent = getCookieConsentValue("cookieConsent");
+        if (consent === "true") {
+            //  Google Analytics
+            const script = document.createElement("script");
+            script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; // <-- tu ID
+            script.async = true;
+            document.body.appendChild(script);
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { window.dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+        }
+    }, []);
 
     return (<>
         <BrowserRouter basename="/SuperM">
@@ -73,9 +91,28 @@ function App() {
                     <Route path="/payment-failure" element={<PaymentFailure />} />
                     <Route path="/payment-success" element={<PaymentSuccess />} />
                     <Route path="*" element={<h1>Page not found</h1>} />
+                    <Route path="/cookies-policy" element={<CookiesPolicy />} />
                 </Routes>
             </div>
         </BrowserRouter>
+        <CookieConsent
+            location="bottom"
+            buttonText="Accept"
+            declineButtonText="Decline"
+            cookieName="cookieConsent"
+            className="CookieConsent"
+            buttonWrapperClasses="CookieConsent__buttons"
+            buttonClasses="CookieConsent__accept"
+            declineButtonClasses="CookieConsent__decline"
+            expires={365}
+            enableDeclineButton
+        >
+            We use cookies to analyze traffic and improve your experience.{" "}
+            <a href="/cookies-policy" style={{ color: "#ffd42d" }}>
+                Read more
+            </a>
+        </CookieConsent>
+
     </>);
 }
 
