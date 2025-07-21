@@ -42,7 +42,7 @@ function App() {
     }, []);
 
     return (<>
-        <BrowserRouter basename="/SuperM">
+        <BrowserRouter >
             <div className="wrapper-gray">
                 <div className="container">
                     <Navbar user={user} />
