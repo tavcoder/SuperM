@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import landing from '../assets/landing.jpg';
 import "../styles/LandingPage.css";
 
 export default function Landing() {
@@ -17,7 +18,7 @@ export default function Landing() {
                 className="landing-cover"
                 width="816"
                 height="380"
-                src={`${import.meta.env.BASE_URL}landing.jpg`}
+                 src={landing}
                 alt="Display of fruits and vegetables"
 
             />
