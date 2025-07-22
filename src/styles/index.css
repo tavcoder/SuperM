@@ -51,29 +51,8 @@ body {
   padding: 1rem;
 }
 
-.CookieConsent__buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.CookieConsent__accept {
-  color: #fff;
-  background-color: #4CAF50;
-  font-size: 13px;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-}
-
 .CookieConsent__decline {
   background-color: #f44336;
-  color: #fff;
-  font-size: 13px;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
 }
 
 .container {
@@ -435,4 +414,49 @@ h1 {
     opacity: 0;
     transform: translateY(-10px);
   }
+}
+
+
+/* Footer */
+.site-footer {
+  background-color: var(--gray);
+  color: var(--text-primary);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links a,
+.cookie-btn {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.footer-links a:hover,
+.cookie-btn:hover {
+  text-decoration: underline;
+}
+
+.footer-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }

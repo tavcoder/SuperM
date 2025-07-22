@@ -2,7 +2,9 @@ import { useState, useEffect, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 import CookiesPolicy from "./pages/CookiesPolicy.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 import Landing from "./pages/Landing.jsx";
 import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -92,8 +94,11 @@ function App() {
                     <Route path="/payment-success" element={<PaymentSuccess />} />
                     <Route path="*" element={<h1>Page not found</h1>} />
                     <Route path="/cookies-policy" element={<CookiesPolicy />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
                 </Routes>
             </div>
+            <Footer />
         </BrowserRouter>
         <CookieConsent
             location="bottom"
@@ -102,13 +107,13 @@ function App() {
             cookieName="cookieConsent"
             className="CookieConsent"
             buttonWrapperClasses="CookieConsent__buttons"
-            buttonClasses="CookieConsent__accept"
-            declineButtonClasses="CookieConsent__decline"
+            buttonClasses="btn btn--level1"
+            declineButtonClasses="CookieConsent__decline btn btn level1"
             expires={365}
             enableDeclineButton
         >
             We use cookies to analyze traffic and improve your experience.{" "}
-            <a href="/cookies-policy" style={{ color: "#ffd42d" }}>
+            <a href="/cookies-policy" className="btn--level3">
                 Read more
             </a>
         </CookieConsent>
