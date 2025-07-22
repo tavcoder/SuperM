@@ -56,7 +56,7 @@ function CookiesPolicy() {
             <h2>5. Contact us</h2>
             <p>
                 If you have any questions about this cookie policy, please contact me at{" "}
-                <a href="mailto:superm@example.com" style={{ color: "#4a90e2" }}>
+                <a href="mailto:superm@example.com">
                     superm@gmail.com
                 </a>.
             </p>

@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
                 Our website uses cookies to analyze traffic and enhance your browsing
                 experience. You can manage your cookie preferences at any time via our cookie
                 banner or browser settings. For more details, see our{" "}
-                <a href="/cookies-policy" style={{ color: "#4a90e2" }}>Cookies Policy</a>.
+                <a href="/cookies-policy" >Cookies Policy</a>.
             </p>
 
             <h2>4. Third-party services</h2>
@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
             <h2>7. Contact</h2>
             <p>
                 If you have any questions about this privacy policy, feel free to contact me at{" "}
-                <a href="mailto:youremail@example.com" style={{ color: "#4a90e2" }}>
+                <a href="mailto:youremail@example.com" >
                    superm@gmail.com
                 </a>.
             </p>
