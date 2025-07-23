@@ -45,60 +45,61 @@ function App() {
 
     return (<>
         <BrowserRouter >
-            <div className="wrapper-gray">
-                <div className="container">
-                    <Navbar user={user} />
+            <div className="layout">
+                <div className="wrapper-gray">
+                    <div className="container">
+                        <Navbar user={user} />
+                    </div>
                 </div>
-            </div>
-            <div className="container page-wrapper">
-                <Routes>
-                    <Route path="/" element={<Landing />} />
-                    <Route
-                        path="/login"
-                        element={<Login onUserLogin={handleUserLogin} />}
-                    />
-                    <Route
-                        path="/profile"
-                        element={
-                            <Profile
-                                user={user}
-                                onUserLogout={handleUserLogout}
-                            />
-                        }
-                    />
-                    <Route
-                        path="/products"
-                        element={
-                            <Suspense
-                                fallback={<p className="loading">Loading...</p>}
-                            >
-                                <ProductsProvider>
-                                    <Products />
-                                </ProductsProvider>
+                <div className="container page-wrapper">
+                    <Routes>
+                        <Route path="/" element={<Landing />} />
+                        <Route
+                            path="/login"
+                            element={<Login onUserLogin={handleUserLogin} />}
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <Profile
+                                    user={user}
+                                    onUserLogout={handleUserLogout}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/products"
+                            element={
+                                <Suspense
+                                    fallback={<p className="loading">Loading...</p>}
+                                >
+                                    <ProductsProvider>
+                                        <Products />
+                                    </ProductsProvider>
 
-                            </Suspense>
-                        }
-                    />
-                    <Route
-                        path="/products/:id"
-                        element={
-                            <Suspense
-                                fallback={<p className="loading">Loading...</p>}
-                            >
-                                <ProductDetails />
-                            </Suspense>
-                        }
-                    />
-                    <Route path="/checkout" element={<Checkout user={user} />} />
-                    <Route path="/payment-failure" element={<PaymentFailure />} />
-                    <Route path="/payment-success" element={<PaymentSuccess />} />
-                    <Route path="*" element={<h1>Page not found</h1>} />
-                    <Route path="/cookies-policy" element={<CookiesPolicy />} />
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-                </Routes>
+                                </Suspense>
+                            }
+                        />
+                        <Route
+                            path="/products/:id"
+                            element={
+                                <Suspense
+                                    fallback={<p className="loading">Loading...</p>}
+                                >
+                                    <ProductDetails />
+                                </Suspense>
+                            }
+                        />
+                        <Route path="/checkout" element={<Checkout user={user} />} />
+                        <Route path="/payment-failure" element={<PaymentFailure />} />
+                        <Route path="/payment-success" element={<PaymentSuccess />} />
+                        <Route path="*" element={<h1>Page not found</h1>} />
+                        <Route path="/cookies-policy" element={<CookiesPolicy />} />
+                        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    </Routes>
+                </div>
+                <Footer />
             </div>
-            <Footer />
         </BrowserRouter>
         <CookieConsent
             location="bottom"

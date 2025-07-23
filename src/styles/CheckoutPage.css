@@ -1,22 +1,24 @@
-/*pages/Checkout.jsx*/
+.page-wrapper{
+  margin: 0;
+}
+
 .checkout-container {
+  max-width: 85%;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100%;
+  justify-content: space-around;
+  gap: 4rem;
 }
 
 .checkout-left {
-  min-width: 120px;
-  max-width: 50%;
+  min-width: 250px;
   background: var(--white);
-  padding: 2rem;
   border-radius: 8px;
 }
 
 .checkout-right {
-  min-width: 40%;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -115,11 +117,12 @@
 .cart-totals {
   text-align: center;
   gap: 10px;
-  max-width: 1000%;
+  max-width: 100%;
   background-color: var(--white);
   border-radius: 8px;
   box-shadow: var(--shadow);
-  margin-top: 127px;
+  padding: 2rem;
+  margin-top: 6rem;
 }
 
 .cart-totals-line,
@@ -156,7 +159,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 2rem;
+  overflow-x: hidden;
 }
 
 .card-form {

@@ -3,6 +3,7 @@
 }
 
 :root {
+  height: 100%;
   --primary: #A2213A;
   --primary-hover: #BE2A45;
   --primary-pressed: #881C32;
@@ -40,19 +41,16 @@ html {
 }
 
 body {
+  height: 100%;
   margin: 0;
   color: var(--black);
   padding-bottom: 40px;
 }
 
-.CookieConsent {
-  background: #2B373B;
-  font-size: 14px;
-  padding: 1rem;
-}
-
-.CookieConsent__decline {
-  background-color: #f44336;
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
@@ -63,6 +61,7 @@ body {
 
 .page-wrapper {
   margin-top: 20px;
+  flex: 1;
 }
 
 .wrapper-gray {
@@ -182,8 +181,6 @@ body {
   outline: 2px solid #0060DF;
   outline-offset: 2px;
 }
-
-
 
 /* Icon styles */
 .icon {
@@ -363,6 +360,18 @@ h1 {
   min-height: 300px;
   display: grid;
   place-items: center;
+}
+
+
+/* Cookies notification container */
+.CookieConsent {
+  background: #2B373B;
+  font-size: 14px;
+  padding: 1rem;
+}
+
+.CookieConsent__decline {
+  background-color: #f44336;
 }
 
 /* Toast notification container */

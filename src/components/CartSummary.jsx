@@ -46,7 +46,7 @@ export default function CartSummary() {
                     </div>
 
                     <button
-                        className="icon"
+                        className="cart-item-remove icon"
                         onClick={() => removeFromCart(product)}
                         aria-label={`Remove ${product.name}`}
                     >
