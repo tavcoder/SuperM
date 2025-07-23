@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import landing from '../assets/landing.jpg';
+import landing from '../assets/landing.avif';
 import "../styles/LandingPage.css";
 
 export default function Landing() {
@@ -18,7 +18,7 @@ export default function Landing() {
                 className="landing-cover"
                 width="816"
                 height="380"
-                 src={landing}
+                src={landing}
                 alt="Display of fruits and vegetables"
 
             />
