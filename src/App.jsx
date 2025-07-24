@@ -98,7 +98,11 @@ function App() {
                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     </Routes>
                 </div>
-                <Footer />
+                <div className="wrapper-gray">
+                    <div className="container">
+                        <Footer />
+                    </div>
+                </div>
             </div>
         </BrowserRouter>
         <CookieConsent
