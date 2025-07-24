@@ -70,7 +70,9 @@ body {
 }
 
 .page-wrapper {
+  width: 100%;
   margin-top: 20px;
+  flex: 1;
 }
 
 
@@ -81,7 +83,7 @@ body {
   display: inline-block;
   padding: 4px 32px;
   border-radius: 72px;
-  min-width: 140px;
+  min-width: fit-content;
   cursor: pointer;
   font-weight: normal;
   text-align: center;

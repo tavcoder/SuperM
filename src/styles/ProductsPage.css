@@ -1,8 +1,9 @@
 /*components/ProductsList.jsx */
-
 .products-container {
     display: flex;
     gap: 2rem;
+    flex: 1;
+    width: 100%;
 }
 
 .products-main {

@@ -3,15 +3,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f0f4f8;
     padding: 1rem;
 }
 
 .success-card {
-    background-color: white;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     max-width: 400px;
     width: 100%;
     text-align: center;
