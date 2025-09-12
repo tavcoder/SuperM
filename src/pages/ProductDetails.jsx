@@ -1,22 +1,23 @@
 import { useContext } from "react";
 import { Link, useParams } from "react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import Price from "../components/Price.jsx";
 import { CartContext } from "../context/CartContext.jsx";
 import { get } from "../services/fetcher.jsx";
+import Price from "../components/Price.jsx";
+import QuantitySelector from "../components/QuantitySelector.jsx";
 import "../styles/ProductDetailsPage.css";
 
 export default function ProductDetails() {
     const { id } = useParams();
-    const { handleAddProduct } = useContext(CartContext);
+    const {cart, handleAddProduct } = useContext(CartContext);
 
     const { data } = useSuspenseQuery({
         queryKey: ["products/details", id],
-        queryFn: () => get("products",`products?id=eq.${id}`),
+        queryFn: () => get("products", `products?id=eq.${id}`),
         staleTime: 1000 * 60 * 5, // 5 minutes
     });
-
     const details = data[0];
+    const productInCart = cart.find(item => String(item.id) === String(details.id));
 
     return (
         <>
@@ -72,13 +73,15 @@ export default function ProductDetails() {
                             __html: details.description,
                         }}
                     ></p>
-                    <div className="details-a2c">
-                        <button
-                            className="btn btn--level1"
-                            onClick={() => handleAddProduct(details)}
-                        >
-                            Add to cart
-                        </button>
+                    <div className="details-btn">
+                        {productInCart ? <QuantitySelector product={details} className="details-selector" />
+                            : (<button
+                                aria-label="Add product"
+                                onClick={() => handleAddProduct(details)}
+                                className="btn btn--level1">
+                                Add Product
+                            </button>)
+                        }
                     </div>
                 </div>
             </div>

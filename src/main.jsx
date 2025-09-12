@@ -19,7 +19,32 @@ function Fallback({ error }) {
     );
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: (failureCount, error) => {
+                // Don't retry on 4xx errors (client errors)
+                if (error?.status >= 400 && error?.status < 500) {
+                    return false;
+                }
+                // Retry up to 3 times for other errors
+                return failureCount < 3;
+            },
+            retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // Exponential backoff, max 30s
+            staleTime: 1000 * 60 * 5, // 5 minutes
+            gcTime: 1000 * 60 * 10, // 10 minutes (formerly cacheTime)
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: true,
+            refetchInterval: 10000, // Auto-refresh every 10 seconds
+            refetchIntervalInBackground: false, // Only refresh when tab is active
+            // Enable network mode to see actual HTTP requests
+            networkMode: 'online',
+        },
+        mutations: {
+            retry: 1, // Retry mutations once on failure
+        },
+    },
+});
 
 function AppSetup() {
     return (

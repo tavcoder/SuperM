@@ -49,12 +49,10 @@ body {
 }
 
 .layout {
-  position: absolute;
-  width: 100%;
+  min-height: 100vh;
+  /* que ocupe toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .wrapper-gray {

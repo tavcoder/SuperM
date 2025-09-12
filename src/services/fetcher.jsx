@@ -19,11 +19,20 @@ export function getClient(type = "products") {
 export function get(type, endpoint) {
     const { apikey, url } = SUPABASE_CONFIGS[type];
     const baseUrl = `${url}/rest/v1/`;
+    console.log(`🔄 Fetching ${type}: ${endpoint} at ${new Date().toLocaleTimeString()}`);
     return fetch(baseUrl + endpoint, {
         headers: {
             apikey,
+            'Cache-Control': 'no-cache', // Force revalidation
+            'Pragma': 'no-cache', // For older HTTP/1.0 caches
         },
-    }).then((response) => response.json());
+    }).then((response) => {
+        console.log(`📡 Response status: ${response.status} for ${endpoint}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    });
 }
 
 export function callApi(type, method, endpoint, data) {
@@ -36,5 +45,10 @@ export function callApi(type, method, endpoint, data) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-    }).then((response) => response.json());
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    });
 }
