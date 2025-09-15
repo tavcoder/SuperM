@@ -43,7 +43,7 @@
 .cart-item:hover {
   background-color: var(--primary-light);
   box-shadow: var(--shadow);
-  color: var(--text-secondary);
+  color: var(--black);
 }
 
 .cart-item-img {
@@ -120,7 +120,7 @@
   border-radius: 8px;
   box-shadow: var(--shadow);
   padding: 2rem;
-  margin-top: 6rem;
+  margin-top: 2rem;
 }
 
 .cart-totals-line,

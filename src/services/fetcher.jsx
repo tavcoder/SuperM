@@ -11,6 +11,15 @@ const SUPABASE_CONFIGS = {
     }
 };
 
+const ERROR_MESSAGES = {
+    400: "Oops! Something went wrong with your request. Please check your input.",
+    401: "Oops! You need to log in to access this.",
+    403: "Oops! You don't have permission to do that.",
+    404: "Oops! We couldn't find what you're looking for.",
+    500: "Oops! Something went wrong on our end. Please try again later.",
+    network: "Oops! It looks like there's a connection issue. Please check your internet."
+};
+
 export function getClient(type = "products") {
     const { url, apikey } = SUPABASE_CONFIGS[type];
     return createClient(url, apikey);
@@ -29,9 +38,15 @@ export function get(type, endpoint) {
     }).then((response) => {
         console.log(`📡 Response status: ${response.status} for ${endpoint}`);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorMessage = ERROR_MESSAGES[response.status] || `HTTP error! status: ${response.status}`;
+            throw new Error(errorMessage);
         }
         return response.json();
+    }).catch((error) => {
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+            throw new Error(ERROR_MESSAGES.network);
+        }
+        throw error;
     });
 }
 
@@ -47,8 +62,14 @@ export function callApi(type, method, endpoint, data) {
         body: JSON.stringify(data),
     }).then((response) => {
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorMessage = ERROR_MESSAGES[response.status] || `HTTP error! status: ${response.status}`;
+            throw new Error(errorMessage);
         }
         return response.json();
+    }).catch((error) => {
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+            throw new Error(ERROR_MESSAGES.network);
+        }
+        throw error;
     });
 }

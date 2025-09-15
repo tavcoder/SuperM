@@ -24,7 +24,7 @@ export default function ShippingForm({ onNext }) {
     });
 
     const countryOptions = [
-        { label: "Country", value: "" },
+        { label: "Country*", value: "" },
         { label: "USA", value: "USA" },
         { label: "Mexico", value: "Mexico" },
         { label: "Spain", value: "Spain" },
@@ -36,6 +36,18 @@ export default function ShippingForm({ onNext }) {
         onNext();
     };
 
+    const handleKeyPressNumeric = (e) => {
+        if (!/\d/.test(e.key)) {
+            e.preventDefault();
+        }
+    };
+
+    const handleKeyPressPhone = (e) => {
+        if (!/[\d\s()+-]/.test(e.key)) {
+            e.preventDefault();
+        }
+    };
+
     return (
         <form className="shipping-form" onSubmit={handleSubmit}>
             <h2>01. SHIPPING</h2>
@@ -43,7 +55,7 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="firstName"
-                        placeholder="First name"
+                        placeholder="First name*"
                         value={form.firstName}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -54,7 +66,7 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="lastName"
-                        placeholder="Last name"
+                        placeholder="Last name*"
                         value={form.lastName}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -68,7 +80,7 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="address"
-                        placeholder="Address"
+                        placeholder="Address*"
                         value={form.address}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -90,7 +102,7 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="city"
-                        placeholder="City"
+                        placeholder="City*"
                         value={form.city}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -116,7 +128,7 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="state"
-                        placeholder="State"
+                        placeholder="State*"
                         value={form.state}
                         onChange={handleChange}
                         required
@@ -125,10 +137,11 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="zip"
-                        placeholder="Zip Code"
+                        placeholder="Zip Code*"
                         value={form.zip}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        onKeyPress={handleKeyPressNumeric}
                         required
                     />
                     {touched.zip && errors.zip && <span className="error">{errors.zip}</span>}
@@ -140,7 +153,7 @@ export default function ShippingForm({ onNext }) {
                     <input
                         name="email"
                         type="email"
-                        placeholder="Email"
+                        placeholder="Email*"
                         value={form.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -151,10 +164,11 @@ export default function ShippingForm({ onNext }) {
                 <div className="input-group">
                     <input
                         name="phone"
-                        placeholder="Phone"
+                        placeholder="Phone*"
                         value={form.phone}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        onKeyPress={handleKeyPressPhone}
                         required
                     />
                     {touched.phone && errors.phone && <span className="error">{errors.phone}</span>}
@@ -163,7 +177,7 @@ export default function ShippingForm({ onNext }) {
 
             <div className="privacy">
                 <input className="checkbox" type="checkbox" required />
-                <span>Your privacy is important to us. We will only contact you if there is an issue with your order.</span>
+                <span>Your privacy is important to us. We will only contact you if there is an issue with your order.*</span>
             </div>
 
             <button type="submit" className="btn btn--level1">

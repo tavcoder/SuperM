@@ -11,12 +11,9 @@ import "./styles/dark-theme.css";
 import "./styles/Responsive.css";
 
 function Fallback({ error }) {
-    return (
-        <div role="alert">
-            <p>Something went wrong:</p>
-            <pre style={{ color: "red" }}>{error.message}</pre>
-        </div>
-    );
+    localStorage.setItem('apiError', error.message || 'Unknown error');
+    window.location.href = '/error';
+    return null; // No renderiza nada, ya que redirige
 }
 
 const queryClient = new QueryClient({
@@ -39,9 +36,17 @@ const queryClient = new QueryClient({
             refetchIntervalInBackground: false, // Only refresh when tab is active
             // Enable network mode to see actual HTTP requests
             networkMode: 'online',
+            onError: (error) => {
+                localStorage.setItem('apiError', error.message || 'Unknown error');
+                window.location.href = '/error';
+            },
         },
         mutations: {
             retry: 1, // Retry mutations once on failure
+            onError: (error) => {
+                localStorage.setItem('apiError', error.message || 'Unknown error');
+                window.location.href = '/error';
+            },
         },
     },
 });

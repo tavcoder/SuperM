@@ -12,7 +12,7 @@ import { ProductsProvider } from "./context/ProductsContext.jsx";
 import Products from "./pages/Products.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Checkout from "./pages/Checkout.jsx";
-import PaymentFailure from "./pages/PaymentFailure.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 
 
@@ -91,7 +91,7 @@ function App() {
                             }
                         />
                         <Route path="/checkout" element={<Checkout user={user} />} />
-                        <Route path="/payment-failure" element={<PaymentFailure />} />
+                        <Route path="/error" element={<ErrorPage />} />
                         <Route path="/payment-success" element={<PaymentSuccess />} />
                         <Route path="*" element={<h1>Page not found</h1>} />
                         <Route path="/cookies-policy" element={<CookiesPolicy />} />

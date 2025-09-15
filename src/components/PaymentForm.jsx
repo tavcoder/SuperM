@@ -54,7 +54,8 @@ export default function PaymentForm({ user, onBack }) {
                 clearCart();
                 window.location.href = "/payment-success";
             } else {
-                window.location.href = "/payment-failure";
+                localStorage.setItem('apiError', 'Oops! Payment failed. Please try again.');
+                window.location.href = "/error";
             }
         }, 2000);
     };

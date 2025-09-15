@@ -31,7 +31,11 @@ export default function Login({ onUserLogin }) {
         },
         onError: (error) => {
             console.log(error);
-            setErrorMessage(error.message);
+            if (error.message.includes("400")) {
+                setErrorMessage("Email not found in the database. Please check your email or sign up.");
+            } else {
+                setErrorMessage(error.message);
+            }
         },
         onSuccess: (data) => {
             if (data?.message) {
