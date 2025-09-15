@@ -1,3 +1,4 @@
+// Sidebar component for product filtering and sorting options
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import FilterGroup from "./FilterGroup";

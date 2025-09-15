@@ -8,7 +8,7 @@ const categoryMap = {
 
 export function applyCategories(products, filters) {
   const selectedCategories = Object.entries(filters.categories || {})
-    .filter(([_, isChecked]) => isChecked)
+    .filter(([, isChecked]) => isChecked)
     .map(([key]) => categoryMap[key]);
 
   return products.filter(product => {

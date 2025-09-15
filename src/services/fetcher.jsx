@@ -11,7 +11,7 @@ const SUPABASE_CONFIGS = {
     }
 };
 
-const ERROR_MESSAGES = {
+export const ERROR_MESSAGES = {
     400: "Oops! Something went wrong with your request. Please check your input and try again.",
     401: "Oops! You need to log in to continue.",
     403: "Oops! You dont have permission to do that.",

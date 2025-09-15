@@ -1,3 +1,4 @@
+// User profile page for viewing account information and logout
 import { Navigate } from "react-router";
 import "../styles/ProfilePage.css";
 

@@ -1,3 +1,4 @@
+// Component for displaying a summary of cart items with quantity controls and prices
 import { useContext } from "react";
 import { Link } from "react-router";
 import Price from "./Price.jsx";
@@ -7,7 +8,7 @@ import "../styles/CheckoutPage.css";
 import { FaTimes } from "react-icons/fa";
 
 export default function CartSummary() {
-    const { cart, cartSum, shippingCost = 0, removeFromCart } = useContext(CartContext);
+    const { cart, removeFromCart } = useContext(CartContext);
 
     if (cart.length === 0) {
         return (

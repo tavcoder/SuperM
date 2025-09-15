@@ -1,3 +1,4 @@
+// Login page component for user authentication with form validation
 import { useEffect, useId, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";

@@ -1,3 +1,4 @@
+// Product details page displaying individual product information and add to cart
 import { useContext } from "react";
 import { Link, useParams } from "react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";

@@ -1,11 +1,12 @@
+// Product card component displaying item details, price, and add to cart functionality
 import { Link } from "react-router";
 import { FaCartPlus } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import Price from "./Price.jsx";
 import { CartContext } from "../context/CartContext.jsx";
 import QuantitySelector from "./QuantitySelector.jsx";
 
-export default function Product(props) {
+function Product(props) {
     const { cart, handleAddProduct } = useContext(CartContext);
 
     const productInCart = cart.find(item => String(item.id) === String(props.details.id));
@@ -39,3 +40,5 @@ export default function Product(props) {
         </div>
     );
 }
+
+export default memo(Product);

@@ -1,8 +1,8 @@
+// Navigation bar component with logo, menu links, cart icon, and theme switcher
 import { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import CartIcon from "./CartIcon.jsx";
-import "../styles/Navbar.css";
 
 export default function Navbar({ user }) {
     const [light, setLight] = useState(true);

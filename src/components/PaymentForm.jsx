@@ -1,3 +1,4 @@
+// Payment form component for processing checkout with card details and validation
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext.jsx";
 import { useFormValidation } from "../hooks/useFormValidation";

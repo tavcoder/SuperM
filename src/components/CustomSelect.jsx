@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+// Custom dropdown select component with keyboard navigation and accessibility features
+import { useState, useRef, useEffect, memo } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-export default function CustomSelect({ value, onChange, options, ...restProps }) {
+function CustomSelect({ value, onChange, options, ...restProps }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [highlightIndex, setHighlightIndex] = useState(0);
@@ -101,3 +102,5 @@ export default function CustomSelect({ value, onChange, options, ...restProps })
         </div>
     );
 }
+
+export default memo(CustomSelect);

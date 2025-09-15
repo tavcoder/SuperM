@@ -1,3 +1,4 @@
+// Component for displaying a list of products with search, filtering, and sorting
 import { useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useSuspenseQuery } from "@tanstack/react-query";

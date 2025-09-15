@@ -1,3 +1,4 @@
+// Shipping form component for collecting delivery address and contact information
 import CustomSelect from "./CustomSelect";
 import { useFormValidation } from "../hooks/useFormValidation";
 import "../styles/CheckoutPage.css";

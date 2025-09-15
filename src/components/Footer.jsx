@@ -1,3 +1,4 @@
+// Site footer component with links to policies and cookie management
 import { resetCookieConsentValue } from "react-cookie-consent";
 import { Link } from "react-router";
 

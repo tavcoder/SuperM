@@ -1,3 +1,4 @@
+// Landing page component with hero section and call-to-action for the store
 import { Link } from "react-router";
 import landing from '../assets/landing.avif';
 import "../styles/LandingPage.css";

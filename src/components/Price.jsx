@@ -1,4 +1,7 @@
-export default function Price({originalPrice, finalPrice}) {
+// Component for displaying product prices with discount formatting
+import { memo } from 'react';
+
+function Price({originalPrice, finalPrice}) {
     return (
         <>
             ${(finalPrice / 100).toFixed(2)}
@@ -8,3 +11,5 @@ export default function Price({originalPrice, finalPrice}) {
         </>
     );
 }
+
+export default memo(Price);

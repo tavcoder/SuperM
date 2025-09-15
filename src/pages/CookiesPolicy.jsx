@@ -1,5 +1,4 @@
-import React from "react";
-
+// Cookies policy page explaining cookie usage and consent management
 function CookiesPolicy() {
     return (
         <div className="policy-container" style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto", lineHeight: "1.7" }}>

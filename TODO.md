@@ -56,6 +56,16 @@
 - [ ] Cookies
 
 ## ✨ Extra Improvements (Nice-to-haves)
-- [x] Save cart state in `localStorage`  
+- [x] Save cart state in `localStorage`
 - [ ] Calculate and apply shipping fees based on location
 - [x] improve quantity control with ARIA roles and live updates
+
+## 🚀 Performance and Quality Improvements
+- [ ] Fix lint errors: Remove unused variables (e.g., `cartSum`, `shippingCost` in CartSummary.jsx, `useEffect` in QuantitySelector.jsx) and unnecessary React import in CookiesPolicy.jsx
+- [ ] Implement real authentication: Integrate a login/logout system with JWT or Supabase Auth for better security
+- [ ] Add tests: Implement unit tests with Vitest or Jest for components and utilities, and integration tests for critical flows like checkout
+- [ ] Improve accessibility: Add ARIA labels, roles, and keyboard navigation in forms and interactive components
+- [ ] Optimize performance: Use useMemo and lazy loading for heavy components. Implement virtualization for long product lists (React.memo already implemented in key components)
+- [ ] Real backend: Replace mock payment with Stripe integration or similar, and connect to a real API for products/users
+- [ ] Documentation: Update README.md with setup, architecture, and contribution guides. Use JSDoc in complex functions
+- [ ] Functional dark mode: Implement real theme switching with dynamic CSS variables

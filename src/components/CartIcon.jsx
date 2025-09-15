@@ -1,3 +1,4 @@
+// Component for displaying the shopping cart icon with item count
 import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from "../context/CartContext.jsx";

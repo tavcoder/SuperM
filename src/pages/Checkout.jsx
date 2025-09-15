@@ -1,3 +1,4 @@
+// Checkout page component managing the multi-step checkout process
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CartSummary from "../components/CartSummary";

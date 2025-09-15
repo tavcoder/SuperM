@@ -1,19 +1,21 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
-import CookiesPolicy from "./pages/CookiesPolicy.jsx";
-import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
-import Landing from "./pages/Landing.jsx";
-import Login from "./pages/Login.jsx";
-import Profile from "./pages/Profile.jsx";
 import { ProductsProvider } from "./context/ProductsContext.jsx";
-import Products from "./pages/Products.jsx";
-import ProductDetails from "./pages/ProductDetails.jsx";
-import Checkout from "./pages/Checkout.jsx";
-import ErrorPage from "./pages/ErrorPage.jsx";
-import PaymentSuccess from "./pages/PaymentSuccess.jsx";
+
+const lazyPages = {
+    CookiesPolicy: lazy(() => import('./pages/CookiesPolicy.jsx')),
+    PrivacyPolicy: lazy(() => import('./pages/PrivacyPolicy.jsx')),
+    Landing: lazy(() => import('./pages/Landing.jsx')),
+    Login: lazy(() => import('./pages/Login.jsx')),
+    Profile: lazy(() => import('./pages/Profile.jsx')),
+    Products: lazy(() => import('./pages/Products.jsx')),
+    ProductDetails: lazy(() => import('./pages/ProductDetails.jsx')),
+    Checkout: lazy(() => import('./pages/Checkout.jsx')),
+    StatusPage: lazy(() => import('./pages/StatusPage.jsx')),
+};
 
 
 function App() {
@@ -52,51 +54,42 @@ function App() {
                     </div>
                 </div>
                 <div className="container page-wrapper">
-                    <Routes>
-                        <Route path="/" element={<Landing />} />
-                        <Route
-                            path="/login"
-                            element={<Login onUserLogin={handleUserLogin} />}
-                        />
-                        <Route
-                            path="/profile"
-                            element={
-                                <Profile
-                                    user={user}
-                                    onUserLogout={handleUserLogout}
-                                />
-                            }
-                        />
-                        <Route
-                            path="/products"
-                            element={
-                                <Suspense
-                                    fallback={<p className="loading">Loading...</p>}
-                                >
+                    <Suspense fallback={<p className="loading">Loading...</p>}>
+                        <Routes>
+                            <Route path="/" element={<lazyPages.Landing />} />
+                            <Route
+                                path="/login"
+                                element={<lazyPages.Login onUserLogin={handleUserLogin} />}
+                            />
+                            <Route
+                                path="/profile"
+                                element={
+                                    <lazyPages.Profile
+                                        user={user}
+                                        onUserLogout={handleUserLogout}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/products"
+                                element={
                                     <ProductsProvider>
-                                        <Products />
+                                        <lazyPages.Products />
                                     </ProductsProvider>
-
-                                </Suspense>
-                            }
-                        />
-                        <Route
-                            path="/products/:id"
-                            element={
-                                <Suspense
-                                    fallback={<p className="loading">Loading...</p>}
-                                >
-                                    <ProductDetails />
-                                </Suspense>
-                            }
-                        />
-                        <Route path="/checkout" element={<Checkout user={user} />} />
-                        <Route path="/error" element={<ErrorPage />} />
-                        <Route path="/payment-success" element={<PaymentSuccess />} />
-                        <Route path="*" element={<h1>Page not found</h1>} />
-                        <Route path="/cookies-policy" element={<CookiesPolicy />} />
-                        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                    </Routes>
+                                }
+                            />
+                            <Route
+                                path="/products/:id"
+                                element={<lazyPages.ProductDetails />}
+                            />
+                            <Route path="/checkout" element={<lazyPages.Checkout user={user} />} />
+                            <Route path="/error" element={<lazyPages.StatusPage type="error" />} />
+                            <Route path="/payment-success" element={<lazyPages.StatusPage type="success" />} />
+                            <Route path="*" element={<h1>Page not found</h1>} />
+                            <Route path="/cookies-policy" element={<lazyPages.CookiesPolicy />} />
+                            <Route path="/privacy-policy" element={<lazyPages.PrivacyPolicy />} />
+                        </Routes>
+                    </Suspense>
                 </div>
                 <div className="wrapper-gray">
                     <div className="container">

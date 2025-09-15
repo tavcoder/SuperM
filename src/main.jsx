@@ -5,14 +5,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import { CartProvider } from "./context/CartContext.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
+import { ERROR_MESSAGES } from "./services/fetcher.jsx";
 import App from "./App.jsx";
 import "./styles/index.css";
 import "./styles/dark-theme.css";
 import "./styles/Responsive.css";
 
 function Fallback({ error }) {
-    const message = error.message || error || 'Unknown error';
-    localStorage.setItem('apiError', message);
+    console.error('Technical error:', error);
+    localStorage.setItem('apiError', 'Oops! Something went wrong. Please try again.');
     window.location.href = '/error';
     return null; // No renderiza nada, ya que redirige
 }
@@ -40,8 +41,12 @@ const queryClient = new QueryClient({
             onError: (error) => {
                 if (error.status === 401) {
                     window.location.href = '/login';
+                } else if (error.status && ERROR_MESSAGES[error.status]) {
+                    localStorage.setItem('apiError', ERROR_MESSAGES[error.status]);
+                    window.location.href = '/error';
                 } else {
-                    localStorage.setItem('apiError', error.message || 'Unknown error');
+                    console.error('Technical error:', error);
+                    localStorage.setItem('apiError', 'Oops! Something went wrong. Please try again.');
                     window.location.href = '/error';
                 }
             },
@@ -51,8 +56,12 @@ const queryClient = new QueryClient({
             onError: (error) => {
                 if (error.status === 401) {
                     window.location.href = '/login';
+                } else if (error.status && ERROR_MESSAGES[error.status]) {
+                    localStorage.setItem('apiError', ERROR_MESSAGES[error.status]);
+                    window.location.href = '/error';
                 } else {
-                    localStorage.setItem('apiError', error.message || 'Unknown error');
+                    console.error('Technical error:', error);
+                    localStorage.setItem('apiError', 'Oops! Something went wrong. Please try again.');
                     window.location.href = '/error';
                 }
             },

@@ -1,3 +1,4 @@
+// Privacy policy page outlining data collection and user rights
 export default function PrivacyPolicy() {
     return (
         <div className="policy-container" style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto", lineHeight: "1.7" }}>

@@ -1,3 +1,4 @@
+// Component for rendering product filter groups with checkboxes for categories and characteristics
 import { useContext, useId } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 

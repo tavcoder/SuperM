@@ -1,3 +1,4 @@
+// Products page component combining sidebar filters and product list display
 import { useContext } from "react";
 import Sidebar from "../components/Sidebar";
 import ProductsList from "../components/ProductsList";

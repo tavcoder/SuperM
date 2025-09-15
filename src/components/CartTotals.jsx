@@ -1,4 +1,7 @@
-export default function CartTotals({ subtotal, discount, shippingCost, total, onNextStep, step }) {
+// Component for displaying cart totals including subtotal, discount, shipping, and total
+import { memo } from 'react';
+
+function CartTotals({ subtotal, discount, shippingCost, total, onNextStep, step }) {
     return (
         <div className="cart-totals">
             <div className="cart-totals-line">
@@ -25,3 +28,5 @@ export default function CartTotals({ subtotal, discount, shippingCost, total, on
         </div>
     );
 }
+
+export default memo(CartTotals);
