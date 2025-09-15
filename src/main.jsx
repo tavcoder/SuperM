@@ -11,7 +11,8 @@ import "./styles/dark-theme.css";
 import "./styles/Responsive.css";
 
 function Fallback({ error }) {
-    localStorage.setItem('apiError', error.message || 'Unknown error');
+    const message = error.message || error || 'Unknown error';
+    localStorage.setItem('apiError', message);
     window.location.href = '/error';
     return null; // No renderiza nada, ya que redirige
 }
@@ -37,15 +38,23 @@ const queryClient = new QueryClient({
             // Enable network mode to see actual HTTP requests
             networkMode: 'online',
             onError: (error) => {
-                localStorage.setItem('apiError', error.message || 'Unknown error');
-                window.location.href = '/error';
+                if (error.status === 401) {
+                    window.location.href = '/login';
+                } else {
+                    localStorage.setItem('apiError', error.message || 'Unknown error');
+                    window.location.href = '/error';
+                }
             },
         },
         mutations: {
             retry: 1, // Retry mutations once on failure
             onError: (error) => {
-                localStorage.setItem('apiError', error.message || 'Unknown error');
-                window.location.href = '/error';
+                if (error.status === 401) {
+                    window.location.href = '/login';
+                } else {
+                    localStorage.setItem('apiError', error.message || 'Unknown error');
+                    window.location.href = '/error';
+                }
             },
         },
     },

@@ -12,12 +12,15 @@ const SUPABASE_CONFIGS = {
 };
 
 const ERROR_MESSAGES = {
-    400: "Oops! Something went wrong with your request. Please check your input.",
-    401: "Oops! You need to log in to access this.",
-    403: "Oops! You don't have permission to do that.",
-    404: "Oops! We couldn't find what you're looking for.",
+    400: "Oops! Something went wrong with your request. Please check your input and try again.",
+    401: "Oops! You need to log in to continue.",
+    403: "Oops! You dont have permission to do that.",
+    404: "Oops! We couldnt find what youre looking for.",
+    409: "Oops! There was a conflict with your request. Please refresh the page and try again.",
+    422: "Oops! Some information seems incorrect. Please check and try again.",
     500: "Oops! Something went wrong on our end. Please try again later.",
-    network: "Oops! It looks like there's a connection issue. Please check your internet."
+    503: "Oops! Our shop is temporarily unavailable. Please try again in a few minutes.",
+    network: "Oops! It looks like theres a connection issue. Please check your internet and try again."
 };
 
 export function getClient(type = "products") {
@@ -36,10 +39,10 @@ export function get(type, endpoint) {
             'Pragma': 'no-cache', // For older HTTP/1.0 caches
         },
     }).then((response) => {
-        console.log(`📡 Response status: ${response.status} for ${endpoint}`);
+        console.log(`Response status: ${response.status} for ${endpoint}`);
         if (!response.ok) {
-            const errorMessage = ERROR_MESSAGES[response.status] || `HTTP error! status: ${response.status}`;
-            throw new Error(errorMessage);
+            const errorMessage = ERROR_MESSAGES[response.status] || "Oops! Something unexpected happened. Please try again.";
+            throw { status: response.status, message: errorMessage };
         }
         return response.json();
     }).catch((error) => {
@@ -62,8 +65,8 @@ export function callApi(type, method, endpoint, data) {
         body: JSON.stringify(data),
     }).then((response) => {
         if (!response.ok) {
-            const errorMessage = ERROR_MESSAGES[response.status] || `HTTP error! status: ${response.status}`;
-            throw new Error(errorMessage);
+            const errorMessage = ERROR_MESSAGES[response.status] || "Oops! Something unexpected happened. Please try again.";
+            throw { status: response.status, message: errorMessage };
         }
         return response.json();
     }).catch((error) => {
