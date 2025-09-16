@@ -6,14 +6,14 @@ import Footer from "./components/Footer.jsx";
 import { ProductsProvider } from "./context/ProductsContext.jsx";
 
 const lazyPages = {
-    CookiesPolicy: lazy(() => import('./pages/CookiesPolicy.jsx')),
-    PrivacyPolicy: lazy(() => import('./pages/PrivacyPolicy.jsx')),
-    Landing: lazy(() => import('./pages/Landing.jsx')),
-    Login: lazy(() => import('./pages/Login.jsx')),
-    Profile: lazy(() => import('./pages/Profile.jsx')),
-    Products: lazy(() => import('./pages/Products.jsx')),
-    ProductDetails: lazy(() => import('./pages/ProductDetails.jsx')),
-    Checkout: lazy(() => import('./pages/Checkout.jsx')),
+    CookiesPolicyPage: lazy(() => import('./pages/CookiesPolicyPage.jsx')),
+    PrivacyPolicyPage: lazy(() => import('./pages/PrivacyPolicyPage.jsx')),
+    LandingPage: lazy(() => import('./pages/LandingPage.jsx')),
+    LoginPage: lazy(() => import('./pages/LoginPage.jsx')),
+    ProfilePage: lazy(() => import('./pages/ProfilePage.jsx')),
+    ProductsPage: lazy(() => import('./pages/ProductsPage.jsx')),
+    ProductDetailsPage: lazy(() => import('./pages/ProductDetailsPage.jsx')),
+    CheckoutPage: lazy(() => import('./pages/CheckoutPage.jsx')),
     StatusPage: lazy(() => import('./pages/StatusPage.jsx')),
 };
 
@@ -21,15 +21,31 @@ const lazyPages = {
 function App() {
     const [user, setUser] = useState(null);
 
+    /**
+     * Handles user login by setting the user state with profile data from localStorage
+     * @param {Object} newUser - The user object from authentication
+     * @param {string} newUser.username - User's username
+     * @param {string} newUser.email - User's email
+     */
     function handleUserLogin(newUser) {
         const profile = JSON.parse(localStorage.getItem('userProfile') || '{}');
         setUser({ ...newUser, profile });
     }
 
+    /**
+     * Handles user logout by clearing the user state
+     */
     function handleUserLogout() {
         setUser(null);
     }
 
+    /**
+     * Updates the user's profile information in state and localStorage
+     * @param {Object} newProfile - The updated profile data
+     * @param {string} newProfile.firstName - User's first name
+     * @param {string} newProfile.lastName - User's last name
+     * @param {string} newProfile.address - User's address
+     */
     function handleUpdateProfile(newProfile) {
         setUser(prev => ({ ...prev, profile: newProfile }));
         localStorage.setItem('userProfile', JSON.stringify(newProfile));
@@ -62,40 +78,40 @@ function App() {
                 <div className="container page-wrapper">
                     <Suspense fallback={<p className="loading">Loading...</p>}>
                         <Routes>
-                            <Route path="/" element={<lazyPages.Landing />} />
-                            <Route
-                                path="/login"
-                                element={<lazyPages.Login onUserLogin={handleUserLogin} />}
-                            />
-                            <Route
-                                path="/profile"
-                                element={
-                                    <lazyPages.Profile
-                                        user={user}
-                                        onUserLogout={handleUserLogout}
-                                        onUpdateProfile={handleUpdateProfile}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/products"
-                                element={
-                                    <ProductsProvider>
-                                        <lazyPages.Products />
-                                    </ProductsProvider>
-                                }
-                            />
-                            <Route
-                                path="/products/:id"
-                                element={<lazyPages.ProductDetails />}
-                            />
-                             <Route path="/checkout" element={<lazyPages.Checkout user={user} />} />
+                             <Route path="/" element={<lazyPages.LandingPage />} />
+                             <Route
+                                 path="/login"
+                                 element={<lazyPages.LoginPage onUserLogin={handleUserLogin} />}
+                             />
+                             <Route
+                                 path="/profile"
+                                 element={
+                                     <lazyPages.ProfilePage
+                                         user={user}
+                                         onUserLogout={handleUserLogout}
+                                         onUpdateProfile={handleUpdateProfile}
+                                     />
+                                 }
+                             />
+                             <Route
+                                 path="/products"
+                                 element={
+                                     <ProductsProvider>
+                                         <lazyPages.ProductsPage />
+                                     </ProductsProvider>
+                                 }
+                             />
+                             <Route
+                                 path="/products/:id"
+                                 element={<lazyPages.ProductDetailsPage />}
+                             />
+                             <Route path="/checkout" element={<lazyPages.CheckoutPage user={user} />} />
                              <Route path="/error" element={<lazyPages.StatusPage type="error" />} />
                              <Route path="/payment-success" element={<lazyPages.StatusPage type="success" />} />
                              <Route path="/profile-success" element={<lazyPages.StatusPage type="success" title="Profile Updated!" message="Your profile has been successfully updated." buttons={[{ text: 'Back to Profile', to: '/profile', className: 'btn--level1' }]} />} />
-                            <Route path="*" element={<h1>Page not found</h1>} />
-                            <Route path="/cookies-policy" element={<lazyPages.CookiesPolicy />} />
-                            <Route path="/privacy-policy" element={<lazyPages.PrivacyPolicy />} />
+                             <Route path="*" element={<h1>Page not found</h1>} />
+                             <Route path="/cookies-policy" element={<lazyPages.CookiesPolicyPage />} />
+                             <Route path="/privacy-policy" element={<lazyPages.PrivacyPolicyPage />} />
                         </Routes>
                     </Suspense>
                 </div>

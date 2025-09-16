@@ -1,3 +1,7 @@
+/**
+ * Context for managing products state, filters, and search functionality
+ * Handles product filtering, sorting, and sidebar state
+ */
 import { createContext, useState, useTransition } from "react";
 
 export const ProductsContext = createContext(null);

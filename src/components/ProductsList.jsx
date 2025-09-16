@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProductsContext } from "../context/ProductsContext.jsx";
-import Product from "./Product.jsx";
+import ProductCard from "./ProductCard.jsx";
 import { get } from "../services/fetcher.jsx";
 import { getVisibleProducts } from "../utils/filters.js";
 
@@ -81,7 +81,7 @@ export default function ProductsList({ openSidebar }) {
             ) : (
                 <div className="products-grid">
                     {filteredProducts.map(product => (
-                        <Product key={product.id} details={product} />
+                        <ProductCard key={product.id} details={product} />
                     ))}
                 </div>
             )}

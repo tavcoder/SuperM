@@ -1,3 +1,7 @@
+/**
+ * Context for managing toast notifications
+ * Provides functions to add and remove toast messages with different types
+ */
 import { createContext, useState, useCallback } from "react";
 
 export const ToastContext = createContext(null);

@@ -38,7 +38,7 @@
   - [x] Style the toast component  
   - [x] Ensure consistent appearance in dark mode
   - [x] Fix spacing issues in CustomSelect (should not push other elements)  
-- [ ] Improve responsive layout for mobile screens
+- [x]  Improve responsive layout for mobile screens
   - [x] Hide sidebar by default in responsive layout
     - [x] Add sidebar transition to slide in/out from the right
   - [x] Adjust page title size and padding 
@@ -50,22 +50,21 @@
 
 
 ## 🛠️ Code Quality and Structure
-- [ ] Refactor folder structure for better maintainability  
+- [x]  Refactor folder structure for better maintainability  
 - [x] Move sidebar functions to ProductsContext 
 - [x] Fix landing page not loading when accessed directly
-- [ ] Cookies
+- [x]  Cookies
 
 ## ✨ Extra Improvements (Nice-to-haves)
 - [x] Save cart state in `localStorage`
 - [ ] Calculate and apply shipping fees based on location
 - [x] improve quantity control with ARIA roles and live updates
-
-## 🚀 Performance and Quality Improvements
-- [ ] Fix lint errors: Remove unused variables (e.g., `cartSum`, `shippingCost` in CartSummary.jsx, `useEffect` in QuantitySelector.jsx) and unnecessary React import in CookiesPolicy.jsx
+- [x] Fix lint errors: Remove unused variables (e.g., `cartSum`, `shippingCost` in CartSummary.jsx, `useEffect` in QuantitySelector.jsx) and unnecessary React import in CookiesPolicy.jsx
 - [ ] Implement real authentication: Integrate a login/logout system with JWT or Supabase Auth for better security
+- [ ] Real backend: Replace mock payment with Stripe integration or similar, and connect to a real API for products/users
 - [ ] Add tests: Implement unit tests with Vitest or Jest for components and utilities, and integration tests for critical flows like checkout
 - [ ] Improve accessibility: Add ARIA labels, roles, and keyboard navigation in forms and interactive components
-- [ ] Optimize performance: Use useMemo and lazy loading for heavy components. Implement virtualization for long product lists (React.memo already implemented in key components)
-- [ ] Real backend: Replace mock payment with Stripe integration or similar, and connect to a real API for products/users
-- [ ] Documentation: Update README.md with setup, architecture, and contribution guides. Use JSDoc in complex functions
-- [ ] Functional dark mode: Implement real theme switching with dynamic CSS variables
+- [x]Optimize performance: Use useMemo and lazy loading for heavy components.
+- [ ] Implement virtualization for long product lists
+- [x] Documentation: Update README.md with setup, architecture, and contribution guides. Use JSDoc in complex functions
+- [x]Functional dark mode: Implement real theme switching with dynamic CSS variables

@@ -42,8 +42,16 @@ export function applySort(products, sortOption) {
   }
 }
 
+/**
+ * Filters and sorts products based on search query, category filters, characteristics, and sort options
+ * @param {Array} products - Array of product objects
+ * @param {Object} filters - Filter object with categories and characteristics
+ * @param {string} sortOption - Sort option ('price-asc', 'price-desc', 'name-asc', 'name-desc')
+ * @param {string} query - Search query string
+ * @returns {Array} Filtered and sorted array of products
+ */
 export function getVisibleProducts(products, filters, sortOption, query = "") {
- 
+
   let visible = [...products];
 
   if (query.trim()) {

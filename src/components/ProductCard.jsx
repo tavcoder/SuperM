@@ -1,4 +1,8 @@
 // Product card component displaying item details, price, and add to cart functionality
+/**
+ * Product card component displaying product information and add to cart functionality
+ * Shows product image, name, price, and allows adding to cart
+ */
 import { Link } from "react-router";
 import { FaCartPlus } from "react-icons/fa";
 import { useContext, memo } from "react";

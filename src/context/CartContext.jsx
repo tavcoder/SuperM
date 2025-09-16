@@ -1,3 +1,7 @@
+/**
+ * Context for managing shopping cart state and operations
+ * Provides cart items, add/remove products, and persistence to localStorage
+ */
 import { useState, useEffect, useContext, createContext } from "react";
 import { ToastContext } from './ToastContext';
 

@@ -32,6 +32,10 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
         { label: "Spain", value: "Spain" },
     ];
 
+    /**
+     * Handles form submission for shipping information
+     * @param {Event} e - The form submit event
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!isFormValid()) return;
