@@ -23,18 +23,20 @@
   -moz-osx-font-smoothing: grayscale;
 
   --text-primary: #191919;
-   --text-secondary: #7D8AA5;
+  --text-secondary: #7D8AA5;
 
-   /* Neutrals */
-   --white: #ffffff;
-   --black: #191919;
-   --gray: #f4f4f4;
-   --gray-light: #eaeaea;
-   --gray-dark: #a6a0a0;
+  /* Neutrals */
+  --white: #ffffff;
+  --black: #191919;
+  --gray: #f4f4f4;
+  --gray-light: #eaeaea;
+  --gray-dark: #a6a0a0;
 
-   /* Borders and shadows */
-   --border: 1px solid #cccccc;
-   --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Borders and shadows */
+  --border: 1px solid #cccccc;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --focus: 2px solid #0060DF;
+}
 
 html {
   font-size: 10px;
@@ -49,7 +51,6 @@ body {
 
 .layout {
   min-height: 100vh;
-  /* que ocupe toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
 }
@@ -88,7 +89,7 @@ body {
 }
 
 .btn:focus-visible {
-  outline: 2px solid #0060DF;
+  outline: var(--focus);
   outline-offset: 2px;
 }
 
@@ -182,7 +183,7 @@ body {
 }
 
 .checkbox:focus-visible {
-  outline: 2px solid #0060DF;
+  outline: var(--focus);
   outline-offset: 2px;
 }
 
@@ -194,6 +195,7 @@ body {
   color: var(--black);
   all: unset;
   transition: transform 0.2s ease, color 0.2s ease;
+  vertical-align: middle;
 }
 
 .icon:hover {
@@ -207,7 +209,7 @@ body {
 }
 
 .icon:focus-visible {
-  outline: 2px solid #0060DF;
+  outline: var(--focus);
   outline-offset: 2px;
 }
 
@@ -474,139 +476,176 @@ h1 {
 
 /* FilterGroup styles */
 .filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .filter-subgroup {
-    border-top: var(--border);
+  border-top: var(--border);
 }
 
 .filter-title {
-    font-weight: 600;
-    color: var(--text-secondary);
-    /* text-gray-700 */
-    font-size: 0.875rem;
-    /* text-sm */
+  font-weight: 600;
+  color: var(--text-secondary);
+  /* text-gray-700 */
+  font-size: 0.875rem;
+  /* text-sm */
 }
 
 .filter-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-left: -22px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-left: -22px;
 }
 
 .filter-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* Navbar styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 32px;
 }
 
 .nav-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
-    font-size: 2.6rem;
-    font-weight: normal;
-    text-decoration: none;
-    color: inherit;
+  font-size: 2.6rem;
+  font-weight: normal;
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo:focus-visible {
-  outline: 2px solid #0060DF;
+  outline: var(--focus);
   outline-offset: 2px;
 }
 
 
 .theme-switcher {
-    all: unset;
-    display: flex;
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
+  all: unset;
+  display: flex;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
 }
 
 .theme-switcher:hover {
-    background-color: var(--primary-hover);
+  background-color: var(--primary-hover);
 }
 
 .theme-switcher:focus-visible {
-  outline: 2px solid #0060DF;
+  outline: var(--focus);
   outline-offset: 2px;
 }
 
 
 .nav-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .nav {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    background-color: var(--white);
-    border-top-left-radius: 132px;
-    border-bottom-left-radius: 132px;
-    border-top-right-radius: 132px;
-    border-bottom-right-radius: 132px;
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  background-color: var(--white);
+  border-top-left-radius: 132px;
+  border-bottom-left-radius: 132px;
+  border-top-right-radius: 132px;
+  border-bottom-right-radius: 132px;
 }
 
 .nav-cart {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .cart-count-badge {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: -10px;
-    right: 0px;
-    background-color: var(--primary);
-    color: var(--gray-light);
-    border-radius: 50%;
-    font-size: 0.65rem;
-    line-height: 1;
-    font-weight: 600;
-    width: 25px;
-    height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  background-color: var(--primary);
+  color: var(--gray-light);
+  border-radius: 50%;
+  font-size: 0.65rem;
+  line-height: 1;
+  font-weight: 600;
+  width: 25px;
+  height: 25px;
 }
 
 
 .nav-item a,
 .nav-cart {
-    border-radius: 132px;
-    padding: 8px 16px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    display: inline-block;
+  border-radius: 132px;
+  padding: 8px 16px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: inline-block;
 }
 
 
 .nav-item a:hover,
 .nav-cart:hover {
-    color: var(--primary-hover)
+  color: var(--primary-hover)
 }
 
 .nav-item a.active,
 .nav-cart.active {
-    color: var(--primary-pressed);
+  color: var(--primary-pressed);
+}
+
+/*components/QuatitySelector.jsx*/
+.quantity-buttons {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: var(--border);
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.quantity-buttons li {
+  width: 24px;
+  height: 24px;
+}
+
+.quantity-buttons-add {
+  all: unset;
+  outline: revert;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin-top: -0.5rem;
+}
+
+.quantity-buttons button:hover {
+  background-color: var(--gray);
+  color: var(--primary);
+}
+
+.quantity-buttons button.active {
+  background-color: var(--gray);
 }

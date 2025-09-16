@@ -1,6 +1,49 @@
 .profile-wrapper {
-    max-width: 410px;
+    max-width: 70%;
     margin-inline: auto;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.value {
+    /* default styles */
+}
+
+.edit-btn {
+    all: unset;
+    padding: 4px 32px;
+    border-radius: 72px;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--white);
+    font-weight: normal;
+    text-align: center;
+    transition: opacity 180ms, translate 180ms;
+}
+
+.edit-btn:hover {
+    background-color: var(--primary-hover);
 }
 
 .profile-buttons {

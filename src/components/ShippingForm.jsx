@@ -3,7 +3,8 @@ import CustomSelect from "./CustomSelect";
 import { useFormValidation } from "../hooks/useFormValidation";
 import "../styles/CheckoutPage.css";
 
-export default function ShippingForm({ onNext }) {
+export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Save & Continue", showPrivacy = true, showTitle = true, showButton = true, cancelButton }) {
+    const profile = user?.profile || {};
     const {
         form,
         errors,
@@ -12,15 +13,15 @@ export default function ShippingForm({ onNext }) {
         handleBlur,
         isFormValid
     } = useFormValidation({
-        firstName: "",
-        lastName: "",
-        address: "",
+        firstName: profile.firstName || "",
+        lastName: profile.lastName || "",
+        address: profile.address || "",
         apt: "",
-        city: "",
+        city: profile.city || "",
         country: "",
         state: "",
-        zip: "",
-        email: "",
+        zip: profile.postalCode || "",
+        email: user?.email || "",
         phone: ""
     });
 
@@ -34,7 +35,11 @@ export default function ShippingForm({ onNext }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!isFormValid()) return;
-        onNext();
+        if (onSubmit) {
+            onSubmit(form);
+        } else {
+            onNext();
+        }
     };
 
     const handleKeyPressNumeric = (e) => {
@@ -51,7 +56,7 @@ export default function ShippingForm({ onNext }) {
 
     return (
         <form className="shipping-form" onSubmit={handleSubmit}>
-            <h2>01. SHIPPING</h2>
+            {showTitle && <h2>01. SHIPPING</h2>}
             <div className="row">
                 <div className="input-group">
                     <input
@@ -176,14 +181,21 @@ export default function ShippingForm({ onNext }) {
                 </div>
             </div>
 
-            <div className="privacy">
-                <input className="checkbox" type="checkbox" required />
-                <span>Your privacy is important to us. We will only contact you if there is an issue with your order.*</span>
-            </div>
+            {showPrivacy && (
+                <div className="privacy">
+                    <input className="checkbox" type="checkbox" required />
+                    <span>Your privacy is important to us. We will only contact you if there is an issue with your order.*</span>
+                </div>
+            )}
 
-            <button type="submit" className="btn btn--level1">
-                Save & Continue
-            </button>
+            {showButton && (
+                <div className="form-buttons">
+                    <button type="submit" className="btn btn--level1">
+                        {buttonText}
+                    </button>
+                    {cancelButton}
+                </div>
+            )}
         </form>
     );
 }

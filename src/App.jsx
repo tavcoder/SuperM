@@ -22,11 +22,17 @@ function App() {
     const [user, setUser] = useState(null);
 
     function handleUserLogin(newUser) {
-        setUser(newUser);
+        const profile = JSON.parse(localStorage.getItem('userProfile') || '{}');
+        setUser({ ...newUser, profile });
     }
 
     function handleUserLogout() {
         setUser(null);
+    }
+
+    function handleUpdateProfile(newProfile) {
+        setUser(prev => ({ ...prev, profile: newProfile }));
+        localStorage.setItem('userProfile', JSON.stringify(newProfile));
     }
 
     useEffect(() => {
@@ -67,6 +73,7 @@ function App() {
                                     <lazyPages.Profile
                                         user={user}
                                         onUserLogout={handleUserLogout}
+                                        onUpdateProfile={handleUpdateProfile}
                                     />
                                 }
                             />
@@ -82,9 +89,10 @@ function App() {
                                 path="/products/:id"
                                 element={<lazyPages.ProductDetails />}
                             />
-                            <Route path="/checkout" element={<lazyPages.Checkout user={user} />} />
-                            <Route path="/error" element={<lazyPages.StatusPage type="error" />} />
-                            <Route path="/payment-success" element={<lazyPages.StatusPage type="success" />} />
+                             <Route path="/checkout" element={<lazyPages.Checkout user={user} />} />
+                             <Route path="/error" element={<lazyPages.StatusPage type="error" />} />
+                             <Route path="/payment-success" element={<lazyPages.StatusPage type="success" />} />
+                             <Route path="/profile-success" element={<lazyPages.StatusPage type="success" title="Profile Updated!" message="Your profile has been successfully updated." buttons={[{ text: 'Back to Profile', to: '/profile', className: 'btn--level1' }]} />} />
                             <Route path="*" element={<h1>Page not found</h1>} />
                             <Route path="/cookies-policy" element={<lazyPages.CookiesPolicy />} />
                             <Route path="/privacy-policy" element={<lazyPages.PrivacyPolicy />} />

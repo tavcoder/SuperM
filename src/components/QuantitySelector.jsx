@@ -21,22 +21,22 @@ function QuantitySelector({ product }) {
             role="group"
             aria-label={`Quantity controls for ${product.name}`}
         >
-            <li id={`${id}-remove-btn`}>
-                <button className="icon"
-                    onClick={handleRemove}
-                    aria-label={
-                        quantity === 1
-                            ? `Remove ${product.name}`
-                            : `Decrease quantity of ${product.name}`
-                    }
-                >
-                    {quantity === 1 ? (
-                        <FaTrashAlt />
-                    ) : (
-                        "-"
-                    )}
-                </button>
-            </li>
+             <li id={`${id}-remove-btn`}>
+                 <button className={quantity === 1 ? "icon" : "quantity-buttons-add"}
+                     onClick={handleRemove}
+                     aria-label={
+                         quantity === 1
+                             ? `Remove ${product.name}`
+                             : `Decrease quantity of ${product.name}`
+                     }
+                 >
+                     {quantity === 1 ? (
+                         <FaTrashAlt />
+                     ) : (
+                         "-"
+                     )}
+                 </button>
+             </li>
             <li id={`${id}-quantity-display`} aria-live="polite" aria-atomic="true">
                 {quantity}
             </li>

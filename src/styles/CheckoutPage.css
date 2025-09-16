@@ -74,42 +74,6 @@
   gap: 50px;
 }
 
-/*components/QuatitySelector.jsx*/
-.quantity-buttons {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border: var(--border);
-  border-radius: 4px;
-  background-color: var(--white);
-}
-
-.quantity-buttons li {
-  width: 24px;
-  height: 24px;
-}
-
-.quantity-buttons-add {
-  all: unset;
-  outline: revert;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.quantity-buttons button:hover {
-  background-color: var(--gray);
-  color: var(--primary);
-}
-
-.quantity-buttons button.active {
-  background-color: var(--gray);
-}
 
 /*components/CartTotals.jsx*/
 .cart-totals {

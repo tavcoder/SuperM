@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { callApi } from "../services/fetcher.jsx";
 import { useFormValidation } from "../hooks/useFormValidation";
+import "../styles/LoginPage.css";
 
 export default function Login({ onUserLogin }) {
     const emailId = useId();
@@ -64,7 +65,7 @@ export default function Login({ onUserLogin }) {
     };
 
     return (
-        <div className="profile-wrapper">
+        <div className="login-wrapper">
             <title>Login | SuperM</title>
             <h1>Login</h1>
             <p className="text-dimmed">Login using test@example.com and any password.</p>

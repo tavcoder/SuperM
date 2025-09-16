@@ -28,7 +28,7 @@ export default function Checkout({ user }) {
                 {step === 1 ? (
                     <CartSummary />
                 ) : step === 2 ? (
-                    <ShippingForm onNext={() => setStep(3)} />
+                    <ShippingForm user={user} onNext={() => setStep(3)} />
                 ) : (
                     <PaymentForm user={user} onBack={() => setStep(2)} />
                 )}
