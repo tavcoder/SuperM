@@ -15,7 +15,7 @@
 ## Code Style
 - **Components**: Functional with hooks, PascalCase (e.g., `ProductDetails.jsx`)
 - **Functions**: camelCase (e.g., `handleAddProduct`)
-- **CSS**: kebab-case classes (e.g., `product-image`)
+- **CSS**: kebab-case classes (e.g., `product__image`)
 - **Imports**: Group by React/Router → icons → local components/context
 - **JSX**: Runtime enabled, no prop-types (TypeScript types preferred)
 

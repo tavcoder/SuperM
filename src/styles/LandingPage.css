@@ -1,11 +1,24 @@
+.landing__title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
 
-.landing-cover {
+.landing__subtitle {
+  max-width: 600px;
+  font-size: 1.5rem;
+  /* 24px */
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.landing__cover {
   margin-top: 20px;
   border-radius: 12px;
   width: 100%;
   height: auto;
-}
-
-.tagline {
-  max-width: 600px;
 }

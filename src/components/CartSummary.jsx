@@ -28,9 +28,9 @@ export default function CartSummary() {
             {cart.map((product) => (
                 <div key={product.id} className="cart-item">
                     <div>
-                        <img className="cart-item-img" src={product.thumbnail} alt={product.name} />
+                        <img className="cart-item__img" src={product.thumbnail} alt={product.name} />
                     </div>
-                    <div className="cart-item-details">
+                    <div className="cart-item__details">
                         <h3>{product.name}</h3>
                         <p> Unit price:
                             <Price
@@ -38,7 +38,7 @@ export default function CartSummary() {
                                 originalPrice={product.original_price}
                             />
                         </p>
-                        <div className="cart-item-quantity">
+                        <div className="cart-item__quantity">
                             <p>
                                 Total price: ${((product.final_price * product.quantity) / 100).toFixed(2)}
                             </p>
@@ -47,7 +47,7 @@ export default function CartSummary() {
                     </div>
 
                     <button
-                        className="cart-item-remove icon"
+                        className="cart-item__remove icon"
                         onClick={() => removeFromCart(product)}
                         aria-label={`Remove ${product.name}`}
                     >

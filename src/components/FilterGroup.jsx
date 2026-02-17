@@ -16,13 +16,16 @@ export default function FilterGroup() {
         <div className="filter-group">
             <h3>Filter Options</h3>
             {Object.entries(filters).map(([sectionName, sectionOptions]) => (
-                <div key={sectionName} className="filter-subgroup">
-                    <h3 className="filter-title">By {sectionName}</h3>
-                    <ul className="filter-list">
+                <div key={sectionName} className="filter-group__subgroup
+">
+                    <h3 className="filter-group__title
+">By {sectionName}</h3>
+                    <ul className="filter-group__list
+">
                         {Object.entries(sectionOptions).map(([optionName, isChecked], index) => {
                             const id = `${baseId}-${sectionName}-${index}`;
                             return (
-                                <li key={id} className="filter-item">
+                                <li key={id} className="filter-group__item">
                                     <input
                                         type="checkbox"
                                         id={id}

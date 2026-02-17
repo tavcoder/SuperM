@@ -15,14 +15,14 @@ export default function Navbar({ user }) {
     }
 
     return (
-        <div className="navbar">
+        <nav className="navbar">
 
-            <Link className="logo" to="/">
+            <Link className="logo" to="/" aria-label="SuperM home">
                 SuperM
             </Link>
 
-            <nav className="nav-wrapper">
-                <button className="theme-switcher" onClick={handleToggleTheme}>
+            <div className="nav-wrapper">
+                <button className="theme-switcher" onClick={handleToggleTheme} aria-label="Toggle dark mode">
                     {light ? (
                         <FaSun className="icon" title="Light theme" />
                     ) : (
@@ -40,10 +40,10 @@ export default function Navbar({ user }) {
                         <NavLink to="/products">Products</NavLink>
                     </li>
                 </ul>
-                <Link to="/checkout">
+                <Link to="/checkout" aria-label="Shopping cart with 2 items">
                     <CartIcon />
                 </Link>
-            </nav>
-        </div>
+            </div>
+        </nav>
     );
 }

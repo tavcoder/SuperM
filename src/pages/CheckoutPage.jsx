@@ -24,7 +24,7 @@ export default function Checkout({ user }) {
 
     return (
         <div className="checkout-container">
-            <div className="checkout-left">
+            <div className="checkout__left">
                 {step === 1 ? (
                     <CartSummary />
                 ) : step === 2 ? (
@@ -33,7 +33,7 @@ export default function Checkout({ user }) {
                     <PaymentForm user={user} onBack={() => setStep(2)} />
                 )}
             </div>
-            <div className="checkout-right">
+            <div className="checkout__right">
                 {cart.length > 0 && (
                     <CartTotals
                         subtotal={subtotal}

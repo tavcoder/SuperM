@@ -31,8 +31,8 @@ export default function ProductsList({ openSidebar }) {
     const showCounter = visibleProducts !== totalProducts || query.trim() !== "";
 
     return (
-        <main className="products-main">
-            <div className="products-title">
+        <main className="products-container__main">
+            <div className="products-container__title">
                 <div className="products-filter-container">
                     <h1>Products</h1>
                     <title>Products | SuperM</title>
@@ -44,7 +44,7 @@ export default function ProductsList({ openSidebar }) {
                     </button>
                 </div>
                 <div className="search-wrapper">
-                    <FaSearch className="search-icon" />
+                    <FaSearch className="search-wrapper__icon" />
                     <input
                         type="search"
                         className="search"
@@ -79,7 +79,7 @@ export default function ProductsList({ openSidebar }) {
                     </div>
                 </div>
             ) : (
-                <div className="products-grid">
+                <div className="products-container__grid">
                     {filteredProducts.map(product => (
                         <ProductCard key={product.id} details={product} />
                     ))}

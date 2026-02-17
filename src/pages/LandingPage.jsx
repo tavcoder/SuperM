@@ -7,8 +7,8 @@ export default function Landing() {
     return (
         <>
             <title>SuperM</title>
-            <h1>Online shopping simplified</h1>
-            <p className="tagline text-dimmed">
+            <h1 className="landing__title">Online shopping simplified</h1>
+            <p className="landing__subtitle text-dimmed">
                 Order your groceries from SuperM with our easy to use app, and
                 get your products delivered straight to your doorstep.
             </p>
@@ -16,7 +16,7 @@ export default function Landing() {
                 Start shopping
             </Link>
             <img
-                className="landing-cover"
+                className="landing__cover"
                 width="816"
                 height="380"
                 src={landing}

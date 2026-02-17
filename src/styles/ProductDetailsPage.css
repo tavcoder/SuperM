@@ -4,7 +4,7 @@
     gap: 68px;
 }
 
-.details-image {
+.details__image {
     border-radius: 8px;
     height: 300px;
     width: 100%;
@@ -36,11 +36,11 @@ td {
     border-bottom: 2px solid var(--black);
 }
 
-.details-name {
+.details__name {
     margin-bottom: 16px;
 }
 
-.details-price {
+.details__price {
     font-size: 1.5rem;
     margin-top: 0;
 }

@@ -33,7 +33,7 @@ export default function ProductDetails() {
                         alt={details.name}
                         width="612"
                         height="408"
-                        className="details-image"
+                        className="details__image"
                     />
 
                     <h2>Product details</h2>
@@ -61,8 +61,8 @@ export default function ProductDetails() {
                     </table>
                 </div>
                 <div>
-                    <h1 className="details-name">{details.name}</h1>
-                    <p className="details-price">
+                    <h1 className="details__name">{details.name}</h1>
+                    <p className="details__price">
                         <Price
                             finalPrice={details.final_price}
                             originalPrice={details.original_price}

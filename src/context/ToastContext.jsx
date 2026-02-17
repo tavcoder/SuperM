@@ -22,7 +22,8 @@ export function ToastProvider({ children }) {
     return (
         <ToastContext value={{ addToast }}>
             {children}
-            <div className="toast-container">
+            <div className="toast-container" aria-live="polite"
+                aria-label="Notifications">
                 {toasts.map(toast => (
                     <div key={toast.id} className={`toast ${toast.type}`}>
                         {toast.message}

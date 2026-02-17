@@ -70,11 +70,11 @@ function App() {
     return (<>
         <BrowserRouter >
             <div className="layout">
-                <div className="wrapper-gray">
+                <header className="site-header">
                     <div className="container">
                         <Navbar user={user} />
                     </div>
-                </div>
+                </header>
                 <div className="container page-wrapper">
                     <Suspense fallback={<p className="loading">Loading...</p>}>
                         <Routes>
@@ -115,7 +115,7 @@ function App() {
                         </Routes>
                     </Suspense>
                 </div>
-                <div className="wrapper-gray">
+                <div className="site-header">
                     <div className="container">
                         <Footer />
                     </div>

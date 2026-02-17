@@ -8,14 +8,13 @@ import { ToastProvider } from "./context/ToastContext.jsx";
 import { ERROR_MESSAGES } from "./services/fetcher.jsx";
 import App from "./App.jsx";
 import "./styles/index.css";
-import "./styles/dark-theme.css";
 import "./styles/Responsive.css";
 
 function Fallback({ error }) {
     console.error('Technical error:', error);
     localStorage.setItem('apiError', 'Oops! Something went wrong. Please try again.');
     window.location.href = '/error';
-    return null; // No renderiza nada, ya que redirige
+    return null; 
 }
 
 const queryClient = new QueryClient({
