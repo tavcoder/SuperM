@@ -1,22 +1,29 @@
-// Component for displaying a summary of cart items with quantity controls and prices
+
+/**
+ * Displays cart items with quantity controls, unit price, total, and remove option.
+ * Reads cart state directly from CartContext — no props required.
+ * Displays in CheckoutPage.
+ * Shows an empty state with a link to products when the cart has no items.
+ */
 import { useContext } from "react";
 import { Link } from "react-router";
-import Price from "./Price.jsx";
-import { CartContext } from "../context/CartContext";
-import QuantitySelector from "./QuantitySelector";
-import "../styles/CheckoutPage.css";
 import { FaTimes } from "react-icons/fa";
+import Price from "./Price.jsx";
+import { calculateTotal } from "../utils/currency.js";
+import QuantitySelector from "./QuantitySelector";
+import { CartContext } from "../context/CartContext";
+import "../styles/CheckoutPage.css";
 
 export default function CartSummary() {
     const { cart, removeFromCart } = useContext(CartContext);
 
     if (cart.length === 0) {
         return (
-            <div className="cart-wrapper">
-                <h1>Your cart</h1>
+            <div className="cart-summary cart-summary--empty">
+                <h2>Your cart</h2>
                 <p>
                     Your cart is empty. Add a product from the{" "}
-                    <Link to="/products" className="link">products page</Link>.
+                    <Link to="/products" className="u-link">products page</Link>.
                 </p>
             </div>
         );
@@ -25,36 +32,43 @@ export default function CartSummary() {
     return (
         <div className="cart-summary">
             <h2>Shopping Cart</h2>
-            {cart.map((product) => (
-                <div key={product.id} className="cart-item">
-                    <div>
-                        <img className="cart-item__img" src={product.thumbnail} alt={product.name} />
-                    </div>
-                    <div className="cart-item__details">
-                        <h3>{product.name}</h3>
-                        <p> Unit price:
-                            <Price
-                                finalPrice={product.final_price}
-                                originalPrice={product.original_price}
-                            />
-                        </p>
-                        <div className="cart-item__quantity">
-                            <p>
-                                Total price: ${((product.final_price * product.quantity) / 100).toFixed(2)}
+            <ul className="cart-summary__list">
+                {cart.map((product) => (
+                    <li key={product.id} className="cart-summary__item">
+                        <img
+                            className="cart-summary__item-img"
+                            src={product.thumbnail}
+                            alt={`${product.name} product image`}
+                            width="120"
+                            height="120"
+                            loading="lazy"
+                        />
+                        <div className="cart-summary__item-details">
+                            <h3 className="cart-summary__item-name">{product.name}</h3>
+                            <p className="cart-summary__item-price">
+                                Unit price:{" "}
+                                <Price
+                                    finalPrice={product.final_price}
+                                    originalPrice={product.original_price}
+                                />
                             </p>
-                            <QuantitySelector product={product} />
+                            <div className="cart-summary__item-footer"> {/* ✅ */}
+                                <p className="cart-summary__item-total">
+                                    Total: ${calculateTotal(product.final_price, product.quantity)}
+                                </p>
+                                <QuantitySelector product={product} />
+                            </div>
                         </div>
-                    </div>
-
-                    <button
-                        className="cart-item__remove icon"
-                        onClick={() => removeFromCart(product)}
-                        aria-label={`Remove ${product.name}`}
-                    >
-                        <FaTimes />
-                    </button>
-                </div>
-            ))}
+                        <button
+                            className="cart-summary__item-remove u-icon"
+                            onClick={() => removeFromCart(product)}
+                            aria-label={`Remove ${product.name} from cart`}
+                        >
+                            <FaTimes aria-hidden="true" />
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

@@ -1,6 +1,7 @@
-
+/**
+ * Static page outlining data collection and user rights.
+ */
 import "../styles/CookiesPolicyPage.css";
-// Privacy policy page outlining data collection and user rights
 function PrivacyPolicyPage() {
     return (
         <div className="policy">
@@ -112,7 +113,7 @@ function PrivacyPolicyPage() {
                 </div>
 
                 <footer className="policy__footer">
-                    <a href="/" className="btn btn--level2">
+                    <a href="/" className="u-btn u-btn--secondary">
                         Back to Home
                     </a>
                 </footer>

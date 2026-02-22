@@ -5,18 +5,26 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import { CartProvider } from "./context/CartContext.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
-import { ERROR_MESSAGES } from "./services/fetcher.jsx";
+import { ERROR_MESSAGES } from "./services/fetcher.js";
 import App from "./App.jsx";
 import "./styles/index.css";
 import "./styles/Responsive.css";
 
+/**
+ * Redirects to /error and logs the error when an unhandled exception occurs.
+ * Used as the fallback component for the top-level ErrorBoundary.
+ */
 function Fallback({ error }) {
     console.error('Technical error:', error);
     localStorage.setItem('apiError', 'Oops! Something went wrong. Please try again.');
     window.location.href = '/error';
-    return null; 
+    return null;
 }
 
+/**
+ * React Query client with global configuration for caching, retries,
+ * exponential backoff, and error handling for queries and mutations.
+ */
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -68,6 +76,10 @@ const queryClient = new QueryClient({
     },
 });
 
+/**
+ * Root setup component wrapping the app with all global providers.
+ * Includes StrictMode, ErrorBoundary, React Query, Toast, and Cart.
+ */
 function AppSetup() {
     return (
         <StrictMode>
@@ -75,7 +87,7 @@ function AppSetup() {
                 <QueryClientProvider client={queryClient}>
                     <ToastProvider >
                         <CartProvider>
-                                <App />
+                            <App />
                         </CartProvider>
                     </ToastProvider>
                 </QueryClientProvider>

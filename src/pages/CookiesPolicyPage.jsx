@@ -1,6 +1,8 @@
+/**
+ * Static page explaining cookie usage, types, and consent management options.
+ */
 import "../styles/CookiesPolicyPage.css";
 
-// Cookies policy page explaining cookie usage and consent management
 
 function CookiesPolicyPage() {
     return (
@@ -83,7 +85,7 @@ function CookiesPolicyPage() {
                 </div>
 
                 <footer className="policy__footer">
-                    <a href="/" className="btn btn--level2">
+                    <a href="/" className="u-btn u-btn--secondary">
                         Back to Home
                     </a>
                 </footer>

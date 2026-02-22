@@ -1,4 +1,9 @@
-// Payment form component for processing checkout with card details and validation
+/**
+ * Displays a payment form for processing checkout with card details and validation.
+ * Simulates payment processing and redirects to success or error page.
+ * @param {Object|null} user - Authenticated user object, or null if not logged in
+ * @param {Function} onBack - Callback to return to the shipping step
+ */
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext.jsx";
 import { useFormValidation } from "../hooks/useFormValidation";
@@ -62,11 +67,11 @@ export default function PaymentForm({ user, onBack }) {
     };
 
     return (
-        <div className="payment-form-container">
-            <button className="btn btn--level3" onClick={onBack}>← BACK TO SHIPPING</button>
-            <h2>Payment method</h2>
+        <div className="payment-form">
+            <button className="u-btn u-btn--tertiary" onClick={onBack}>← BACK TO SHIPPING</button>
+            <h2 className="payment-form__title">Payment method</h2>
 
-            <div className="payment-methods">
+            <div className="payment-form__methods">
                 <label>
                     <input type="radio" name="method" value="card" checked={method === "card"} onChange={() => setMethod("card")} />
                     CARD
@@ -78,9 +83,9 @@ export default function PaymentForm({ user, onBack }) {
             </div>
 
             {method === "card" && (
-                <form className="card-form" onSubmit={handleSubmit}>
-                    <div className="input-group">
-                        <label>Name on card</label>
+                <form className="payment-form__card" onSubmit={handleSubmit}>
+                    <div className="u-input-group">
+                        <label >Name on card</label>
                         <input
                             name="cardName"
                             type="text"
@@ -88,10 +93,10 @@ export default function PaymentForm({ user, onBack }) {
                             onChange={customHandleChange}
                             onBlur={handleBlur}
                         />
-                        {touched.cardName && errors.cardName && <span className="error">{errors.cardName}</span>}
+                        {touched.cardName && errors.cardName && <span className="u-error">{errors.cardName}</span>}
                     </div>
 
-                    <div className="input-group">
+                    <div className="u-input-group">
                         <label>Card number</label>
                         <input
                             name="cardNumber"
@@ -101,11 +106,11 @@ export default function PaymentForm({ user, onBack }) {
                             onBlur={handleBlur}
                             maxLength="19"
                         />
-                        {touched.cardNumber && errors.cardNumber && <span className="error">{errors.cardNumber}</span>}
+                        {touched.cardNumber && errors.cardNumber && <span className="u-error">{errors.cardNumber}</span>}
                     </div>
 
-                    <div className="row">
-                        <div className="input-group">
+                    <div className="u-row">
+                        <div className="u-input-group">
                             <label>Expiry date</label>
                             <input
                                 name="expiry"
@@ -116,10 +121,10 @@ export default function PaymentForm({ user, onBack }) {
                                 placeholder="MM/YY"
                                 maxLength="5"
                             />
-                            {touched.expiry && errors.expiry && <span className="error">{errors.expiry}</span>}
+                            {touched.expiry && errors.expiry && <span className="u-error">{errors.expiry}</span>}
                         </div>
 
-                        <div className="input-group">
+                        <div className="u-input-group">
                             <label>CVC</label>
                             <input
                                 name="cvv"
@@ -129,13 +134,13 @@ export default function PaymentForm({ user, onBack }) {
                                 onBlur={handleBlur}
                                 maxLength="4"
                             />
-                            {touched.cvv && errors.cvv && <span className="error">{errors.cvv}</span>}
+                            {touched.cvv && errors.cvv && <span className="u-error">{errors.cvv}</span>}
                         </div>
                     </div>
 
                     <button
                         type="submit"
-                        className={`btn btn--level1 ${!isFormValid || isProcessing ? "disabled" : ""}`}
+                        className={`u-btn u-btn--primary ${!isFormValid || isProcessing ? "disabled" : ""}`}
                         disabled={!isFormValid || isProcessing}
                     >
                         {isProcessing ? "Processing..." : "COMPLETE PURCHASE"}

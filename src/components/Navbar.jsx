@@ -1,4 +1,8 @@
-// Navigation bar component with logo, menu links, cart icon, and theme switcher
+/**
+ * Displays a navigation bar with logo, menu links, cart icon, and theme switcher.
+ * @param {Object|null} props.user - Authenticated user object, or null if not logged in
+ */
+
 import { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
@@ -15,28 +19,28 @@ export default function Navbar({ user }) {
     }
 
     return (
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Main navigation">
 
-            <Link className="logo" to="/" aria-label="SuperM home">
+            <Link className="navbar__logo" to="/" aria-label="SuperM home">
                 SuperM
             </Link>
 
-            <div className="nav-wrapper">
-                <button className="theme-switcher" onClick={handleToggleTheme} aria-label="Toggle dark mode">
+            <div className="navbar__wrapper">
+                <button className="navbar__theme-switcher" onClick={handleToggleTheme} aria-label="Toggle dark mode">
                     {light ? (
-                        <FaSun className="icon" title="Light theme" />
+                        <FaSun className="u-icon" title="Light theme" />
                     ) : (
-                        <FaMoon className="icon" title="Dark theme" />
+                        <FaMoon className="u-icon" title="Dark theme" />
                     )}
                 </button>
-                <ul className="nav">
-                    <li className="nav-item">
+                <ul className="navbar__menu">
+                    <li className="navbar__menu-item">
                         <NavLink to="/">Home</NavLink>
                     </li>
-                    <li className="nav-item">
+                    <li className="navbar__menu-item">
                         {user ? <NavLink to="/profile">Profile</NavLink> : <NavLink to="/login">Login</NavLink>}
                     </li>
-                    <li className="nav-item">
+                    <li className="navbar__menu-item">
                         <NavLink to="/products">Products</NavLink>
                     </li>
                 </ul>

@@ -1,4 +1,12 @@
-// Reusable status page component for displaying success, error, or info messages with actions
+/**
+ * Reusable status page displaying success, error, or info messages with action buttons.
+ * Falls back to default icon, title, message and buttons based on type if not provided.
+ * @param {string} type - Page variant: "success", "error", or "info". Defaults to "info"
+ * @param {string} icon - Optional icon override
+ * @param {string} title - Optional title override
+ * @param {string} message - Optional message override
+ * @param {Array<Object>} buttons - Optional buttons override, each with text, to, and className
+ */
 import { useNavigate } from "react-router";
 import "../styles/StatusPage.css";
 
@@ -11,7 +19,7 @@ const STATUS_CONFIGS = {
             {
                 text: "Back to store",
                 to: "/products",
-                className: "btn btn--level1"
+                className: "u-btn u-btn--primary"
             }
         ],
     },
@@ -23,12 +31,12 @@ const STATUS_CONFIGS = {
             {
                 text: "Try Again",
                 action: (navigate) => navigate(-1),
-                className: "btn btn--level1"
+                className: "u-btn u-btn--primary"
             },
             {
                 text: "Go to Home",
                 to: "/",
-                className: "btn btn--level2"
+                className: "u-btn u-btn--secondary"
             },
         ],
     },
@@ -40,7 +48,7 @@ const STATUS_CONFIGS = {
             {
                 text: "Go Home",
                 to: "/",
-                className: "btn btn--level1"
+                className: "u-btn u-btn--primary"
             }
         ],
     },
@@ -56,10 +64,10 @@ function StatusPage({ type = "info", icon, title, message, buttons }) {
     const finalButtons = buttons || config.buttons;
 
     return (
-        <div className={`status-page ${type}-page`}>
-            {/* Icon Container con animación */}
-            <div className={`status-icon-container ${type}`}>
-                <div className={`status-icon ${type}`}>
+        <div className={`status-page status-page--${type}`}>
+           
+            <div className={`status-page__icon-container status-page__icon-container--${type}`}>
+                <div className={`status-page__icon ${type}`}>
                     {finalIcon}
                 </div>
             </div>
@@ -71,11 +79,11 @@ function StatusPage({ type = "info", icon, title, message, buttons }) {
             </div>
 
             {/* Buttons */}
-            <div className="status-page__buttons">
+            <div className="status-page__actions">
                 {finalButtons.map((btn, index) => (
                     <button
                         key={index}
-                        className={btn.className || "btn btn--level1"}
+                        className={btn.className || "u-btn u-btn--primary"}
                         onClick={() => {
                             if (btn.action) {
                                 btn.action(navigate);

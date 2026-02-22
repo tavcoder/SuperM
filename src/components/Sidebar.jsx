@@ -1,8 +1,12 @@
-// Sidebar component for product filtering and sorting options
+/**
+ * Renders product filtering and sorting options in a collapsible sidebar.
+ * Reads sortOption, setSortOption, resetFilters, isSidebarOpen and closeSidebar from ProductsContext — no props required.
+ */
+
 import { useContext } from "react";
-import { ProductsContext } from "../context/ProductsContext";
 import FilterGroup from "./FilterGroup";
 import CustomSelect from "./CustomSelect";
+import { ProductsContext } from "../context/ProductsContext";
 
 export default function Sidebar() {
     const { sortOption, setSortOption, resetFilters, isSidebarOpen, closeSidebar } = useContext(ProductsContext);
@@ -18,13 +22,13 @@ export default function Sidebar() {
         closeSidebar();
     };
     return (
-        <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-            <div className="sidebar-open-top">
+        <aside className={`sidebar ${isSidebarOpen ? "sidebar--open" : ""}`}>
+            <div className="sidebar__header">
                 <h2>FILTER AND SORT</h2>
-                <button className="icon" onClick={handleClose}>X</button>
+                <button className="u-icon" onClick={handleClose}>X</button>
             </div>
-            <h3>Order</h3>
-            <div className="select-wrapper">
+            <h3 className="sidebar__section-title">Order</h3>
+            <div className="sidebar__select">
                 <CustomSelect aria-label="Select order" value={sortOption} onChange={setSortOption} options={OPTIONS} />
             </div>
             <FilterGroup />

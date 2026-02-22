@@ -25,7 +25,7 @@ export function ToastProvider({ children }) {
             <div className="toast-container" aria-live="polite"
                 aria-label="Notifications">
                 {toasts.map(toast => (
-                    <div key={toast.id} className={`toast ${toast.type}`}>
+                    <div key={toast.id} className={`toast toast--${toast.type}`}>
                         {toast.message}
                     </div>
                 ))}

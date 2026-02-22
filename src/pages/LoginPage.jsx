@@ -1,8 +1,13 @@
-// Login page component for user authentication with form validation
+/**
+ * Login page managing user authentication with form validation.
+ * Redirects to /profile on successful login.
+ * @param {Function} onUserLogin - Callback to set the authenticated user in App state
+ */
+
 import { useEffect, useId, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { callApi } from "../services/fetcher.jsx";
+import { callApi } from "../services/fetcher.js";
 import { useFormValidation } from "../hooks/useFormValidation";
 import "../styles/LoginPage.css";
 
@@ -32,7 +37,6 @@ export default function Login({ onUserLogin }) {
             });
         },
         onError: (error) => {
-            console.log(error);
             if (error.message.includes("400")) {
                 setErrorMessage("Email not found in the database. Please check your email or sign up.");
             } else {
@@ -65,21 +69,20 @@ export default function Login({ onUserLogin }) {
     };
 
     return (
-        <div className="login-wrapper">
+        <div className="login">
             <title>Login | SuperM</title>
-            <h1>Login</h1>
-            <p className="text-dimmed">Login using test@example.com and any password.</p>
+            <h1 className="login__title">Login</h1>
+            <p className="u-text-dimmed">Login using test@example.com and any password.</p>
 
-            <form onSubmit={handleLogin}>
-                <div className="input-group">
-                    <label className="label" htmlFor={emailId}>
-                        Email<span className="required">*</span>:
+            <form onSubmit={handleLogin} className="login__form">
+                <div className="u-input-group">
+                    <label htmlFor={emailId}>
+                        Email<span>*</span>:
                     </label>
                     <input
                         id={emailId}
                         name="email"
                         type="text"
-                        className="input"
                         autoComplete="email"
                         disabled={mutation.isPending}
                         value={form.email}
@@ -87,34 +90,33 @@ export default function Login({ onUserLogin }) {
                         onBlur={handleBlur}
                         ref={emailRef}
                     />
-                    {touched.email && errors.email && <span className="error">{errors.email}</span>}
+                    {touched.email && errors.email && <span className="u-error">{errors.email}</span>}
                 </div>
 
-                <div className="input-group">
-                    <label className="label" htmlFor={passwordId}>
-                        Password<span className="required">*</span>:
+                <div className="u-input-group">
+                    <label htmlFor={passwordId}>
+                        Password<span>*</span>:
                     </label>
                     <input
                         id={passwordId}
                         name="password"
                         type="password"
-                        className="input"
                         autoComplete="current-password"
                         disabled={mutation.isPending}
                         value={form.password}
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                    {touched.password && errors.password && <span className="error">{errors.password}</span>}
+                    {touched.password && errors.password && <span className="u-error">{errors.password}</span>}
                 </div>
 
-                <p className="error">{errorMessage}</p>
+                <p className="u-error">{errorMessage}</p>
 
-                <div className="form-buttons">
+                <div className="u-form-buttons">
                     <input
                         type="submit"
                         value="Login"
-                        className="btn btn--level1"
+                        className="u-btn u-btn--primary"
                         disabled={mutation.isPending}
                     />
                 </div>

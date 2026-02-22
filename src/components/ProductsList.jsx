@@ -1,15 +1,19 @@
-// Component for displaying a list of products with search, filtering, and sorting
-import { useContext } from "react";
-import { FaSearch } from "react-icons/fa";
+/**
+ * Displays the product grid with search, filtering, and sorting.
+ * Fetches products via React Query and reads filter state from ProductsContext.
+ * Shows a counter when results are filtered and an empty state when no products match.
+ * @param {Function} openSidebar - Callback to open the filter/sort sidebar
+ */
+
+import { useContext, useMemo } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ProductsContext } from "../context/ProductsContext.jsx";
+import { FaSearch } from "react-icons/fa";
 import ProductCard from "./ProductCard.jsx";
-import { get } from "../services/fetcher.jsx";
+import { get } from "../services/fetcher.js";
+import { ProductsContext } from "../context/ProductsContext.jsx";
 import { getVisibleProducts } from "../utils/filters.js";
 
 export default function ProductsList({ openSidebar }) {
-    console.log("openSidebar is", openSidebar);
-
     const { data: products } = useSuspenseQuery({
         queryKey: ["products-list"],
         queryFn: () => get("products", "products"),
@@ -24,30 +28,32 @@ export default function ProductsList({ openSidebar }) {
         handleSearchChange,
     } = useContext(ProductsContext);
 
-    const filteredProducts = getVisibleProducts(products, filters, sortOption, query);
+    // Memoize filtered products to avoid recalculation on unrelated re-renders
+    const filteredProducts = useMemo(() => {
+        return getVisibleProducts(products, filters, sortOption, query);
+    }, [products, filters, sortOption, query]);
+
     const totalProducts = products.length;
     const visibleProducts = filteredProducts.length;
-
     const showCounter = visibleProducts !== totalProducts || query.trim() !== "";
 
     return (
-        <main className="products-container__main">
-            <div className="products-container__title">
-                <div className="products-filter-container">
-                    <h1>Products</h1>
-                    <title>Products | SuperM</title>
+        <main className="products-list">
+            <div className="products-list__header">
+                <div className="products-list__title-row">
+                    <h1 className="products-list__title">Products</h1>
                     <button
-                        className="products-filter-btn btn btn--level3"
+                        className="products-list__btn u-btn u-btn--tertiary"
                         onClick={openSidebar}
                     >
                         FILTER AND SORT
                     </button>
                 </div>
-                <div className="search-wrapper">
-                    <FaSearch className="search-wrapper__icon" />
+                <div className="products-list__search">
+                    <FaSearch className="products-list__search-icon" />
                     <input
                         type="search"
-                        className="search"
+                        className="products-list__search-input"
                         value={query}
                         placeholder="Search products"
                         onChange={handleSearchChange}
@@ -56,21 +62,22 @@ export default function ProductsList({ openSidebar }) {
             </div>
 
             {showCounter && (
-                <div className="info">
-                    Showing <strong>{visibleProducts}</strong> out of <strong>{totalProducts}</strong> products
-                </div>
+                <p className="u-info">
+                    Showing <strong>{visibleProducts}</strong> out of{" "}
+                    <strong>{totalProducts}</strong> products
+                </p>
             )}
-            {console.log("query:", query)}
-            {filteredProducts.length === 0 && query.trim() !== "" ? (
 
-                <div className="info">
+            {filteredProducts.length === 0 && query.trim() !== "" ? (
+                <div className="products-list__empty">
                     <div>
                         <h2>No products found!</h2>
                         <p>
-                            Your search &quot;<strong>{query}</strong>&quot; was not found in our store.
+                            Your search &quot;<strong>{query}</strong>&quot; was not
+                            found in our store.
                         </p>
                         <button
-                            className="btn btn--level3 "
+                            className="u-btn u-btn--tertiary"
                             type="button"
                             onClick={() => setQuery("")}
                         >
@@ -79,7 +86,7 @@ export default function ProductsList({ openSidebar }) {
                     </div>
                 </div>
             ) : (
-                <div className="products-container__grid">
+                <div className="products-list__grid">
                     {filteredProducts.map(product => (
                         <ProductCard key={product.id} details={product} />
                     ))}

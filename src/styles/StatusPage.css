@@ -9,7 +9,7 @@
     background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
 }
 
-.status-icon-container {
+.status-page__icon-container {
     position: relative;
     width: 120px;
     height: 120px;
@@ -34,7 +34,7 @@
 }
 
 /* Círculo animado de fondo */
-.status-icon-container::before {
+.status-page__icon-container::before {
     content: '';
     position: absolute;
     inset: -10px;
@@ -60,7 +60,7 @@
     }
 }
 
-.status-icon {
+.status-page__icon {
     font-size: 4rem;
     line-height: 1;
     animation: iconBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
@@ -84,44 +84,44 @@
 /* ========================================= */
 
 /* SUCCESS*/
-.status-icon-container.success {
+.status-page__icon-container--success {
     background: linear-gradient(135deg, var(--success) 0%, var(--success-hover) 100%);
     box-shadow: 0 8px 24px rgba(6, 214, 160, 0.3);
 }
 
-.status-icon-container.success::before {
+.status-page__icon-container--success::before {
     background: var(--success);
 }
 
-.status-icon.success {
+.status-page__icon--success {
     color: var(--white);
 }
 
 /* ERROR*/
-.status-icon-container.error {
+.status-page__icon-container--error {
     background: linear-gradient(135deg, var(--error) 0%, var(--error-hover) 100%);
     box-shadow: 0 8px 24px rgba(239, 71, 111, 0.3);
 }
 
-.status-icon-container.error::before {
+.status-page__icon-container--error::before {
     background: var(--error);
 }
 
-.status-icon.error {
+.status-page__icon--error {
     color: var(--white);
 }
 
 /* INFO*/
-.status-icon-container.info {
+.status-page__icon-container--info {
     background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-hover) 100%);
     box-shadow: 0 8px 24px rgba(0, 78, 137, 0.3);
 }
 
-.status-icon-container.info::before {
+.status-page__icon-container--info::before {
     background: var(--secondary);
 }
 
-.status-icon.info {
+.status-page__icon--info {
     color: var(--white);
 }
 
@@ -169,7 +169,7 @@
 /* BUTTONS*/
 /* ========================================= */
 
-.status-page__buttons {
+.status-page__actions {
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -177,7 +177,7 @@
     animation: fadeInUp 0.6s ease-out 0.5s backwards;
 }
 
-.status-page__buttons .btn {
+.status-page__actions .u-btn {
     padding: 1rem 2.5rem;
     font-size: 1rem;
     font-weight: 600;
@@ -189,8 +189,8 @@
 /* ========================================= */
 
 /* Confetti para success */
-.status-page.success-page::before,
-.status-page.success-page::after {
+.status-page.status-page--success:before,
+.status-page.status-page--success:after {
     content: '';
     position: absolute;
     width: 10px;
@@ -200,13 +200,13 @@
     animation: confetti 3s ease-out infinite;
 }
 
-.status-page.success-page::before {
+.status-page.status-page--success::before {
     top: 20%;
     left: 10%;
     animation-delay: 0.5s;
 }
 
-.status-page.success-page::after {
+.status-page.status-page--success:after {
     top: 30%;
     right: 15%;
     background: var(--primary);

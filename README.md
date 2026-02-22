@@ -39,7 +39,7 @@ src/
 │   ├── Profile.jsx      # User profile management
 │   └── Login.jsx        # Authentication
 ├── services/            # API and external services
-│   └── fetcher.jsx      # HTTP client utilities
+│   └── fetcher.js      # HTTP client utilities
 ├── styles/              # CSS files
 │   ├── index.css        # Global styles and variables
 │   ├── LandingPage.css  # Page-specific styles

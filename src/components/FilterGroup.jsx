@@ -1,27 +1,22 @@
-// Component for rendering product filter groups with checkboxes for categories and characteristics
+/**
+ * Renders dynamic filter checkboxes grouped by category from ProductsContext.
+ * Reads filters, setFilters, resetFilters and closeSidebar from ProductsContext — no props required.
+ */
+
 import { useContext, useId } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 
-
 export default function FilterGroup() {
     const baseId = useId();
-    const {
-        filters,
-        setFilters,
-        resetFilters,
-        closeSidebar,
-    } = useContext(ProductsContext);
+    const { filters, setFilters, resetFilters, closeSidebar } = useContext(ProductsContext);
 
     return (
         <div className="filter-group">
             <h3>Filter Options</h3>
             {Object.entries(filters).map(([sectionName, sectionOptions]) => (
-                <div key={sectionName} className="filter-group__subgroup
-">
-                    <h3 className="filter-group__title
-">By {sectionName}</h3>
-                    <ul className="filter-group__list
-">
+                <div key={sectionName} className="filter-group__subgroup"> 
+                    <h3 className="filter-group__title">By {sectionName}</h3>
+                    <ul className="filter-group__list">
                         {Object.entries(sectionOptions).map(([optionName, isChecked], index) => {
                             const id = `${baseId}-${sectionName}-${index}`;
                             return (
@@ -31,7 +26,6 @@ export default function FilterGroup() {
                                         id={id}
                                         name={optionName}
                                         checked={isChecked}
-                                        className="checkbox"
                                         onChange={(e) =>
                                             setFilters({
                                                 ...filters,
@@ -42,7 +36,7 @@ export default function FilterGroup() {
                                             })
                                         }
                                     />
-                                    <label htmlFor={id} className="label">
+                                    <label htmlFor={id} className="u-label">
                                         {optionName}
                                     </label>
                                 </li>
@@ -51,8 +45,12 @@ export default function FilterGroup() {
                     </ul>
                 </div>
             ))}
-            <button onClick={closeSidebar} className="filter-apply-btn btn btn--level1">Apply filters</button>
-            <button onClick={resetFilters} className="btn btn--level2">Remove filters</button>
+            <button onClick={closeSidebar} className="filter-apply-btn u-btn u-btn--primary">
+                Apply filters
+            </button>
+            <button onClick={resetFilters} className="u-btn u-btn--secondary">
+                Remove filters
+            </button>
         </div>
     );
 }

@@ -1,4 +1,8 @@
-// Checkout page component managing the multi-step checkout process
+/**
+ * Multi-step checkout page managing cart review, shipping, and payment.
+ * Renders CartSummary, ShippingForm, or PaymentForm depending on the current step.
+ * @param {Object|null} user - Authenticated user passed down to shipping and payment forms
+ */
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CartSummary from "../components/CartSummary";
@@ -23,7 +27,7 @@ export default function Checkout({ user }) {
     };
 
     return (
-        <div className="checkout-container">
+        <div className="checkout">
             <div className="checkout__left">
                 {step === 1 ? (
                     <CartSummary />

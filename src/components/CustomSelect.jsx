@@ -1,4 +1,7 @@
-// Custom dropdown select component with keyboard navigation and accessibility features
+/** Displays a custom dropdown select component with keyboard navigation and accessibility features
+ * 
+*/
+
 import { useState, useRef, useEffect, memo } from "react";
 import { FaChevronDown } from "react-icons/fa";
 

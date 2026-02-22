@@ -1,4 +1,16 @@
-// Shipping form component for collecting delivery address and contact information
+/**
+ * Shipping form for collecting delivery address and contact information.
+ * Used in checkout flow and profile page — configurable via props.
+ * @param {Object|null} user - Authenticated user, used to pre-fill form fields
+ * @param {Function} onNext - Callback to advance to the next checkout step
+ * @param {Function} onSubmit - Alternative submit callback used in profile page
+ * @param {string} buttonText - Label for the submit button. Defaults to "Save & Continue"
+ * @param {boolean} showPrivacy - Whether to show the privacy checkbox. Defaults to true
+ * @param {boolean} showTitle - Whether to show the form title. Defaults to true
+ * @param {boolean} showButton - Whether to show the submit button. Defaults to true
+ * @param {React.ReactNode} cancelButton - Optional cancel button rendered next to submit
+ */
+
 import CustomSelect from "./CustomSelect";
 import { useFormValidation } from "../hooks/useFormValidation";
 import "../styles/CheckoutPage.css";
@@ -61,8 +73,8 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
     return (
         <form className="shipping-form" onSubmit={handleSubmit}>
             {showTitle && <h2>01. SHIPPING</h2>}
-            <div className="row">
-                <div className="input-group">
+            <div className="u-row">
+                <div className="u-input-group">
                     <input
                         name="firstName"
                         placeholder="First name*"
@@ -71,9 +83,9 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onBlur={handleBlur}
                         required
                     />
-                    {touched.firstName && errors.firstName && <span className="error">{errors.firstName}</span>}
+                    {touched.firstName && errors.firstName && <span className="u-error">{errors.firstName}</span>}
                 </div>
-                <div className="input-group">
+                <div className="u-input-group">
                     <input
                         name="lastName"
                         placeholder="Last name*"
@@ -82,12 +94,12 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onBlur={handleBlur}
                         required
                     />
-                    {touched.lastName && errors.lastName && <span className="error">{errors.lastName}</span>}
+                    {touched.lastName && errors.lastName && <span className="u-error">{errors.lastName}</span>}
                 </div>
             </div>
 
-            <div className="row">
-                <div className="input-group">
+            <div className="u-row">
+                <div className="u-input-group">
                     <input
                         name="address"
                         placeholder="Address*"
@@ -96,9 +108,9 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onBlur={handleBlur}
                         required
                     />
-                    {touched.address && errors.address && <span className="error">{errors.address}</span>}
+                    {touched.address && errors.address && <span className="u-error">{errors.address}</span>}
                 </div>
-                <div className="input-group">
+                <div className="u-input-group">
                     <input
                         name="apt"
                         placeholder="Apt, suite, etc. (optional)"
@@ -108,8 +120,8 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                 </div>
             </div>
 
-            <div className="row">
-                <div className="input-group">
+            <div className="u-row">
+                <div className="u-input-group">
                     <input
                         name="city"
                         placeholder="City*"
@@ -118,9 +130,9 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onBlur={handleBlur}
                         required
                     />
-                    {touched.city && errors.city && <span className="error">{errors.city}</span>}
+                    {touched.city && errors.city && <span className="u-error">{errors.city}</span>}
                 </div>
-                <div className="input-group">
+                <div className="u-input-group">
                     <CustomSelect
                         aria-label="Select city"
                         value={form.country}
@@ -130,12 +142,12 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         }}
                         options={countryOptions}
                     />
-                    {touched.country && errors.country && <span className="error">{errors.country}</span>}
+                    {touched.country && errors.country && <span className="u-error">{errors.country}</span>}
                 </div>
             </div>
 
-            <div className="row">
-                <div className="input-group">
+            <div className="u-row">
+                <div className="u-input-group">
                     <input
                         name="state"
                         placeholder="State*"
@@ -144,7 +156,7 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         required
                     />
                 </div>
-                <div className="input-group">
+                <div className="u-input-group">
                     <input
                         name="zip"
                         placeholder="Zip Code*"
@@ -154,12 +166,12 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onKeyPress={handleKeyPressNumeric}
                         required
                     />
-                    {touched.zip && errors.zip && <span className="error">{errors.zip}</span>}
+                    {touched.zip && errors.zip && <span className="u-error">{errors.zip}</span>}
                 </div>
             </div>
 
-            <div className="row">
-                <div className="input-group">
+            <div className="u-row">
+                <div className="u-input-group">
                     <input
                         name="email"
                         type="email"
@@ -169,9 +181,9 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onBlur={handleBlur}
                         required
                     />
-                    {touched.email && errors.email && <span className="error">{errors.email}</span>}
+                    {touched.email && errors.email && <span className="u-error">{errors.email}</span>}
                 </div>
-                <div className="input-group">
+                <div className="u-input-group">
                     <input
                         name="phone"
                         placeholder="Phone*"
@@ -181,20 +193,20 @@ export default function ShippingForm({ user, onNext, onSubmit, buttonText = "Sav
                         onKeyPress={handleKeyPressPhone}
                         required
                     />
-                    {touched.phone && errors.phone && <span className="error">{errors.phone}</span>}
+                    {touched.phone && errors.phone && <span className="u-error">{errors.phone}</span>}
                 </div>
             </div>
 
             {showPrivacy && (
-                <div className="privacy">
+                <div className="shipping-form__privacy">
                     <input className="checkbox" type="checkbox" required />
                     <span>Your privacy is important to us. We will only contact you if there is an issue with your order.*</span>
                 </div>
             )}
 
             {showButton && (
-                <div className="form-buttons">
-                    <button type="submit" className="btn btn--level1">
+                <div className="shipping-form__actions">
+                    <button type="submit" className="u-btn u-btn--primary">
                         {buttonText}
                     </button>
                     {cancelButton}

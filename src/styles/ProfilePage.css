@@ -1,16 +1,16 @@
-.profile-wrapper {
+.profile {
     max-width: 70%;
     margin-inline: auto;
 }
 
-.profile-header {
+.profile__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
 
-.profile-grid {
+.profile__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
@@ -21,7 +21,7 @@
     flex-direction: column;
 }
 
-.label {
+.u-label {
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
@@ -30,7 +30,7 @@
     /* default styles */
 }
 
-.edit-btn {
+.edit-u-btn {
     all: unset;
     padding: 4px 32px;
     border-radius: 72px;
@@ -42,10 +42,10 @@
     transition: opacity 180ms, translate 180ms;
 }
 
-.edit-btn:hover {
+.edit-u-btn:hover {
     background-color: var(--primary-hover);
 }
 
-.profile-buttons {
+.profile__actions {
     margin-top: 24px;
 }

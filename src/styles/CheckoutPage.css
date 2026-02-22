@@ -1,8 +1,8 @@
-.page-wrapper{
+.layout__content{
   margin: 0;
 }
 
-.checkout-container {
+.checkout {
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
@@ -28,7 +28,7 @@
   width: 100%;
 }
 
-.cart-item {
+.cart-summary__item {
   min-width: 100%;
   max-height: 200px;
   display: flex;
@@ -40,20 +40,20 @@
   gap: 1rem;
 }
 
-.cart-item:hover {
+.cart-summary__item:hover {
   background-color: var(--primary-light);
   box-shadow: var(--shadow);
   color: var(--black);
 }
 
-.cart-item__img {
+.cart-summary__item-img {
   border-radius: 8px;
   width: 100%;
   height: 100%;
   max-width: 100px;
 }
 
-.cart-item__details {
+.cart-summary__item-details {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,11 +62,11 @@
   margin-top: -25px;
 }
 
-.cart-item__details>* {
+.cart-summary__item-details>* {
   margin-bottom: -8px;
 }
 
-.cart-item__quantity {
+.cart-summary__item-quantity {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -87,8 +87,8 @@
   margin-top: 2rem;
 }
 
-.cart-totals-line,
-.cart-totals-total {
+.cart-totals__line,
+.cart-totals__line-total {
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
@@ -97,15 +97,15 @@
   padding: 0 10%;
 }
 
-.cart-totals-line span:last-child {
+.cart-totals__line span:last-child {
   font-weight: 500;
 }
 
-.cart-totals-saved {
+.cart-totals__line--saved {
   color: var(--primary);
 }
 
-.cart-totals-total {
+.cart-totals__line--total {
   font-weight: 600;
   color: var(--text-primary);
   margin: 16px 0;
@@ -115,7 +115,7 @@
 
 /*components/PaymentForm.jsx*/
 .cart-totals,
-.payment-form,
+.payment-form__form,
 .shipping-form {
   display: flex;
   flex-direction: column;
@@ -124,7 +124,7 @@
   overflow-x: hidden;
 }
 
-.card-form {
+.payment-form__card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -137,20 +137,20 @@
   align-items: center;
 }
 
-.payment-methods {
+.payment-form__methods {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
 }
 
-.payment-methods label {
+.payment-form__methods label {
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.row {
+.u-row {
   display: flex;
   gap: 1.5rem;
 }

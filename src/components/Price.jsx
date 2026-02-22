@@ -1,12 +1,21 @@
-// Component for displaying product prices with discount formatting
-import { memo } from 'react';
+/**
+ * Displays a product price, with the original price struck through if a discount applies.
+ * Prices are received in cents and converted to dollars for display.
+ * @param {number} finalPrice - Discounted price in cents
+ * @param {number} originalPrice - Original price in cents
+ */
 
-function Price({originalPrice, finalPrice}) {
+import { memo } from 'react';
+import { formatPrice } from "../utils/currency.js";
+
+function Price({ originalPrice, finalPrice }) {
     return (
         <>
-            ${(finalPrice / 100).toFixed(2)}
+            ${formatPrice(finalPrice)}
             {finalPrice !== originalPrice ? (
-                <span className="text-strikethroug">${(originalPrice / 100).toFixed(2)}</span>
+                <span className="u-text-strikethrough"> 
+                    ${formatPrice(originalPrice)}
+                </span>
             ) : null}
         </>
     );

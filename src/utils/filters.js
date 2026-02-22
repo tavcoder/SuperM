@@ -1,4 +1,8 @@
-const categoryMap = {
+/**
+ * Product filtering and sorting utilities
+ */
+
+export const CATEGORY_MAP = {
   fruits: "Fruits and Vegetables",
   dairy: "Dairy and Derivatives",
   sweeteners: "Sweeteners",
@@ -6,10 +10,16 @@ const categoryMap = {
   bakery: "Bakery",
 };
 
+/**
+ * Filter products by selected categories
+ * @param {Array} products - Products to filter
+ * @param {Object} filters - Filter object with categories
+ * @returns {Array} Filtered products
+ */
 export function applyCategories(products, filters) {
   const selectedCategories = Object.entries(filters.categories || {})
     .filter(([, isChecked]) => isChecked)
-    .map(([key]) => categoryMap[key]);
+    .map(([key]) => CATEGORY_MAP[key]);
 
   return products.filter(product => {
     return (
@@ -19,14 +29,28 @@ export function applyCategories(products, filters) {
   });
 }
 
+/**
+ * Filter products by characteristics (eco, gluten-free, etc.)
+ * @param {Array} products - Products to filter
+ * @param {Object} filters - Filter object with characteristics
+ * @returns {Array} Filtered products
+ */
 export function applyCharacteristics(products, filters) {
   return products.filter(product => {
-    if (filters.characteristics?.eco && !product.characteristics?.eco) return false;
-    if (filters.characteristics?.gluten && !product.characteristics?.gluten) return false;
-    return true;
+    if (!filters.characteristics) return true;
+
+    return Object.entries(filters.characteristics).every(([char, isSelected]) => {
+      return !isSelected || product.characteristics?.[char];
+    });
   });
 }
 
+/**
+ * Sort products by price or name
+ * @param {Array} products - Products to sort
+ * @param {string} sortOption - Sort method ('price-asc', 'price-desc', 'name-asc', 'name-desc')
+ * @returns {Array} Sorted products
+ */
 export function applySort(products, sortOption) {
   switch (sortOption) {
     case "price-desc":
@@ -43,20 +67,21 @@ export function applySort(products, sortOption) {
 }
 
 /**
- * Filters and sorts products based on search query, category filters, characteristics, and sort options
- * @param {Array} products - Array of product objects
- * @param {Object} filters - Filter object with categories and characteristics
- * @param {string} sortOption - Sort option ('price-asc', 'price-desc', 'name-asc', 'name-desc')
- * @param {string} query - Search query string
- * @returns {Array} Filtered and sorted array of products
+ * Filter and sort products by search, category, characteristics, and sort option
+ * @param {Array} products - Products to process
+ * @param {Object} filters - Filter criteria
+ * @param {string} sortOption - Sort method
+ * @param {string} query - Search query
+ * @returns {Array} Filtered and sorted products
  */
 export function getVisibleProducts(products, filters, sortOption, query = "") {
-
   let visible = [...products];
 
+  // Search filter (case-insensitive)
   if (query.trim()) {
+    const normalizedQuery = query.toLowerCase();
     visible = visible.filter((product) =>
-      product.name.toLowerCase().includes(query)
+      product.name.toLowerCase().includes(normalizedQuery)
     );
   }
 
@@ -65,4 +90,3 @@ export function getVisibleProducts(products, filters, sortOption, query = "") {
 
   return applySort(visible, sortOption);
 }
-
