@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Link, useParams } from "react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { CartContext } from "../context/CartContext.jsx";
-import { get } from "../services/fetcher.jsx";
+import { get } from "../services/fetcher.js";
 import Price from "../components/Price.jsx";
 import QuantitySelector from "../components/QuantitySelector.jsx";
 import "../styles/ProductDetailsPage.css";
