@@ -2,7 +2,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { callApi } from "../services/fetcher.jsx";
+import { callApi } from "../services/fetcher.js";
 import { useFormValidation } from "../hooks/useFormValidation";
 import "../styles/LoginPage.css";
 

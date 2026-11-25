@@ -1,144 +1,171 @@
-# 🛍️ SuperM – React E-commerce App
+# SuperM
 
-A modern e-commerce web application built with React and Vite, featuring user authentication, product browsing, shopping cart, and a streamlined checkout process.
+SuperM es una tienda de supermercado construida con React como proyecto personal de aprendizaje. Permite explorar productos, filtrar y buscar el catálogo, consultar detalles nutricionales y completar una compra simulada con el carrito persistido localmente.
 
-## 🚀 Technologies
+[Read in English](./README.en.md)
 
-- **Frontend**: React 19, Vite
-- **Styling**: CSS Modules, Responsive Design
-- **State Management**: Context API + localStorage
-- **Routing**: React Router 7
-- **Data Fetching**: TanStack Query
-- **Backend**: Supabase (authentication, database)
-- **Icons**: React Icons
-- **Linting**: ESLint with React rules
-- **Build Tool**: Vite
+> Esta documentación está en español y la interfaz de la aplicación está en inglés.
 
-## 🏗️ Architecture
+## Demo
 
-### Project Structure
-```
+https://superm-hazel.vercel.app
+
+**Inicio de sesión de demo:** introduce `test@example.com` y cualquier contraseña de al menos 4 caracteres, como requiere el formulario del frontend. La implementación del RPC publicado no está en este repositorio, así que no se puede verificar de forma independiente su validación en el servidor.
+
+## Capturas
+
+| Landing | Products |
+|---|---|
+| ![Landing en escritorio](./docs/screenshots/landing.png) | ![Productos en escritorio](./docs/screenshots/products.png) |
+
+| Mobile | Product details |
+|---|---|
+| ![Productos en móvil](./docs/screenshots/products-mobile.png) | ![Detalle de producto en escritorio](./docs/screenshots/products-details.png) |
+
+| Cart and checkout | Profile |
+|---|---|
+| ![Cart-checkout en escritorio](./docs/screenshots/cart-checkout.png) | ![Perfil en escritorio](./docs/screenshots/profile.png) |
+
+## Features
+
+- Catálogo cargado desde Supabase/PostgREST
+- Busqueda, filtros por categoría, características y ordenamiento
+- Página de detalle con precio, descripción e información nutricional
+- Carrito con cantidades persistidas en `localStorage`
+- Inicio de sesión mediante una RPC de Supabase
+- Perfil editable con datos persistidos localmente
+- Checkout de varios pasos y pago simulado
+- Estados de éxito/error, toasts, consentimiento de cookies y navegación responsive
+- Google Analytics opcional, cargado solo después del consentimiento de cookies
+
+## Stack
+
+- React 19 y React Router 7
+- Vite 5
+- Supabase / PostgREST
+- TanStack Query
+- Context API y `localStorage`
+- CSS global organizado por página y tema responsive
+- React Icons y React Toastify
+- Google Analytics
+- ESLint
+
+## Decisiones de arquitectura
+
+**Context API para estado cliente:** el carrito, los filtros y las notificaciones son estado compartido con una vida limitada a la sesión de interfaz. Context evita introducir Redux/Zustand para estos casos. El carrito vive solo en el navegador y se persiste en `localStorage`.
+
+**TanStack Query para datos remotos:** las consultas del catálogo y los detalles gestionan caché, reintentos y estados de carga/error sin repetir esta lógica en los componentes. Las consultas tienen 5 minutos de `staleTime`.
+
+**Capa de acceso a datos:** `src/services/fetcher.js` concentra las llamadas a Supabase. Los componentes usan `get()` o `callApi()`, por lo que cambiar la fuente o añadir una API real no requiere sustituir la lógica de cada vista.
+
+**Carga diferida:** las páginas se cargan con `React.lazy`, por lo que el JavaScript de las vistas no se solicita hasta que se necesita. La contrapartida es una espera al navegar por primera vez a una vista. Todavía no se han medido las métricas de Lighthouse ni el impacto real en el bundle.
+
+**Estilos:** elegí CSS global con clases kebab-case, organizadas por vista en `src/styles/`, para mantener una base sencilla y compartir variables y componentes sin configuración adicional. La contrapartida es que los nombres dependen de la disciplina manual y existe riesgo de colisiones. No usa CSS Modules ni una metodología formal BEM.
+
+**Separación de Supabase:** el proyecto `users` proporcionado por el curso es de solo lectura, así que no puedo modificarlo. El catálogo del curso tampoco tenía las columnas que necesitaban mis filtros, por eso creé mi propio proyecto `products` en lugar de alterar los datos del curso. Asumí el coste de gestionar ambos proyectos —dos URLs, dos claves anon y dos recursos externos— para añadir los filtros y conservar el RPC de inicio de sesión del curso.
+
+## Arquitectura del proyecto
+
+```text
 src/
-├── components/          # Reusable UI components
-│   ├── CartIcon.jsx     # Cart icon with badge
-│   ├── Navbar.jsx       # Main navigation
-│   ├── Product.jsx      # Product card component
-│   ├── ShippingForm.jsx # Checkout shipping form
-│   └── ...
-├── context/             # React Context providers
-│   ├── CartContext.jsx  # Shopping cart state
-│   ├── ProductsContext.jsx # Products and filters
-│   └── ToastContext.jsx # Notification system
-├── hooks/               # Custom React hooks
-│   └── useFormValidation.js # Form validation logic
-├── pages/               # Page components
-│   ├── Landing.jsx      # Homepage
-│   ├── Products.jsx     # Product listing
-│   ├── ProductDetails.jsx # Individual product view
-│   ├── Checkout.jsx     # Multi-step checkout
-│   ├── Profile.jsx      # User profile management
-│   └── Login.jsx        # Authentication
-├── services/            # API and external services
-│   └── fetcher.jsx      # HTTP client utilities
-├── styles/              # CSS files
-│   ├── index.css        # Global styles and variables
-│   ├── LandingPage.css  # Page-specific styles
-│   └── ...
-├── utils/               # Utility functions
-│   ├── filters.js       # Product filtering logic
-│   └── validation.js    # Form validation rules
-├── App.jsx              # Main app component
-└── main.jsx             # App entry point
+├── components/     Componentes reutilizables
+├── context/        Estado cliente compartido
+├── hooks/          Validación y lógica reutilizable
+├── pages/          Vistas asociadas a rutas
+├── services/       Adaptador de acceso a Supabase
+├── styles/         Estilos globales por página y tema
+└── utils/          Filtros y validaciones
 ```
 
-### State Management
-- **Global State**: Context API for cart, products, and user authentication
-- **Persistence**: localStorage for cart and user profile data
-- **Server State**: TanStack Query for API data fetching and caching
+## Datos y API
 
-### Component Patterns
-- Functional components with hooks
-- Custom hooks for reusable logic
-- Context providers for shared state
-- CSS modules for scoped styling
+El proyecto usa dos proyectos de Supabase:
 
-## 🧪 Setup & Development
+- `products`: catálogo y detalle de productos
+- `users`: inicio de sesión mediante la función RPC `rpc/login`
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
+Los datos se consultan mediante PostgREST en `/rest/v1/`:
 
-### Installation
+- `GET /rest/v1/products`
+- `GET /rest/v1/products?id=eq.<id>`
+- `POST /rest/v1/rpc/login`
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/superm.git
-   cd superm
-   ```
+No existe un servidor REST propio ni endpoints como `/auth/login` o `/orders`; la simulación de checkout se ejecuta en el frontend.
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+El frontend envía el email y la contraseña a `rpc/login`; no guarda en `localStorage` ni la contraseña ni un hash. El hashing y la verificación ocurren fuera del frontend y no pueden comprobarse desde este repositorio.
 
-3. **Environment Setup**
-   - Copy `.env.example` to `.env`
-   - Configure Supabase credentials
-   - Set up API endpoints
+## Variables de entorno
 
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
-   App runs at: http://localhost:5173
+Para ejecutar la app con Supabase propio, copia `.env.example` a `.env` y sustituye las cuatro variables de Supabase por los valores de tus proyectos. Tendrás que crear por tu cuenta las tablas y datos del catálogo, implementar el RPC `login` y configurar las políticas RLS.
 
-### Available Scripts
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+| Variable | Uso |
+|---|---|
+| `VITE_SUPABASE_PRODUCTS_URL` | URL del proyecto del catálogo |
+| `VITE_SUPABASE_PRODUCTS_ANON_KEY` | Clave anon del catálogo |
+| `VITE_SUPABASE_USERS_URL` | URL del proyecto de usuarios |
+| `VITE_SUPABASE_USERS_ANON_KEY` | Clave anon de usuarios |
+| `VITE_GA_MEASUREMENT_ID` | ID de medición de Google Analytics; opcional |
 
-## 🤝 Contributing
+Vite expone las variables `VITE_*` al cliente. Usa únicamente claves públicas y configura RLS en Supabase.
 
-### Development Workflow
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Make your changes
-4. Run tests and linting: `npm run lint`
-5. Commit with conventional commits
-6. Push and create a pull request
+Google Analytics solo se carga cuando el usuario acepta el banner de consentimiento mediante la cookie `cookieConsent`. Si rechaza, no se inicia el script ni `gtag`. `.env.example` usa `G-XXXXXXXXXX` como valor de ejemplo; reemplázalo por tu ID de medición o deja la variable vacía para desactivar Analytics.
 
-### Code Standards
-- **Components**: PascalCase naming, functional with hooks
-- **Functions**: camelCase, descriptive names
-- **CSS**: kebab-case classes, BEM methodology
-- **Commits**: Use conventional commits (feat, fix, docs, etc.)
-- **Documentation**: JSDoc for complex functions
+## Setup
 
-### Pull Request Guidelines
-- Provide clear description of changes
-- Include screenshots for UI changes
-- Ensure all tests pass
-- Update documentation if needed
+La forma principal de probar la aplicación completa es mediante la [demo publicada](https://superm-hazel.vercel.app). Este repositorio no incluye el backend y su esquema de Supabase no está versionado. El servidor local de Vite puede iniciarse sin variables de entorno, pero los datos de productos y el inicio de sesión requieren proyectos y esquema propios, como se explica arriba.
 
-## 📚 API Documentation
+Requisitos: Node.js 20+ y npm.
 
-### Authentication
-- `POST /auth/login` - User login
-- `POST /auth/register` - User registration
+```bash
+git clone https://github.com/tavcoder/SuperM.git
+cd SuperM
+npm install
+npm run dev
+```
 
-### Products
-- `GET /products` - Fetch all products
-- `GET /products/:id` - Fetch single product
+La aplicación estará disponible en `http://localhost:5173`.
 
-### Orders
-- `POST /orders` - Create new order
-- `GET /orders/:userId` - Get user orders
+## Scripts
 
-## 📄 License
+```text
+npm run dev      Servidor de desarrollo
+npm run build    Build de producción
+npm run preview  Previsualizar el build
+npm run lint     Ejecutar ESLint
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Este repositorio no incluye actualmente un runner de tests ni un script `test`.
 
----
+## Limitaciones conocidas
 
-**Note**: This is a demo e-commerce application for learning purposes. It uses mock APIs and simulated payments.
+- La publicación real de pedidos no está implementada.
+- El pago es aleatorio y simulado para permitir probar estados de éxito y error sin usar un proveedor real; no procesa tarjetas ni PayPal.
+- El usuario y el perfil se mantienen solo en memoria/localStorage y no tienen una sesión persistida completa.
+- La indicación de demo del formulario permite cualquier contraseña de 4 o más caracteres, pero el RPC del servidor no se puede auditar desde este repositorio; no es un diseño de autenticación para producción.
+- No hay pruebas automatizadas.
+- El análisis de accesibilidad y rendimiento con Lighthouse todavía no está documentado.
+- El esquema de Supabase, los datos semilla y las políticas RLS no están versionados.
+
+## Próximos pasos
+
+- Conectar un flujo real de checkout y órdenes
+- Añadir persistencia de sesión y perfil en Supabase
+- Sustituir el pago aleatorio por un proveedor real
+- Añadir pruebas de componentes y lógica de carrito
+- Crear un pipeline de CI con lint y build
+- Versionar el esquema de Supabase, los datos semilla y la definición del RPC `login`
+- Medir accesibilidad y rendimiento con Lighthouse y documentar los resultados
+- Evaluar unificar los proyectos de Supabase si el proyecto del curso permite modificaciones
+- Crear un GIF corto del flujo completo de búsqueda, selección, carrito y checkout
+
+## Convenciones
+
+- Componentes funcionales y PascalCase
+- Funciones y variables camelCase
+- Clases CSS kebab-case
+- Commits siguiendo Conventional Commits
+- Sin `prop-types`; se prefieren anotaciones de tipos cuando el proyecto migre a TypeScript
+
+## Licencia
+
+El código se publica como **All Rights Reserved** salvo autorización expresa del autor. No se concede permiso para reutilizarlo, modificarlo o distribuirlo.

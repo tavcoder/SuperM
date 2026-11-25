@@ -54,16 +54,18 @@ function App() {
     useEffect(() => {
         const consent = getCookieConsentValue("cookieConsent");
         if (consent === "true") {
-            //  Google Analytics
+            const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+            if (!measurementId) return;
+
             const script = document.createElement("script");
-            script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; // <-- tu ID
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
             script.async = true;
             document.body.appendChild(script);
 
             window.dataLayer = window.dataLayer || [];
             function gtag() { window.dataLayer.push(arguments); }
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', measurementId);
         }
     }, []);
 

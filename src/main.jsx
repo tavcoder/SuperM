@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import { CartProvider } from "./context/CartContext.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
-import { ERROR_MESSAGES } from "./services/fetcher.jsx";
+import { ERROR_MESSAGES } from "./services/fetcher.js";
 import App from "./App.jsx";
 import "./styles/index.css";
 import "./styles/dark-theme.css";

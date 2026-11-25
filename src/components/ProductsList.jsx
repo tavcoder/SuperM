@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProductsContext } from "../context/ProductsContext.jsx";
 import ProductCard from "./ProductCard.jsx";
-import { get } from "../services/fetcher.jsx";
+import { get } from "../services/fetcher.js";
 import { getVisibleProducts } from "../utils/filters.js";
 
 export default function ProductsList({ openSidebar }) {
